@@ -11,7 +11,7 @@ basePath: /services/api.asmx/ # Replace with your basePath. Note: SHOULD begin w
 info:
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
   description: |
-    # 1. IBX Services [#](https://www.integritypays.com/developers/apis/soap-apis/#ibx-services)
+    # 1. IBX Services 
     # _IBX Services WSDLs_
     The IBX services can be accessed via the following URLs
     
@@ -66,9 +66,9 @@ info:
     
     
     
-    # 2. IMPLEMENTATION GUIDE [#](https://www.integritypays.com/developers/apis/soap-apis/#implementation-guide)
+    # 2. IMPLEMENTATION GUIDE 
     
-    # 2.1. SOAP [#](https://www.integritypays.com/developers/apis/soap-apis/#soap)
+    # 2.1. SOAP 
     
     The SOAP interface is most easily accessed through a .NET application. If you are developing in .Net, simply add the URL of the web service – or of the specific service method – you are attempting to consume as a service reference in Visual Studio. Once you have added the service reference, Visual Studio will handle the bulk of the heavy lifting and will create a class for the web service and/or method you are attempting to access which will build the SOAP object for you and return a response in the form of an object.
     
@@ -85,7 +85,7 @@ info:
     If you have any development specific questions, please contact our technical support center at the following email address:  support@ibxpays.com.
     
 
-    # 2.2. Name-Value Pairs [#](https://www.integritypays.com/developers/apis/soap-apis/#name-value-pairs)
+    # 2.2. Name-Value Pairs 
     The Name-Value Pairs implementation relies on the .NET framework’s built in HTTP to SOAP translation layer. As a result, there are a few idiosyncracies that an integrator must be aware of when implementing using HTTPS.
     
     
@@ -113,9 +113,9 @@ info:
 
     Table of contents for test forms can be located at: https://gateway.ibxpays.com/ws/
 
-    # 3. Transaction Processing [#](https://www.integritypays.com/developers/apis/soap-apis/#transaction-processing)
+    # 3. Transaction Processing 
     
-    # 3.1. ProcessCreditCard [#](https://www.integritypays.com/developers/apis/soap-apis/#processcreditcard)
+    # 3.1. ProcessCreditCard 
     This web service is used whenever a transaction is completed via customer credit card.
     
     # Request
@@ -374,7 +374,7 @@ info:
     | Optional | <ClientData>Arbitrary Data Here</ClientData>
     |  |The ClientData can be used to pass through various POS or Client data related to the transaction.
     
-    # 3.2. ProcessDebitCard [#](https://www.integritypays.com/developers/apis/soap-apis/#processdebitcard)
+    # 3.2. ProcessDebitCard 
     This web service is used whenever a transaction is completed via a customer debit card.
     
     # Request
@@ -460,7 +460,7 @@ info:
     | |<Force>F</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
     | |Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
     
-    # 3.3. ProcessCheck  [#](https://www.integritypays.com/developers/apis/soap-apis/#processcheck)
+    # 3.3. ProcessCheck  
     This web service is used whenever a transaction is completed via customer check.
     
     # Request
@@ -599,7 +599,7 @@ info:
     | |<ExternalIP>_IP Address Here_</ExternalIP>
     | |If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
     
-    # 3.4. ProcessEBTCard [#](https://www.integritypays.com/developers/apis/soap-apis/#processebtcard)
+    # 3.4. ProcessEBTCard 
      EBT is used in all U.S. states to issue government benefits to recipients. Benefits are automatically deposited onto the card by the state and recipients are issued an “EBT card” (similar to a bank ATM or debit card) to receive their food stamp and/or cash benefits. Recipients with food stamp benefits can use their EBT cards for eligible food purchases at most grocery stores and some other retailers.
     
     # Request
@@ -701,7 +701,7 @@ info:
     | |For a Food benefit/snap transaction you can provide the Merchant FNS Number in the MerchantFNS tag:
     | | - <MerchantFNS>_12345_</MerchantFNS>
     
-    # 3.5. ProcessGiftCard [#](https://www.integritypays.com/developers/apis/soap-apis/#processgiftcard)
+    # 3.5. ProcessGiftCard 
      This web service is used to process gift card transactions for a merchant.
     
     # Request
@@ -786,7 +786,7 @@ info:
     | | <ExternalIP>IP Address Here</ExternalIP>
     | | If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
     
-    # 3.6. ProcessSignature [#](https://www.integritypays.com/developers/apis/soap-apis/#processsignature)
+    # 3.6. ProcessSignature 
      The ProcessSignature web service allows you to capture customer signatures from an input device.
     This web service is used to capture a customer signature electronically and store that data on the virtual terminal. Transactions with captured signatures appear in the Payment Server with a small icon to the left of the transaction ID.
     
@@ -864,7 +864,7 @@ info:
     | | - <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
     | | - <TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
     
-    # 3.7. ProcessBatch [#](https://www.integritypays.com/developers/apis/soap-apis/#processbatch)
+    # 3.7. ProcessBatch 
     The ProcessBatch web service provides the ability to control closing open batches for a merchant across Credit, Debit, EBT, ALL payment types. It serves as a convenience function as an alternative to calling Process(Credit|Debit|EBT)Card with the “CaptureAll” or “Capture” transaction types.
     
     # Request
@@ -944,7 +944,7 @@ info:
     | |- <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
     | |<TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
     
-    # 3.8. GetInfo [#](https://www.integritypays.com/developers/apis/soap-apis/#getinfo)
+    # 3.8. GetInfo 
      The GetInfo web service allows for miscellaneous checks against the gateway. These include the status of a current batch or an end-to-end status check to see if the gateway is currently responding.
     
     # Request
@@ -1023,7 +1023,7 @@ info:
     | |The ExtData input parameter is reserved for future use.
     |Optional |
     
-    # 3.9. Transaction Response Fields [#](https://www.integritypays.com/developers/apis/soap-apis/#transaction-response-fields)
+    # 3.9. Transaction Response Fields 
     The following response fields may be part of the return value for web services using transact.asmx operations. These web services include:
     
     - GetInfo
@@ -1121,7 +1121,7 @@ info:
     ||<ReceiptData><Requested_Amt>11.10</Requested_Amt>
     ||<Approved_Amt>5.55</Approved_Amt></ReceiptData>
     
-    # 3.10. Result Response Fields  [#](https://www.integritypays.com/developers/apis/soap-apis/#result-response-fields)
+    # 3.10. Result Response Fields  
     
     # Result Response Field Definitions
     
@@ -1186,7 +1186,7 @@ info:
     |1014|No Records To Settle (in the current batch)
     |1015|No Records To Process (in the current batch)
     
-     # 3.11. AVS Response Fields   [#](https://www.integritypays.com/developers/apis/soap-apis/#avs-response-fields)
+     # 3.11. AVS Response Fields   
     
     | Value |  Description | 
     |-----|-----
@@ -1210,7 +1210,7 @@ info:
     |O|No response sent
     |5|Invalid AVS response
     
-    # 3.12. CV Response Fields   [#](https://www.integritypays.com/developers/apis/soap-apis/#cv-response-fields)
+    # 3.12. CV Response Fields   
     
     | Value |  Description | 
     |-----|-----
@@ -1221,9 +1221,9 @@ info:
     |U| Unknown / Issuer has not certified for CV or issuer has not provided Visa/MasterCard with the CV encryption keys.
     |X| Server Provider did not respond
     
-    # 4. Reporting  [#](https://www.integritypays.com/developers/apis/soap-apis/#reporting)
+    # 4. Reporting  
     
-    # 4.1. GetCardTrx  [#](https://www.integritypays.com/developers/apis/soap-apis/#getcardtrx)
+    # 4.1. GetCardTrx  
     
     This web service returns one or more card transactions (with details) for a specific merchant.
 
@@ -1438,7 +1438,7 @@ info:
     | |   -- PST – Pacific Standard Time
     
    
-    # 4.2. GetCardTrxSummary   [#](https://www.integritypays.com/developers/apis/soap-apis/#getcardtrxsummary)
+    # 4.2. GetCardTrxSummary   
     
     The GetCardTrxSummary web service allows you to view summary data for one or more card transactions within a given date range. Optional filters allow you to collect summary data by card type, card owner, account number, register, settle or approval status, user, etc.
     
@@ -1562,7 +1562,7 @@ info:
     || -- AZMST – Arizona
     || -- PST – Pacific Standard Time
     
-    # 4.3. GetCheckTrx    [#](https://www.integritypays.com/developers/apis/soap-apis/#getchecktrx)
+    # 4.3. GetCheckTrx    
     This web service returns one or more check transactions (with details) for a specific merchant.
     
     In addition to the basic transaction search function, the GetCheckTrx web service can help you to build a variety of custom reports, aid in data mining applications, and help to automate reconciliation. Custom reports, from customer billing histories to reports that help locate duplicate transactions, and data mining applications – for example, determining what percentage of sales come through a given payment type, are easily constructed by filtering for only the data that is needed.
@@ -1684,7 +1684,7 @@ info:
     || -- AZMST – Arizona
     || -- PST – Pacific Standard Time
   
-    # 4.4. GetOpenBatchSummary [#](https://www.integritypays.com/developers/apis/soap-apis/#getopenbatchsummary)
+    # 4.4. GetOpenBatchSummary 
       This web service retrieves a payment type transaction summary of the current open batch for a specified merchant.
     
     # Request
@@ -1720,7 +1720,7 @@ info:
     || -- AZMST – Arizona
     || -- PST – Pacific Standard Time
 
-    # 4.5. TRXDetail Response Fields [#](https://www.integritypays.com/developers/apis/soap-apis/#trxdetail-response-fields)
+    # 4.5. TRXDetail Response Fields 
     The following response fields may be part of the return value for web services using TrxDetail.asmx operations. These web services include:  
     
     - GetCardTrx
@@ -2027,9 +2027,9 @@ info:
     |Zip_CH | Returns the billing zip code of the credit card.
     |String up to 10 characters |
     
-    # Recurring Billing [#](https://www.integritypays.com/developers/apis/soap-apis/#recurring-billing)
+    # Recurring Billing 
     
-    # 5.1. ManageCustomer [#](https://www.integritypays.com/developers/apis/soap-apis/#managecustomer)
+    # 5.1. ManageCustomer 
     This service is used to add, update, or delete a recurring billing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
@@ -2133,7 +2133,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 5.2. ManageCreditCardInfo [#](https://www.integritypays.com/developers/apis/soap-apis/#managecreditcardinfo)
+    # 5.2. ManageCreditCardInfo 
     This service allows you to store a credit card number securely within the Payment Server database. Calling this service is the second step towards successfully storing and initiating recurring payments if a credit card is to be the preferred method of payment.
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
@@ -2203,7 +2203,7 @@ info:
     |ExtData| Reserved for future use.
     |Optional|
    
-    # 5.3. ManageCheckInfo  [#](https://www.integritypays.com/developers/apis/soap-apis/#managecheckinfo)
+    # 5.3. ManageCheckInfo  
     This service allows you to store a checking account number securely within the Payment Server database. Calling this service is the second step towards successfully storing and initiating recurring payments if ACH or ECHECKs are to be the preferred method of payment.
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
@@ -2287,7 +2287,7 @@ info:
     |ExtData| Reserved for future use.
     |Optional|
     
-    # 5.4. ManageContract  [#](https://www.integritypays.com/developers/apis/soap-apis/#managecontract)
+    # 5.4. ManageContract  
     This service allows the integrator to add, update, or delete the terms and interval of a recurring billing contract.
     See Developer’s Notes for information about  [Recurring Billing Web Services.](#section/recur)
     
@@ -2467,7 +2467,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 5.5.MANAGECONTRACTADDDAYSTONEXTBILLDT [#](https://www.integritypays.com/developers/apis/soap-apis/#managecontractadddaystonextbilldt)
+    # 5.5.MANAGECONTRACTADDDAYSTONEXTBILLDT 
     This web service allows the integrator to update the NextBillDate in the event that a payment was declined and a contract suspended.
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
@@ -2497,7 +2497,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 5.6. ADDRECURRINGCREDITCARD  [#](https://www.integritypays.com/developers/apis/soap-apis/#addrecurringcreditcard)
+    # 5.6. ADDRECURRINGCREDITCARD  
     The AddRecurringCreditCard web service is a convenience function that allows an integrator to wrap the functionality of three separate calls into one. Rather than having to call ManageCustomer then ManageCreditCardInfo and finally ManageContract (while passing along various return values into subsequent calls) one can simply call AddRecurringCreditCard.
    
     
@@ -2663,7 +2663,7 @@ info:
     |ExtData |Reserved for future use.
     |Optional |
     
-    # 5.7. PROCESSCREDITCARD  (RECURRING BILLING)  [#](https://www.integritypays.com/developers/apis/soap-apis/#processcreditcard-recurring-billing)
+    # 5.7. PROCESSCREDITCARD  (RECURRING BILLING)  
     This web service allows an integrator to process a Credit Card Transaction against a checking account that has been stored using ManageCreditCardInfo
 
     This web service is for processing ‘Sale’ transactions only.
@@ -2722,7 +2722,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 5.8. PROCESSCHECK (RECURRING BILLING)   [#](https://www.integritypays.com/developers/apis/soap-apis/#processcheck-recurring-billing)
+    # 5.8. PROCESSCHECK (RECURRING BILLING)   
     This web service allows an integrator to process a Check Transaction against a checking account that has been stored using ManageCheckInfo.
 
     This web service is for processing ‘Sale’ transactions only.
@@ -2754,7 +2754,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-      # 5.9. RECURRINGRESULT RESPONSE FIELDS   [#](https://www.integritypays.com/developers/apis/soap-apis/#recurringresult-response-fields)
+      # 5.9. RECURRINGRESULT RESPONSE FIELDS   
     The following response fields may be part of the return value for web services using Recurring Billing operations. These web services include:
     
     - ManageCustomer
@@ -2781,9 +2781,9 @@ info:
     |Username |String
     |Vendor |String
     
-    # 6.CARD SAFE [#](https://www.integritypays.com/developers/apis/soap-apis/#card-safe)
+    # 6.CARD SAFE 
     
-    # 6.1.STORECARD [#](https://www.integritypays.com/developers/apis/soap-apis/#storecard)
+    # 6.1.STORECARD 
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
     
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
@@ -2820,7 +2820,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 6.2. STORECARDFROMPNREF  [#](https://www.integritypays.com/developers/apis/soap-apis/#storecardfrompnref)
+    # 6.2. STORECARDFROMPNREF  
     This service is used to add a stored payment method to an existing customer record using a previous transaction as the basis.
     
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
@@ -2859,7 +2859,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-     # 6.3. PROCESSCREDITCARD   [#](https://www.integritypays.com/developers/apis/soap-apis/#processcreditcard-2)
+     # 6.3. PROCESSCREDITCARD   
     This web service allows an integrator to process a Credit Card Transaction against an account that has been stored using AddCard
 
 
@@ -2903,7 +2903,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
 
-     # 6.4. STORECARDRESULT RESPONSE FIELDS   [#](https://www.integritypays.com/developers/apis/soap-apis/#storecardresult-response-fields)
+     # 6.4. STORECARDRESULT RESPONSE FIELDS   
       The following response fields may be part of the return value for web services using Card Save operations. These web services include:
     
     - StoreCard
@@ -2936,9 +2936,9 @@ info:
     |KeyPointer   |String
     |ExtData   |String
     
-    # 7. BATCH REPORTING   [#](https://www.integritypays.com/developers/apis/soap-apis/#batch-reporting)
+    # 7. BATCH REPORTING   
     
-    # 7.1 GETBATCHDETAIL [#](https://www.integritypays.com/developers/apis/soap-apis/#getbatchdetail)
+    # 7.1 GETBATCHDETAIL 
     This web service retrieves details about the batch based on a batch number.
     
     # Request
@@ -3016,7 +3016,7 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.2 GETBATCHNUMBERS  [#](https://www.integritypays.com/developers/apis/soap-apis/#getbatchnumbers)
+    # 7.2 GETBATCHNUMBERS  
     This web service retrieves all the batch numbers between start and end dates based on a payment type.
 
 
@@ -3096,7 +3096,7 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.3 GETBATCHSTATUS   [#](https://www.integritypays.com/developers/apis/soap-apis/#getbatchstatus)
+    # 7.3 GETBATCHSTATUS  
     The web service retrieves the status of a batch based on a batch number and payment type.
 
 
@@ -3178,7 +3178,7 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.4 GETBATCH RESPONSE FIELDS    [#](https://www.integritypays.com/developers/apis/soap-apis/#getbatch-response-fields)
+    # 7.4 GETBATCH RESPONSE FIELDS    
     The following response fields may be part of the return value for web services using Get Batch operations. These web services include:
     
     - GetBatchDetail
@@ -3213,9 +3213,9 @@ info:
     |KeyPointer     (string)|  
     |ExtData    (string)  |
     
-    # 8. CUSTOM FIELDS   [#](https://www.integritypays.com/developers/apis/soap-apis/#custom-fields)
+    # 8. CUSTOM FIELDS   
     
-    # 8.1 ADDCUSTOMFIELD  [#](https://www.integritypays.com/developers/apis/soap-apis/#addcustomfield)
+    # 8.1 ADDCUSTOMFIELD  
     This web service allows an integrator to add custom fields programmatically to a gateway account. The data in these fields is not passed to the processor.
     
     See Developer’s Notes for information about [Adding Custom Fields.](#section/addcus) 
@@ -3267,7 +3267,7 @@ info:
     |DisplayOnReceipt | This is a boolean parameter. Indicates whether or not the field will display on the cardholder receipt.
     |Optional |
     
-    # 8.2 GETCUSTOMFIELDS   [#](https://www.integritypays.com/developers/apis/soap-apis/#getcustomfields)
+    # 8.2 GETCUSTOMFIELDS   
     The GetCustomFields web service allows an integrator to retrieve the custom fields that have been programmatically added to a gateway account. The response contains an XML definition of the field, type, etc.
 
   
@@ -3372,7 +3372,7 @@ info:
     |RPNum| Unique value assigned to each gateway account used as a third credential to ensure security.
     ||Note: RPNum may also be called Merchant ID, Merchant Number, or Vendor Key.
     
-    # 8.3. AddCustomField Response Fields [#](https://www.integritypays.com/developers/apis/soap-apis/#addcustomfield-response-fields)
+    # 8.3. AddCustomField Response Fields 
     The following response fields may be part of the return value for web services using Add Custom Field operations. These web services include:
     
     - AddCustomField
@@ -3402,7 +3402,7 @@ info:
     |KeyPointer |	 String
     |ExtData |	 String
 
-    # 9. Developer Notes [#](https://www.integritypays.com/developers/apis/soap-apis/#developer-notes)
+    # 9. Developer Notes 
     # _Invalid Character Processing_
     
       Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
@@ -3569,7 +3569,7 @@ info:
   
     Adding a custom field creates a new column in the Transaction Reports grid and any data passed into this field by an integrator or in the virtual terminal will be stored in that column and accessible through the GetCardTrx web service.
 
-    # 9.1.Implementation Examples [#](https://www.integritypays.com/developers/apis/soap-apis/#implementation-examples)
+    # 9.1.Implementation Examples 
     
     The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
     
@@ -4009,9 +4009,9 @@ info:
 
     which at the time of this writing install version 2.11.1.
     
-    # 10. Payment Integration [#](https://www.integritypays.com/developers/apis/soap-apis/#payment-integration)
+    # 10. Payment Integration 
     
-    # 10.1 JavaScript Tokenization  [#](https://www.integritypays.com/developers/apis/soap-apis/#javascript-tokenization)
+    # 10.1 JavaScript Tokenization  
     
     # Introduction 
     JavaScript Tokenization enables you to create a form to securely capture your client’s credit card on your website without the need to store the data on your system. The JavaScript connects directly with our IBX system, which tokenizes the data and returns a token assigned to the credit card on file.
@@ -4196,7 +4196,7 @@ info:
      
      As a final note, be aware that you can and must use your merchant token (which can be shared publicly) for this API however when it comes time to charge the card on your server you must use your private  SOAP API credentials (definitely never share these) to actually charge the card.
      
-     # 10.2.Hosted Page [#](https://www.integritypays.com/developers/apis/soap-apis/#hosted-page)
+     # 10.2.Hosted Page 
      
      # Introduction
      
@@ -4379,7 +4379,7 @@ info:
     |ExpDate |  	The expiration date of the credit card number that was collected on the Hosted Page.
     |InvNum | The invoice number of the transaction for reconciliation purposes.
     
-    # 11. Gateway Emulator [#](https://www.integritypays.com/developers/apis/soap-apis/#gateway-emulator)
+    # 11. Gateway Emulator 
     
     # Introduction
 

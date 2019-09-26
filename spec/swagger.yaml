@@ -4638,23 +4638,29 @@ info:
           ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-global-settings-3.png)
           
         3. Load the Authorize.net (Zencart) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
-        ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-request-fields-1.png)
         
-        4. The Authorize.net AIM spec has several features which, although optional to Authorize.net, are required by Zencart. 
-            a. MD5 hash in the response: Authorize.net supports a hash of a pre-defined hash value, username, transaction id and amount returned in the response. Zencart will calculate this value and expect a match in the response from the The Gateway emulator. This is accomplished via the Field Formula in the Advanced Options of the Response field. As the screenshot below shows, the fields HashValue, Username, Transaction ID and Amount are included in a call to a MD5 function (all surrounded in parenthesis). Each value enclosed in square brackets is intended to be replaced with the actual value from that field. For example, [HashValue] will be replaced with the value specified in the previous steps (abcd in this example). This allows the return value of a given field to be dynamic, depending on the actual request and response values of a given transaction.
+              ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-request-fields-1.png)
+        
+      4. The Authorize.net AIM spec has several features which, although optional to Authorize.net, are required by Zencart. 
+      a. MD5 hash in the response: Authorize.net supports a hash of a pre-defined hash value, username, transaction id and amount returned in the response. Zencart will calculate this value and expect a match in the response from the The Gateway emulator. This is accomplished via the Field Formula in the Advanced Options of the Response field. As the screenshot below shows, the fields HashValue, Username, Transaction ID and Amount are included in a call to a MD5 function (all surrounded in parenthesis). Each value enclosed in square brackets is intended to be replaced with the actual value from that field. For example, [HashValue] will be replaced with the value specified in the previous steps (abcd in this example). This allows the return value of a given field to be dynamic, depending on the actual request and response values of a given transaction.
             
-             ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-adv-field-map-1.png)
+      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-adv-field-map-1.png)
              
-            b. Amount in the response:  Similar to MD5 this value depends on a FieldFormula, but it is very simple. This formula will simply be replaced with the Amount value passed in the request. No other modifications will be made.
+      b. Amount in the response:  Similar to MD5 this value depends on a FieldFormula, but it is very simple. This formula will simply be replaced with the Amount value passed in the request. No other modifications will be made.
             
-            ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-field-formula-1.png)
+      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-field-formula-1.png)
           
-          5. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
-          This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
-          Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
-        These values are preloaded with the Authorize.net template.
+      5. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
+      
+      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+      
+      This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
+      
+      Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
+
+      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
+      
+      These values are preloaded with the Authorize.net template.
 
     
   version: '1.0.0' # Your API version

@@ -12,7 +12,7 @@ info:
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
   description: |
     # 1. IBX Services 
-    # IBX Services WSDLs
+    ## IBX Services WSDLs
     The IBX services can be accessed via the following URLs
     
     - https://gateway.ibxpays.com/ws/transact.asmx?wsdl    
@@ -21,7 +21,7 @@ info:
     - https://gateway.ibxpays.com/vt/ws/trxdetail.asmx?wsdl
     - https://gateway.ibxpays.com/vt/ws/recurring.asmx?wsdl
     
-    # IBX Services
+    ## IBX Services
      
     **Transact WSDL** provides information for the following transaction processing services:
     
@@ -117,7 +117,7 @@ info:
     # 3.1. ProcessCreditCard 
     This web service is used whenever a transaction is completed via customer credit card.
     
-    # Request
+    ## Request
     ProcessCreditCard(UserName, Password, TransType, CardNum, ExpDate, MagData, NameOnCard, Amount, InvNum, PNRef, Zip, Street, CVNum, ExtData)
     
     ## Request Example
@@ -138,7 +138,7 @@ info:
             );
     ```
    
-    # Response
+    ## Response
     
     AuthCode, ExtData, GetAVSResult, GetAVSResultTXT, GetCommercialCard, GetCVResult, GetCVResultTXT, GetStreetMatchTXT, GetZipMatchTXT, HostCode, Message, Message1, Message2, PNRef, RespMSG, Result
     
@@ -169,7 +169,7 @@ info:
 
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessCreditCard Input Parameters
+    ## ProcessCreditCard Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name | Description 
@@ -214,7 +214,7 @@ info:
     |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
     |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags. View the [ExtData Parameters Table](#section/_Toc455564524) for more information.
     
-    # ExtData Parameters Table
+    ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
     ## ExtData Parameter Examples
@@ -376,15 +376,15 @@ info:
     # 3.2. ProcessDebitCard 
     This web service is used whenever a transaction is completed via a customer debit card.
     
-    # Request
+    ## Request
     ProcessDebitCard(UserName, Password, TransType, CardNum, ExpDate, MagData, NameOnCard, Amount, InvNum, PNRef, Pin, RegisterNumber, SureChargeAmt, CashBackAmt, ExtData)
     
-    # Response
+    ## Response
     IBXTransact.Response
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessDebitCard Input Parameters
+    ## ProcessDebitCard Input Parameters
     Unless noted otherwise, the parameter is **required**.
     
     | Parameter Name| Description 
@@ -430,7 +430,7 @@ info:
     |ExtData |  The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
     |Optional |  ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
-    # ExtData Parameters Table
+    ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
     ## ExtData Parameter Example
@@ -462,15 +462,15 @@ info:
     # 3.3. ProcessCheck  
     This web service is used whenever a transaction is completed via customer check.
     
-    # Request
+    ## Request
     ProcessCheck(UserName, Password, TransType, CheckNum, TransitNum, AccountNum, Amount, MICR, NameOnCheck, DL, SS, DOB, StateCode, CheckType, ExtData)
     
-    # Response
+    ## Response
     Need Response here    
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessCheck Input Parameters
+    ## ProcessCheck Input Parameters
     Unless noted otherwise, the parameter is **required**.
     
     | Parameter Name| Description 
@@ -520,7 +520,7 @@ info:
     |ExtData |The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
     |Optional |ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
-    # ExtData Parameters Table
+    ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
     ## ExtData Parameter Examples
@@ -601,15 +601,15 @@ info:
     # 3.4. ProcessEBTCard 
      EBT is used in all U.S. states to issue government benefits to recipients. Benefits are automatically deposited onto the card by the state and recipients are issued an “EBT card” (similar to a bank ATM or debit card) to receive their food stamp and/or cash benefits. Recipients with food stamp benefits can use their EBT cards for eligible food purchases at most grocery stores and some other retailers.
     
-    # Request
+    ## Request
     ProcessEBTCard(UserName, Password, TransType, CardNum, ExpDate, MagData, NameOnCard, Amount, InvNum, PNRef, Pin, RegisterNum, SureChargeAmount, CashBackAmt, ExtData)
     
-    # Response
+    ## Response
     Response here  
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessEBTCard Input Parameters
+    ## ProcessEBTCard Input Parameters
     Unless noted otherwise, the parameter is **required**.
     
     | Parameter Name| Description 
@@ -655,7 +655,7 @@ info:
     |ExtData | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
     |Optional | ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
-    # ExtData Parameters Table
+    ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
     ## ExtData Parameter Examples
@@ -703,15 +703,15 @@ info:
     # 3.5. ProcessGiftCard 
      This web service is used to process gift card transactions for a merchant.
     
-    # Request
+    ## Request
     ProcessGiftCard(UserName, Password, TransType, CardNum, ExpDate, MagData, Amount, InvNum, PNRef, ExtData)
     
-    # Response
+    ## Response
     Response here  
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessGiftCard Input Parameters
+    ## ProcessGiftCard Input Parameters
     Unless noted otherwise, the parameter is  **required**.
     
     | Parameter Name| Description 
@@ -746,7 +746,7 @@ info:
     |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
     |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
-    # ExtData Parameters Table
+    ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
     ## ExtData Parameter Examples
@@ -789,7 +789,7 @@ info:
      The ProcessSignature web service allows you to capture customer signatures from an input device.
     This web service is used to capture a customer signature electronically and store that data on the virtual terminal. Transactions with captured signatures appear in the Payment Server with a small icon to the left of the transaction ID.
     
-    # Request
+    ## Request
     ProcessSignature(UserName, Password, SignatureType, SignatureData, PNRef, Result, AuthCode, ExtData)
     
     This example combines the previous ProcessCreditCard call and appends a signature to it. An [example file is linked](https://www.integritypays.com/wp-content/uploads/2016/08/gateway_signature.tif) (see “Path to File”) which you can download and save locally to try.
@@ -813,7 +813,7 @@ info:
     transactResponse.AuthCode, "");
     
     ```
-    # Response
+    ## Response
     
     
     ```
@@ -828,7 +828,7 @@ info:
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessSignature Input Parameters
+    ## ProcessSignature Input Parameters
     Unless noted otherwise, the parameter is  **required**.
     
     | Parameter Name| Description 
@@ -866,7 +866,7 @@ info:
     # 3.7. ProcessBatch 
     The ProcessBatch web service provides the ability to control closing open batches for a merchant across Credit, Debit, EBT, ALL payment types. It serves as a convenience function as an alternative to calling Process(Credit|Debit|EBT)Card with the “CaptureAll” or “Capture” transaction types.
     
-    # Request
+    ## Request
     ProcessBatch(UserName, Password, TransType, PaymentType, BatchID, BatchStatus, PNRef, ExtData)
     
     ```
@@ -876,7 +876,7 @@ info:
     transactResponse = transact.ProcessBatch("username", "password", "CAPTURE", "EBT", "", "", "", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     <Response>
@@ -908,7 +908,7 @@ info:
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessBatch Input Parameters
+    ## ProcessBatch Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -946,7 +946,7 @@ info:
     # 3.8. GetInfo 
      The GetInfo web service allows for miscellaneous checks against the gateway. These include the status of a current batch or an end-to-end status check to see if the gateway is currently responding.
     
-    # Request
+    ## Request
     GetInfo(UserName, Password, TransType, ExtData)
     
     ```
@@ -956,7 +956,7 @@ info:
     transactResponse = transact.GetInfo("username", "password", "BatchInquiry", "");
     ```
     
-    # Response
+    ## Response
     ```
     <Response>
     <Result>0</Result>
@@ -1007,7 +1007,7 @@ info:
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # GetInfo Input Parameters
+    ## GetInfo Input Parameters
     Unless noted otherwise, the parameter is  **required**.
     
     | Parameter Name| Description 
@@ -1086,7 +1086,7 @@ info:
     ||When programmatically validating a transaction’s result, this value should ALWAYS be used instead of any response message describing the result.
     ||See the [Result Response Field Definitions](#section/resultresp) for a full list of result values and descriptions.
     
-    # ExtData Response Fields
+    ## ExtData Response Fields
     
     | Response Field| Description 
     |-----|-----
@@ -1122,7 +1122,7 @@ info:
     
     # 3.10. Result Response Fields  
     
-    # Result Response Field Definitions
+    ## Result Response Field Definitions
     
     | Value |  Description | 
     |-----|-----
@@ -1234,7 +1234,7 @@ info:
     
     - Automate the reconciliation process between the payment server and the point-of-sale (POS) system or register.
     
-    # Request
+    ## Request
     
     ## Request Example 1
     
@@ -1255,7 +1255,7 @@ info:
         "", "", "", "", "", "", "", "", "", "", "true", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     <RichDBDS>
@@ -1312,7 +1312,7 @@ info:
     ```
     View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
     
-    # GetCardTrx Input Parameters
+    ## GetCardTrx Input Parameters
     
     Unless noted otherwise, the parameter is **required.**
     
@@ -1441,7 +1441,7 @@ info:
     
     The GetCardTrxSummary web service allows you to view summary data for one or more card transactions within a given date range. Optional filters allow you to collect summary data by card type, card owner, account number, register, settle or approval status, user, etc.
     
-    # Request
+    ## Request
     GetCardTrxSummary(UserName, Password, RPNum, BeginDt, EndDt, ApprovalCode, Register, NameOnCard, CardNum, CardType, ExcludeVoid, User, SettleFlag, SettleMsg, SettleDt, TransformType, Xsl, ColDelim, RowDelim, IncludeHeader, ExtData)
     
     ```
@@ -1452,7 +1452,7 @@ info:
                  "", "", "", "", "", "", "", "", "", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     <PaymentMethod>
@@ -1486,7 +1486,7 @@ info:
     ```
     View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
     
-    # GetCardTrxSummary Input Parameters
+    ## GetCardTrxSummary Input Parameters
      Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -1568,17 +1568,17 @@ info:
     
     GetCheckTrx can also be used to automate the reconciliation process between the payment server and the point-of-sale (POS) system or register.
     
-    # Request
+    ## Request
     
     GetCheckTrx(UserName, Password, RPNum, PNRef, BeginDt, EndDt, PaymentType, ExcludePaymentType, TransType, ExcludeTransType, ApprovalCode, Result, ExcludeResult, NameOnCheck, CheckNum, AcctNum, RouteNum, ExcludeVoid, User, InvoiceID, SettleFlag, SettleMsg, SettleDt, TransformType, Xsl, ColDelim, RowDelim, IncludeHeader, ExtData)
     
-    # Response
+    ## Response
     
     Response here
     
     View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
     
-    # GetCheckTrx Input Parameters
+    ## GetCheckTrx Input Parameters
     
     Unless noted otherwise, the parameter is **required.**
     
@@ -1686,17 +1686,17 @@ info:
     # 4.4. GetOpenBatchSummary 
       This web service retrieves a payment type transaction summary of the current open batch for a specified merchant.
     
-    # Request
+    ## Request
     
       GetOpenBatchSummary(username, password, rpNum, beginDt, endDt, extData)
     
-    # Response
+    ## Response
     
     Response here
     
     View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
     
-    # GetOpenBatchSummary Input Parameters
+    ## GetOpenBatchSummary Input Parameters
     
     Unless noted otherwise, the parameter is **required.**
     
@@ -3431,18 +3431,18 @@ info:
       - ExtData: <CustomerID>
     
     ## _Reversal Transactions_ 
-    ## **Credit Card Reversals**
+    ## Credit Card Reversals
     
     Reversal is supported for Visa and MasterCard transactions made within the direct marketing and ecommerce industries. Reversals must be processed within 24 hours of the original credit card transaction.
     
-    ## **Debit Card Reversals**
+    ## Debit Card Reversals
     All reversals must be processed as card-present transactions.
     
     Reversal is supported for supported issuers for all debit card issuers. The supported industries are only retail and restaurant. Reversals must be processed within 2 hours of the original debit card transaction.
 
     TIP: Requires the debit card number and expiration date along with the original sale PNREF number to process reversals.
     
-    ## **PIN-less Debit Transactions**
+    ## PIN-less Debit Transactions
     
     In some cases, debit transactions can be processed without the customer’s entering a PIN number (a “PIN-less” debit transaction). Essentially, the same information is sent as in a typical PIN-based debit transaction, with the exception of the encrypted PIN-block and key serial number. This transaction type is currently only available with BuyPass and Global Payments processors.
     
@@ -3452,7 +3452,7 @@ info:
     
     - **Application ID Setup** – To process PIN-less debit through BuyPass, the application ID sent must identify the application in use. Contact your administrator for additional details.
     
-    ## **Register Number and Terminal ID Setup**
+    ## Register Number and Terminal ID Setup
 
     When processing transactions with BuyPass, the Payment Server will attempt to match the RegisterNum passed from the client-side with the register number set up in the merchant account.  Once it has made the match, it will send the corresponding terminal ID assigned to that register number to BuyPass. When no terminal ID is sent to BuyPass, the default value is sent (usually terminal ID “01”).
     
@@ -3460,7 +3460,7 @@ info:
     
     If the merchant will be doing both internet and VRU transactions at the same time, the terminal ID value will be required to differentiate between the two. For example, you may set up “01” for Internet and “02” for VRU. The request sent through the ProcessDebitCard operation must then send the appropriate register number to reflect the appropriate transaction type.
     
-    ## **Fuel Purchases: Debit Card Use**
+    ## Fuel Purchases: Debit Card Use
     
     Debit card processing for fuel purchases is now available through BuyPass only.  This functionality allows for fuel purchases with standard debit cards (Visa, MasterCard, etc.).  Debit fuel purchases (TransTypes Sale and Force) require item-level purchase information.  If all the required information for a certain purchase is not provided, the transaction will be rejected and an error message generated.  The main implication for the developer is that additional data must be passed to the gateway in order for fuel purchases to process correctly.
     
@@ -3474,7 +3474,7 @@ info:
       - YYYY-MM-DD
       - YYYY-MM-DDThh:mm:ss
       
-      ## **Date Query String**
+      ## Date Query String
       The query string used to obtain transactions in a date range is constructed as follows:
       
       (Date DT >=BeginDt) AND (Date DT <EndDt)
@@ -3515,38 +3515,38 @@ info:
     
     It is very important to understand that the Recurring Billing Web Service is used for storing data, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘info Keys’ for later use.
 
-    ## **ManageCustomer**
+    ## ManageCustomer
 
     - When calling this service with the Transtype value of ‘UPDATE” it is also important to note that any values that are left “NULL’ will overwrite existing data with a ‘NULL’ value.
 
-    ## **ManageCreditCardInfo**
+    ## ManageCreditCardInfo
 
     - This service returns a CCInfoKey value which takes the place of the cardholder data with which it is associated. It is the responsibility of the integrator to keep track of and store these keys.
     - An unlimited number of credit card profiles can be stored for any given customer.
 
-    ## **ManageCheckInfo**
+    ## ManageCheckInfo
 
     - The service returns a CheckInfoKey value which takes the place of the checking account data with which it is associated. It is the responsibility of the integrator to keep track of and store these keys.
     - An unlimited number of checking account profiles can be stored for any given customer.
 
-    ## **ManageContract**
+    ## ManageContract
 
     - When calling this service with a TransType value of ‘UPDATE’ it is also important to note that any values that are left ‘NULL’ will overwrite existing data with a ‘NULL’ value.
     - If the desired effect is to simply update the net bill date, call ManageContractAddDaysToNextBillDt.
     
-    ## **ManageContractAddDaysToNextBillDt**
+    ## ManageContractAddDaysToNextBillDt
 
     - Call this service in place of ManageContract if the NextBillDate is the only value being updated to minimize the possibility of overwriting data.
     
     ## _Card Safe Web Services_
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards successfully storing and initiating recurring payments.
-    
-    ## **StoreCard**
+   
+    ## StoreCard
 
     - It is very important to understand that this web service is used for storing payment methods, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘Info Keys’ for later use.
     - It should also be noted that all information stored via the CardSafe will be accessible through the Recurring web services and vice versa.
 
-    ## **ProcessCreditCard**
+    ## ProcessCreditCard
 
     - See Recurring Billing Web Services for more information on Credit Card Data Storage.
     
@@ -4013,32 +4013,32 @@ info:
     
     # 10.1 JavaScript Tokenization  
     
-    ## **Introduction** 
+    ## Introduction
     JavaScript Tokenization enables you to create a form to securely capture your client’s credit card on your website without the need to store the data on your system. The JavaScript connects directly with our IBX system, which tokenizes the data and returns a token assigned to the credit card on file.
 
     The JavaScript Tokenization Library (JTL) is a pure JavaScript only library. There are no dependencies on other libraries such as jQuery, Angular, or anything else.
     
     The purpose of the JTL is to allow you to have more control over your UI display than with a hosted page. You can create and style the forms any way you like while needing to only follow some very simple guidelines. Then you simply insert the JavaScript library to make some simple calls to have the card information securely sent to our IBX server. A token representing the payment is sent back to your page and final payment is made when the form – which contains only the tokens – is ultimately submitted.
     
-    ## **Merchant Token**
+    ## Merchant Token
     
     Each merchant has a merchant token created in the gateway that is a publicly presentable piece of information. The merchant token is passed in to the IBX library to identify which merchant provided the card information so a payment token can be created for it. Your merchant token can be found in your Integrity Gateway Merchant account. After you log in to your merchant account, select Preferences > Security. In the example below, you can see the Merchant Token is provided at the top of the Security Settings page. (In the example, the token has been blurred out for security purposes.)
       
       ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/merchant-token.png)
       
-    ## **Simple and Advanced Modes**
+    ## Simple and Advanced Modes
 
       The JTL can operate in two modes. The Simple mode, which should be usable by the vast majority of developers,  allows for one merchant token to be passed and a single payment token to be returned.  The Advanced mode provides the ability to get back multiple payment tokens for different merchants with a single capture of credit card information. In Advanced mode, there is also the ability to force the value of the charge on the server to match the value of the data being sent for single use tokens. Note that the Advanced mode requires some additional JavaScript coding while the simple mode requires just a single JS call to the JTL.
 
       In Advanced mode you can call IBX.setMerchantToken and IBX.setAmount which takes as parameters either a single value or an array of values for each element. This allows for charging two different merchants on the back end with only a single capture of credit card information (for example, when you have a merchant that handles insurance or shipping but you also have the original charge for merchandise). The array is ordered and the returned paymentTokens (a different token per merchant) will be returned in the order of the merchantTokens supplied. Similarly the amounts, if enforced, will be in order of merchantToken as well.
       
-    ## **Design a UI Form**
+    ## Design a UI Form
       
       Below is an example of a simple form designed to collect payment and customer information. You can design a form customized for your purpose.
       
       ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/custom-screen.png)
       
-    ## **Create a Form**
+    ## Create a Form
 
     With a design for your form in mind, you can create the form by entering the input elements. Below is example code for the first four fields (refer to the design example above). Note that the form elements must **not** have a “name” attribute – this is what prevents the data from being submitted back to your server. This is **very** important. **Failure to follow the guideline will put your software into PCI scope** as the fields will be returned to your server.  Note that form elements do have a data-ibx attribute with values that denote what that attribute is. This allows the JTL to identify which form element contains what card information.
     
@@ -4050,7 +4050,7 @@ info:
      <input id="cvv" type=text value="" size="5" data-ibx="cvv" required autocomplete="cc-csc">
     ```
     
-    ## **JTL Form Parameters**
+    ## JTL Form Parameters
     The following is the list of parameters that can be used for the form input elements and passed via the data-ibx attribute.
     Note that these input elements can be of type hidden as well as in the example code below.
     
@@ -4076,7 +4076,7 @@ info:
     |merchantToken |The publicly shareable merchant token that is used as input to the API to determine which merchant to associate this token with.
     |validateCard | Requests both address verification, cvv check, and an auth be attempted against the card to validate it.
     
-    ## **Add JavaScript Library Code to Form**
+    ## Add JavaScript Library Code to Form
 
     After you design and create your form, you insert the JavaScript library reference to the <head> of your HTML page.
     
@@ -4088,7 +4088,7 @@ info:
     
     This creates an object called IBX that you can reference in your page to create the token and for advanced usage set the merchant tokens and amounts to be used (see below for advanced usage)
     
-    ## **Submit a Form**
+    ## Submit a Form
     
     When the form is submitted, a call is made to create a token. The form is scanned for those data-ibx attributes and a callback for when the data returns. After the token is created, the results are posted back to the form. The form can be any type of page that you want to create using any technology. The example we provide to signed developers uses php but you could just as easily choose any other web technology such as aspx, node, ruby, etc.
 

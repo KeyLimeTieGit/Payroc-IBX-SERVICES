@@ -2787,15 +2787,15 @@ info:
     
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
     
-    # Request
+    ## Request
     StoreCard(UserName, Password, TokenMode, CardNum, ExpDate, CustomerKey, NameOnCard, Street, Zip, ExtData)
     
-    # Response
+    ## Response
     Response example
     
     View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
     
-    # StoreCard Input Parameters
+    ## StoreCard Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2824,7 +2824,7 @@ info:
     
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
     
-    # Request
+    ## Request
     StoreCardFromPNRef(UserName, Password, TokenMode, PnRef, CustomerKey, Street, Zip, ExtData)
     
     
@@ -2833,12 +2833,12 @@ info:
     "34586", "876565", "", "", "");
     ```
     
-    # Response
+    ## Response
     Response example
     
     View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
     
-    # StoreCardFromPNRref  Input Parameters
+    ## StoreCardFromPNRref  Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2864,15 +2864,15 @@ info:
 
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
     
-    # Request
+    ## Request
     ProcessCreditCard(UserName, Password, TransType, CardToken, TokenMode, Amount, InvNum, PNRef, ExtData)
 
-    # Response
+    ## Response
     Response example
     
     View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
     
-    # ProcessCreditCard   Input Parameters
+    ## ProcessCreditCard   Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2937,10 +2937,10 @@ info:
     
     # 7. BATCH REPORTING   
     
-    # 7.1 GETBATCHDETAIL 
+    # 7.1. GETBATCHDETAIL 
     This web service retrieves details about the batch based on a batch number.
     
-    # Request
+    ## Request
     GetBatchDetail(UserName, Password, BatchNumber, SettleDate, PaymentType, ExtData)
     
     ## Request Example
@@ -2949,7 +2949,7 @@ info:
     var result = svc.GetBatchDetail("username", "password", "0", "4/24/2017", "Credit", "");
     ```
 
-    # Response
+    ## Response
     Response example
     
     ```
@@ -3016,11 +3016,11 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.2 GETBATCHNUMBERS  
+    # 7.2. GETBATCHNUMBERS  
     This web service retrieves all the batch numbers between start and end dates based on a payment type.
 
 
-    # Request
+    ## Request
     GetBatchNumbers(UserName, Password, StartDate, EndDate, PaymentType, ExtData)
 
     
@@ -3030,7 +3030,7 @@ info:
     var result = svc.GetBatchNumbers("username", "password", "4/24/2015", "5/1/2017","Credit", "");
     ```
 
-    # Response
+    ## Response
     Response example
     
     ```
@@ -3096,11 +3096,11 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.3 GETBATCHSTATUS  
+    # 7.3. GETBATCHSTATUS  
     The web service retrieves the status of a batch based on a batch number and payment type.
 
 
-    # Request
+    ## Request
     GetBatchStatus(UserName, Password, BatchNumber, SettleDate, PaymentType, ExtData)
 
     
@@ -3110,7 +3110,7 @@ info:
     var result = svc.GetBatchStatus("username", "password", "0", "4/24/2017", "Credit", "");
     ```
 
-    # Response
+    ## Response
     ## Response example
     
     ```
@@ -3178,7 +3178,7 @@ info:
     | |- AZMST – Arizona
     | |- PST – Pacific Standard Time
     
-    # 7.4 GETBATCH RESPONSE FIELDS    
+    # 7.4. GETBATCH RESPONSE FIELDS    
     The following response fields may be part of the return value for web services using Get Batch operations. These web services include:
     
     - GetBatchDetail
@@ -3220,7 +3220,7 @@ info:
     
     See Developer’s Notes for information about [Adding Custom Fields.](#section/addcus) 
 
-    # Request
+    ## Request
     AddCustomField(UserName, Password, RPNum, FieldName, IsNumeric, DecimalPlaces, MaxLength, RegEx, IsRequired, Description, MinValue, MaxValue, DisplayOnReceipt)
 
 
@@ -3234,7 +3234,7 @@ info:
                 "Barney's treat", "", "", true, "All out");
     ```
 
-    # Response
+    ## Response
     Response example
     
     ```
@@ -3271,7 +3271,7 @@ info:
     The GetCustomFields web service allows an integrator to retrieve the custom fields that have been programmatically added to a gateway account. The response contains an XML definition of the field, type, etc.
 
   
-    # Request
+    ## Request
    
     ```
     CustomFieldsSoapClient custom =
@@ -3280,7 +3280,7 @@ info:
     customResponse = custom.GetCustomFields("username", "password", "5");
     ```
 
-    # Response
+    ## Response
     The response to this call is contained as an XML string within the ExtData field.
 
     Response example
@@ -3403,7 +3403,7 @@ info:
     |ExtData |	 String
 
     # 9. Developer Notes 
-    ## _Invalid Character Processing_
+    ## Invalid Character Processing
     
       Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
 
@@ -3430,7 +3430,7 @@ info:
       - ExtData: <BillToCountry>
       - ExtData: <CustomerID>
     
-    ## _Reversal Transactions_ 
+    ## Reversal Transactions 
     ## Credit Card Reversals
     
     Reversal is supported for Visa and MasterCard transactions made within the direct marketing and ecommerce industries. Reversals must be processed within 24 hours of the original credit card transaction.
@@ -3466,7 +3466,7 @@ info:
     
     Item-level debit fuel purchase information is passed inside the <Items> tag in ExtData.  Fuel purchases are differentiated at the gateway from other purchases by the Fuel designation placed within the <Category> tag in item. In effect, a transaction will only be treated as a fuel transaction if at least one of the items within <Items> is designated as category Fuel.
     
-    ## _Date Formats_
+    ## Date Formats
     
       Dates entered through input parameters are automatically formatted to YYYY-MM-DDThh:mm:ss (time is in 24-hour format using Coordinated Universal Time (UTC). Valid entry formats are:
 
@@ -3481,7 +3481,7 @@ info:
       
       *Date DT is the transaction timestamp.
       
-      ## _Parameters Accepting Multiple Values_
+      ## Parameters Accepting Multiple Values
       
       Some parameters (for example, PaymentType and TransType) will accept multiple values and return results using an either/or filter. When inputting multiple parameter values, use the following format:
 
@@ -3493,7 +3493,7 @@ info:
       
       ’PAYRECEIPT’,’SETTLE’
       
-      ## _Compression and Encoding_
+      ## Compression and Encoding
       
       It is possible to send a receipt image file through the ProcessSignature web service operation from a client-side application in order to associate it with a transaction.  Due to the overall complexity of creating a receipt image with ProcessSignature, here is a general list of steps your client-side application must perform in order to send images to the payment server.
       
@@ -3511,7 +3511,7 @@ info:
     
     5. Input the compressed/base64 encoded image data into the SignatureData parameter of ProcessSignature, and send it to the Payment Server.
     
-    ## _Recurring Billing Web Services_
+    ## Recurring Billing Web Services
     
     It is very important to understand that the Recurring Billing Web Service is used for storing data, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘info Keys’ for later use.
 
@@ -3538,7 +3538,7 @@ info:
 
     - Call this service in place of ManageContract if the NextBillDate is the only value being updated to minimize the possibility of overwriting data.
     
-    ## _Card Safe Web Services_
+    ## Card Safe Web Services
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards successfully storing and initiating recurring payments.
    
     ## StoreCard
@@ -3550,7 +3550,7 @@ info:
 
     - See Recurring Billing Web Services for more information on Credit Card Data Storage.
     
-    ## _Adding Custom Fields_
+    ## Adding Custom Fields
 
     To pass in custom field data to any transactional web service, please observe the following field format:
 
@@ -3573,7 +3573,7 @@ info:
     
     The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
     
-    # CURL
+    ## CURL
     How to execute the call:
     
     ```
@@ -3613,7 +3613,7 @@ info:
     </PaymentMethod>
     ```
     
-    # PHP
+    ## PHP
     PHP w/SOAP:
     
     ```
@@ -3750,7 +3750,7 @@ info:
     node=Cnt  value=3
     ```
     
-    # Node.js
+    ## Node.js
 
     You can [try our npm package.](https://www.npmjs.com/package/payroc_ibx) It supports a basic subset of transactions and can be easily modified for additional transactions. Note that if you use RunKit to run the examples it is required to remove the “use strict” command from the example as RunKit doesn’t currently support that.
     
@@ -3829,7 +3829,7 @@ info:
       3
     ```
     
-    # Ruby
+    ## Ruby
     Ruby w/SOAP:
     How to execute the code:
     
@@ -3972,7 +3972,7 @@ info:
     "3"
     ```
     
-    # Installation for Examples
+    ## Installation for Examples
     
     These are the basic steps you will need to install and run the examples on an Ubuntu 16.04 base install.
     
@@ -4011,7 +4011,7 @@ info:
     
     # 10. Payment Integration 
     
-    # 10.1 JavaScript Tokenization  
+    # 10.1. JavaScript Tokenization  
     
     ## Introduction
     JavaScript Tokenization enables you to create a form to securely capture your client’s credit card on your website without the need to store the data on your system. The JavaScript connects directly with our IBX system, which tokenizes the data and returns a token assigned to the credit card on file.
@@ -4196,7 +4196,7 @@ info:
      
      As a final note, be aware that you can and must use your merchant token (which can be shared publicly) for this API however when it comes time to charge the card on your server you must use your private  SOAP API credentials (definitely never share these) to actually charge the card.
      
-     # 10.2.Hosted Page 
+     # 10.2. Hosted Page 
      
      ## Introduction
      

@@ -12,7 +12,7 @@ info:
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
   description: |
     # 1. IBX Services 
-    # _IBX Services WSDLs_
+    # IBX Services WSDLs
     The IBX services can be accessed via the following URLs
     
     - https://gateway.ibxpays.com/ws/transact.asmx?wsdl    
@@ -21,7 +21,7 @@ info:
     - https://gateway.ibxpays.com/vt/ws/trxdetail.asmx?wsdl
     - https://gateway.ibxpays.com/vt/ws/recurring.asmx?wsdl
     
-    # _IBX Services_
+    # IBX Services
      
     **Transact WSDL** provides information for the following transaction processing services:
     
@@ -2466,7 +2466,7 @@ info:
     |ExtData | Reserved for future use.
     |Optional |
     
-    # 5.5.MANAGECONTRACTADDDAYSTONEXTBILLDT 
+    # 5.5. MANAGECONTRACTADDDAYSTONEXTBILLDT 
     This web service allows the integrator to update the NextBillDate in the event that a payment was declined and a contract suspended.
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
@@ -3402,7 +3402,7 @@ info:
     |ExtData |	 String
 
     # 9. Developer Notes 
-    # _Invalid Character Processing_
+    # Invalid Character Processing
     
       Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
 
@@ -3429,7 +3429,7 @@ info:
       - ExtData: <BillToCountry>
       - ExtData: <CustomerID>
     
-    # _Reversal Transactions_ 
+    # Reversal Transactions 
     # Credit Card Reversals
     
     Reversal is supported for Visa and MasterCard transactions made within the direct marketing and ecommerce industries. Reversals must be processed within 24 hours of the original credit card transaction.
@@ -3465,7 +3465,7 @@ info:
     
     Item-level debit fuel purchase information is passed inside the <Items> tag in ExtData.  Fuel purchases are differentiated at the gateway from other purchases by the Fuel designation placed within the <Category> tag in item. In effect, a transaction will only be treated as a fuel transaction if at least one of the items within <Items> is designated as category Fuel.
     
-    # _Date Formats_ 
+    # Date Formats
     
       Dates entered through input parameters are automatically formatted to YYYY-MM-DDThh:mm:ss (time is in 24-hour format using Coordinated Universal Time (UTC). Valid entry formats are:
 
@@ -3480,7 +3480,7 @@ info:
       
       *Date DT is the transaction timestamp.
       
-      # _Parameters Accepting Multiple Values_
+      # Parameters Accepting Multiple Values
       
       Some parameters (for example, PaymentType and TransType) will accept multiple values and return results using an either/or filter. When inputting multiple parameter values, use the following format:
 
@@ -3492,7 +3492,7 @@ info:
       
       ’PAYRECEIPT’,’SETTLE’
       
-      # _Compression and Encoding_
+      # Compression and Encoding
       
       It is possible to send a receipt image file through the ProcessSignature web service operation from a client-side application in order to associate it with a transaction.  Due to the overall complexity of creating a receipt image with ProcessSignature, here is a general list of steps your client-side application must perform in order to send images to the payment server.
       
@@ -3510,7 +3510,7 @@ info:
     
     5. Input the compressed/base64 encoded image data into the SignatureData parameter of ProcessSignature, and send it to the Payment Server.
     
-    # _Recurring Billing Web Services_
+    # Recurring Billing Web Services
     
     It is very important to understand that the Recurring Billing Web Service is used for storing data, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘info Keys’ for later use.
 
@@ -3537,7 +3537,7 @@ info:
 
     - Call this service in place of ManageContract if the NextBillDate is the only value being updated to minimize the possibility of overwriting data.
     
-    # _Card Safe Web Services_
+    # Card Safe Web Services
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards successfully storing and initiating recurring payments.
     
     ## StoreCard
@@ -3549,7 +3549,7 @@ info:
 
     - See Recurring Billing Web Services for more information on Credit Card Data Storage.
     
-    # _Adding Custom Fields_
+    # Adding Custom Fields
 
     To pass in custom field data to any transactional web service, please observe the following field format:
 

@@ -4695,1144 +4695,193 @@ consumes:
 # Holds the relative paths to the individual endpoints. The path is appended to the
 # basePath in order to construct the full URL.
 paths:
-  '/pairTerminal':
+  '/GetCardTrxSummary':
     get:
       tags:
       - Endpoints
       # summary is up to 120 symbold but we recommend to be shortest as possible
-      summary: pairTerminal
+      summary: GetCardTrxSummary
       # you can use GFM in operation description too: https://guides.github.com/features/mastering-markdown
       description: | 
-        The pairTerminal method will return the APIkey, APIpwd and TerminalID that needs to be stored for later use when running a transaction.
-        
-        Your resellerName will be provided to you. The ReferenceID is a unique id that references the client on your end. If a client has multiple locations and you pass the same ReferenceID to us for all of them, we will link their terminals together. This makes it easy for customers to move terminals between their stores if needed.
-        
-        The api will return a Success or Error status response. If it’s a Success, you would store the api key, pwd and terminal id with the register and use those credentials to make transaction calls.
-        
-        The pairTerminalWithCountry method has one additional field "Country". If you know the country of the client, please use this method. Valid values are "USA","Canada","UK","Australia","New Zealand" 
-        
-        ReferenceID
-        
-        The ReferenceID is a unique id that references the client/merchant/organization on your end. If a client has multiple devices and you pass the same ReferenceID for all of them, we will link their terminals together. The first time a client is directed to this page, they will be asked to confirm their contact information, once added to our system this page is no longer shown and we proceed to the terminal pairing process
-        
-        Example 
-        
-        If a client is boarded and they have 5 credit card terminals, and the same ReferenceID is provided, we will return the same ApiKey and ApiPassword for all 5 devices, the ReferenceID will be the same for all devices although the TerminalID will be unique for each device.
-        
-        On the next boarding request a new ReferenceID should be provided for an new entity/business/organization and we will return a unique ApiKey, ApiPassword and TerminalID related to this ReferenceID.
-        
-        * It is NOT recommended or allowed to pass the same ReferenceID for all boarded accounts.
+        The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
       
       # operationId should be unique across the whole specification
-      operationId: pairTerminal
+      operationId: PaymentMethod
       # list of parameters for the operation
       parameters:
-        - name: BusinessName
+        - name: UserName
           in: query
-          description: Business name
+          description: User name
           type: string
           required: true
-        - name: ContactName
+        - name: Password
           in: query
-          description: Contact name
+          description: Password
           type: string
           required: true
-        - name: Address
+        - name: RPNum
           in: query
-          description: Full address
-          type: string
-          required: true
-        - name: City
-          in: query
-          description: City
-          type: string
-          required: true
-        - name: State
-          in: query
-          description: State
-          type: string
-          required: true
-        - name: ZipCode
-          in: query
-          description: Zip code
+          description: RPNum
           type: integer
           required: true
-        - name: Email
+        - name: BeginDt
           in: query
-          description: Email address
+          description: BeginDt
           type: string
           required: true
-        - name: Phone
+        - name: EndDt
           in: query
-          description: Phone number
+          description: EndDt
           type: string
           required: true
-        - name: ResellerName
+        - name: ApprovalCode
           in: query
-          description: Reseller name
-          type: string
-          required: true
-        - name: ReferenceID
+          description: Approval Code
+          type: integer
+          required: false
+        - name: Register
           in: query
-          description: Reference ID
-          type: string
-          required: true
-        - name: TerminalSerialNumber
-          in: query
-          description: Terminal serial number
+          description: Register
           type: integer
           required: true
+        - name: NameOnCard
+          in: query
+          description: Name On Card
+          type: integer
+          required: false
+        - name: CardNum
+          in: query
+          description: Card Num
+          type: integer
+          required: false
+        - name: Card Type
+          in: query
+          description: Card Type
+          type: string
+          required: false
+        - name: ExcludeVoid
+          in: query
+          description: Exclude Void
+          type: boolean
+          required: true
+        - name: User
+          in: query
+          description: User
+          type: string
+          required: true
+        - name: invoiceId
+          in: query
+          description: invoice Id
+          type: integer
+          required: false
+        - name: SettleFlag
+          in: query
+          description: Settle Flag
+          type: integer
+          required: false
+        - name: SettleMsg
+          in: query
+          description: Settle Msg
+          type: string
+          required: false
+        - name: SettleDt
+          in: query
+          description: Settle Dt
+          type: string
+          required: false
+        - name: TransformType
+          in: query
+          description: Transform Type
+          type: string
+          required: false
+        - name: Xsl
+          in: query
+          description: Xsl
+          type: string
+          required: false
+        - name: ColDelim
+          in: query
+          description: Col Delim
+          type: string
+          required: false
+        - name: RowDelim
+          in: query
+          description: Row Delim
+          type: string
+          required: false
+        - name: IncludeHeader
+          in: query
+          description: Include Header
+          type: boolean
+          required: true
+        - name: ExtData
+          in: query
+          description: ExtData
+          type: string
+          required: false
       produces:
         - application/json
       responses: # list of responses
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/pairTerminal'
-  '/pairTerminalWithCountry':
-    get:
-      tags:
-      - Endpoints
-      # summary is up to 120 symbold but we recommend to be shortest as possible
-      summary: pairTerminalWithCountry
-      # you can use GFM in operation description too: https://guides.github.com/features/mastering-markdown
-      description: | 
-        The pairTerminal method will return the APIkey, APIpwd and TerminalID that needs to be stored for later use when running a transaction.
-        
-        Your resellerName will be provided to you. The ReferenceID is a unique id that references the client on your end. If a client has multiple locations and you pass the same ReferenceID to us for all of them, we will link their terminals together. This makes it easy for customers to move terminals between their stores if needed.
-        
-        The api will return a Success or Error status response. If it’s a Success, you would store the api key, pwd and terminal id with the register and use those credentials to make transaction calls.
-        
-        The pairTerminalWithCountry method has one additional field "Country". If you know the country of the client, please use this method. Valid values are "USA","Canada","UK","Australia","New Zealand" 
-        
-        ReferenceID
-        
-        The ReferenceID is a unique id that references the client/merchant/organization on your end. If a client has multiple devices and you pass the same ReferenceID for all of them, we will link their terminals together. The first time a client is directed to this page, they will be asked to confirm their contact information, once added to our system this page is no longer shown and we proceed to the terminal pairing process
-        
-        Example 
-        
-        If a client is boarded and they have 5 credit card terminals, and the same ReferenceID is provided, we will return the same ApiKey and ApiPassword for all 5 devices, the ReferenceID will be the same for all devices although the TerminalID will be unique for each device.
-        
-        On the next boarding request a new ReferenceID should be provided for an new entity/business/organization and we will return a unique ApiKey, ApiPassword and TerminalID related to this ReferenceID.
-        
-        * It is NOT recommended or allowed to pass the same ReferenceID for all boarded accounts.
-      
-      # operationId should be unique across the whole specification
-      operationId: pairTerminalWithCountry
-      # list of parameters for the operation
-      parameters:
-        - name: BusinessName
-          in: query
-          description: Business name
-          type: string
-          required: true
-        - name: ContactName
-          in: query
-          description: Contact name
-          type: string
-          required: true
-        - name: Address
-          in: query
-          description: Full address
-          type: string
-          required: true
-        - name: City
-          in: query
-          description: City
-          type: string
-          required: true
-        - name: State
-          in: query
-          description: State
-          type: string
-          required: true
-        - name: ZipCode
-          in: query
-          description: Zip code
-          type: integer
-          required: true
-        - name: Email
-          in: query
-          description: Email address
-          type: string
-          required: true
-        - name: Phone
-          in: query
-          description: Phone number
-          type: string
-          required: true
-        - name: ResellerName
-          in: query
-          description: Reseller name
-          type: string
-          required: true
-        - name: ReferenceID
-          in: query
-          description: Reference ID
-          type: string
-          required: true
-        - name: TerminalSerialNumber
-          in: query
-          description: Terminal serial number
-          type: integer
-          required: true
-        - name: Country
-          in: query
-          description: Country Code
-          type: integer
-          required: true
-      produces:
-        - application/json
-      responses: # list of responses
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/pairTerminal'
-  '/runTransaction':
-    get:
-      summary: runTransaction
-      # you can use GFM in operation description too: https://guides.github.com/features/mastering-markdown
-      description: | 
-        You would use this method to run a transaction on the terminal. To run different types of transactions, change the command value in the request.  Valid command values
-        
-        Sale, Refund, Auth, Capture, Void, TipAdjust, GiftActivate, GiftSale, GiftRefund, GiftAddValue, GiftBalance
-        
-        **In order to do a follow-up transaction (commands in italics), the batch needs to still be open and the RefId from the previous transaction needs to be sent instead of creating a new one. It is also recommended that you create a RefId value for all initial transactions as that will allow you to use the checkStatus() in the event of comm errors.**
-      
-      # operationId should be unique across the whole specification
-      tags:
-        - Endpoints
-      parameters:
-        - name: command
-          type: string
-          in: query
-          required: true
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: amount
-          type: number
-          in: query
-          required: true
-        - name: refID
-          type: integer
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-      produces:
-      - application/json;
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/runTransaction'
-          examples:
-            application/json:
-              TerminalID: "1234"
-              ResultCode: "Approved"
-              AuthCode: "abc1234"
-              TransType: "Sale"
-              Amount: 2.50
-              AmountString: "2.50"
-              CardType: "Visa"
-              Last4: "0026"
-              Name: "John Doe"
-              CashBack: 0.00
-              CashBackString: "0.00"
-              Message: "This is a sample message"
-              RefID: "ee0252f6-38bf-4c3f-97d4-a3ecf87cf69b"
-              CardToken: "ASDF2134-AHRCW+FSD123123-NKODS"
-              GiftCardBalance: 23.75
-              GiftCardBalanceString: "23.75"
-              ProcessorExtraData1: "KaNb015170105002706cAAFEd5e00fJlA m000005"
-              ProcessorExtraData2: "|17|210100700000"
-              ProcessorExtraData3: "0058"
-              SignatureData: "iVBORw0KGgoAAAANSUhEUgAAAI4AAAQmCC="
-              Track1: "null"  
-              Track2: "null"
-              EMV_TC: "B9AB420B0937438F"
-              EMV_TVR: "0800008000"
-              EMV_AID: "A0000000031010"
-              EMV_TSI: "F800"
-              EMV_ATC: "0016"
-              EMV_App_Label: "Visa Credit"
-              EMV_App_Name: "Visa Credit"
-              CardBin: "476173"
-              ExpDate: "0117"
-              EntryMethod: "Chip"
-              receiptTerminal: "Payroc"
-              Client ID:  13318900010001
-              Cashier ID: 
-              Lane: "123"                           
-              Store: "05/01/2015  16:56:25"
-              SALE: "123"
-              Invoice: 78
-              Account:  "VISA 401200******0026"
-              Cardholder:  "TEST CARD   /VISA"
-              Result:  "CAPTURED"
-              Authorization Code:  000271
-  '/runTransaction2':
-    get:
-      summary: runTransaction2
-      description:  | 
-        You would use this method to run a transaction on the terminal. The method is the same as runTransaction with the exception of having some additional fields, the return object is the same.
-        
-        invoiceNumber (When using Vantiv, this value will be sent to Vantiv)  merchantId (Used for Multi Mid applications, current only available in Dejavoo’s)  token – Supported on TSYS, FirstData RapidConnect and Vantiv. For Vantiv, the token can only be used a later date by integrating directly to the Vantiv gateway. For others, the token is run through the terminal. expDate – Needed when doing a token sale through TSYS or RapidConnect.
-      
-        None of these fields are required to have a value but they all need to be in the request. Please note that the amount needs to include the decimal point.
-      
-        **Using Tokens on TSYS and RapidConnect.**
-      
-        If tokenization is enabled in the terminal, Sale, Auth and Refund transactions will return a token and expiration date in the response. The token can be used to run a Sale, Auth or Refund at a later date without the card holder being present. TipAdjust, Capture and Void operate on the transaction level, which means that you are not using the token for these transactions but the RefId of the original transaction.
-      
-        To run different types of transactions, change the command value in the request.  Valid command values
-      
-        Sale, Refund, Auth, Capture, Void, TipAdjust, GiftActivate, GiftSale, GiftRefund, GiftAddValue, GiftBalance
-      
-        **In order to do a follow-up transaction (commands in italics), the batch needs to still be open and the RefId from the previous transaction needs to be sent instead of creating a new one. It is also recommended that you create a RefId value for all initial transactions as that will allow you to use the checkStatus() in the event of comm errors.**
-      
-      tags:
-        - Endpoints
-      parameters:
-        - name: command
-          type: string
-          in: query
-          required: true
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: amount
-          type: string
-          in: query
-          required: true
-        - name: refID
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: invoiceNumber
-          type: string
-          in: query
-          required: true
-        - name: merchantId
-          type: string
-          in: query
-          required: true
-        - name: token
-          type: string
-          in: query
-          required: true
-        - name: expDate
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          schema:
-            $ref: '#/definitions/runTransaction'
-          examples:
-            application/json:
-              TerminalID: "1234"
-              ResultCode: "Approved"
-              AuthCode: "abc1234"
-              TransType: "Sale"
-              Amount: 2.50
-              AmountString: "2.50"
-              CardType: "Visa"
-              Last4: "0026"
-              Name: "John Doe"
-              CashBack: 0.00
-              CashBackString: "0.00"
-              Message: "This is a sample message"
-              RefID: "ee0252f6-38bf-4c3f-97d4-a3ecf87cf69b"
-              CardToken: "ASDF2134-AHRCW+FSD123123-NKODS"
-              GiftCardBalance: 23.75
-              GiftCardBalanceString: "23.75"
-              ProcessorExtraData1: "KaNb015170105002706cAAFEd5e00fJlA m000005"
-              ProcessorExtraData2: "|17|210100700000"
-              ProcessorExtraData3: "0058"
-              SignatureData: "iVBORw0KGgoAAAANSUhEUgAAAI4AAAQmCC="
-              Track1: "null"  
-              Track2: "null"
-              EMV_TC: "B9AB420B0937438F"
-              EMV_TVR: "0800008000"
-              EMV_AID: "A0000000031010"
-              EMV_TSI: "F800"
-              EMV_ATC: "0016"
-              EMV_App_Label: "Visa Credit"
-              EMV_App_Name: "Visa Credit"
-              CardBin: "476173"
-              ExpDate: "0117"
-              EntryMethod: "Chip"
-              receiptTerminal: "Payroc"
-              Client ID:  13318900010001
-              Cashier ID: 
-              Lane: "123"                           
-              Store: "05/01/2015  16:56:25"
-              SALE: "123"
-              Invoice: 78
-              Account:  "VISA 401200******0026"
-              Cardholder:  "TEST CARD   /VISA"
-              Result:  "CAPTURED"
-              Authorization Code:  000271
-          description: Success
-  '/checkStatus':
-    get:
-      summary: checkStatus
-      description: |
-        The checkStatus method will return the json transaction response to any transaction provided you know the RefId. It’s meant to be used when you don’t receive a response due to a network issue or browser crash.It is HIGHLY recommended to run a checkstatus PRIOR to allowing the next transaction to finalize or update any pending transactions if a response has not been received.
-        
-        Additionally, we have added a flag to the response, ResultFinal, which indicates if the response you received is the end result. In cases of comm failures with the terminals, this value could be false. We recommend calling checkStatus at regular intervals when the ResultFinal flag is false. On some terminals, we are able to inspect the terminal to find out if the transaction was approved, provided it is back online. Please keep in mind that if the terminal is offline, the response won’t change and you probably don’t want to keep polling forever. If possible, it’s best to check every minute or so in the background so other functions can be done on the POS. **Do not constantly invoke the CheckStatus call in a continuous loop without pauses, this will cause alerts and your API credentials will be revoked. The max interval  is every 5 seconds for 3 minutes and every 30 seconds thereafter.**
-        
-        The RefID for the original transaction must have been passed to us in the initial request in order to use this feature.
-        
-        Command=Sale, Refund, Auth etc refID=refID of the transaction you are looking for the response on  date= date of the transaction in MMddYYYY format, ie. Jan 19, 2016 would be 01192016 – US Central tiimezone
-        
-        The only reason to use checkStatus2 is if you are using multi-mid applications in the terminal. Nothing else is different for the 2 calls except that checkStatus2 accepts a merchantId value.
-      parameters:
-        - name: command
-          type: string
-          in: query
-          required: true
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: refID
-          type: string
-          in: query
-          required: true
-        - name: date
-          type: string
-          in: query
-          required: true
-      tags:
-        - Endpoints
-      responses:
-        '200':
-          description: Success
-          examples:
-            application/json:
-              TerminalID: "1234"
-              ResultCode: "Approved"
-              AuthCode: "abc1234"
-              TransType: "checkStatus"
-              Amount: 2.50
-              AmountString: "2.50"
-              CardType: "Visa"
-              Last4: "0026"
-              Name: "John Doe"
-              CashBack: 0.00
-              CashBackString: "0.00"
-              Message: "This is a sample message"
-              RefID: "ee0252f6-38bf-4c3f-97d4-a3ecf87cf69b"
-              CardToken: "ASDF2134-AHRCW+FSD123123-NKODS"
-              GiftCardBalance: 23.75
-              GiftCardBalanceString: "23.75"
-              ProcessorExtraData1: "KaNb015170105002706cAAFEd5e00fJlA m000005"
-              ProcessorExtraData2: "|17|210100700000"
-              ProcessorExtraData3: "0058"
-              SignatureData: "iVBORw0KGgoAAAANSUhEUgAAAI4AAA<snipped>QmCC="
-              Track1: "null"
-              Track2: "null"
-              EMV_TC: "B9AB420B0937438F"
-              EMV_TVR: "0800008000"
-              EMV_AID: "A0000000031010"
-              EMV_TSI: "F800"
-              EMV_ATC: "0016"
-              EMV_App_Label: "Visa Credit"
-              EMV_App_Name: "Visa Credit"
-              CardBin: "476173"
-              ExpDate: "0117"
-              EntryMethod: "Chip"
-              receiptTerminal: "Payroc"
-              Client ID: 13318900010001
-              Cashier ID: "123"
-              Lane: "Store: 05/01/2015 16:56:25"
-              SALE: "123"
-              Invoice: 78
-              Account: "VISA 401200******0026"
-              Cardholder: "TEST CARD /VISA"
-              Result: "CAPTURED"
-              Authorization Code: 000271
-  '/checkStatus2':
-    get:
-      summary: checkStatus
-      description: |
-        The checkStatus method will return the json transaction response to any transaction provided you know the RefId. It’s meant to be used when you don’t receive a response due to a network issue or browser crash.It is HIGHLY recommended to run a checkstatus PRIOR to allowing the next transaction to finalize or update any pending transactions if a response has not been received.
-        
-        Additionally, we have added a flag to the response, ResultFinal, which indicates if the response you received is the end result. In cases of comm failures with the terminals, this value could be false. We recommend calling checkStatus at regular intervals when the ResultFinal flag is false. On some terminals, we are able to inspect the terminal to find out if the transaction was approved, provided it is back online. Please keep in mind that if the terminal is offline, the response won’t change and you probably don’t want to keep polling forever. If possible, it’s best to check every minute or so in the background so other functions can be done on the POS. **Do not constantly invoke the CheckStatus call in a continuous loop without pauses, this will cause alerts and your API credentials will be revoked. The max interval  is every 5 seconds for 3 minutes and every 30 seconds thereafter.**
-        
-        The RefID for the original transaction must have been passed to us in the initial request in order to use this feature.
-        
-        Command=Sale, Refund, Auth etc refID=refID of the transaction you are looking for the response on  date= date of the transaction in MMddYYYY format, ie. Jan 19, 2016 would be 01192016 – US Central tiimezone
-        
-        The only reason to use checkStatus2 is if you are using multi-mid applications in the terminal. Nothing else is different for the 2 calls except that checkStatus2 accepts a merchantId value.
-      parameters:
-        - name: command
-          type: string
-          in: query
-          required: true
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: refID
-          type: string
-          in: query
-          required: true
-        - name: date
-          type: string
-          in: query
-          required: true
-        - name: merchantID
-          type: string
-          in: query
-          required: true
-      tags:
-        - Endpoints
-      responses:
-        '200':
-          description: Success
-          examples:
-            application/json:
-              TerminalID: "1234"
-              ResultCode: "Approved"
-              AuthCode: "abc1234"
-              TransType: "checkStatus"
-              Amount: 2.50
-              AmountString: "2.50"
-              CardType: "Visa"
-              Last4: "0026"
-              Name: "John Doe"
-              CashBack: 0.00
-              CashBackString: "0.00"
-              Message: "This is a sample message"
-              RefID: "ee0252f6-38bf-4c3f-97d4-a3ecf87cf69b"
-              CardToken: "ASDF2134-AHRCW+FSD123123-NKODS"
-              GiftCardBalance: 23.75
-              GiftCardBalanceString: "23.75"
-              ProcessorExtraData1: "KaNb015170105002706cAAFEd5e00fJlA m000005"
-              ProcessorExtraData2: "|17|210100700000"
-              ProcessorExtraData3: "0058"
-              SignatureData: "iVBORw0KGgoAAAANSUhEUgAAAI4AAA<snipped>QmCC="
-              Track1: "null"
-              Track2: "null"
-              EMV_TC: "B9AB420B0937438F"
-              EMV_TVR: "0800008000"
-              EMV_AID: "A0000000031010"
-              EMV_TSI: "F800"
-              EMV_ATC: "0016"
-              EMV_App_Label: "Visa Credit"
-              EMV_App_Name: "Visa Credit"
-              CardBin: "476173"
-              ExpDate: "0117"
-              EntryMethod: "Chip"
-              receiptTerminal: "Payroc"
-              Client ID: 13318900010001
-              Cashier ID: "123"
-              Lane: "Store: 05/01/2015 16:56:25"
-              SALE: "123"
-              Invoice: 78
-              Account: "VISA 401200******0026"
-              Cardholder: "TEST CARD /VISA"
-              Result: "CAPTURED"
-              Authorization Code: 000271
-  '/closeBatch':
-    get:
-      summary: closeBatch
-      description: |
-        This method will attempt to settle the open batch in the terminal. Both the credit and gift batches are settled at the same time, you cannot settle them independently. Possible response codes
-        
-        * 1 – Batch close is not supported on the terminal 
-        * 0 – Batch closed failed, the message field will contain the reason is available. 
-        * 1 – Success – A batch with zero transactions usually returns a success code
-        
-        The response fields with total will have the combined amounts of both the credit and gift batches.
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: refID
-          type: string
-          in: query
-          required: true
-        - name: merchantId
-          type: string
-          in: query
-          required: true
-      responses:
-        '200':
-          description: Success
-          examples:
-            application/json:
-              TerminalID: 1372
-              RefID: "3423"
-              ResultCodeCredit: "1"
-              ResultCodeGift: "1"
-              MessageCredit: "APPROVED"
-              MessageGift: "Settled"
-              BatchNumCredit: "110"
-              BatchNumGift: "4"
-              TransCntTotal: 1
-              AmtTotal: 2.02
-              AmtTotalString: "2.02"
-              TransCntCredit: 1
-              AmtCredit: 2.02
-              AmtCreditString: "2.02"
-              TransCntGift: 0
-              AmtGift: 0
-              AmtGiftString: "0"
-  '/getSignature':
-    get:
-      summary: getSignature
-      description: |
-        The getSignature method will initiate a signature capture on the terminal without the need for a transaction. This is useful for when a signature is needed outside of a payment situation. Possibly for a work order or some other authorization where just a signature is required.
-        
-        This method is only supported on Pax and Dejavoo terminals which have a touchscreen and have been updated to a firmware that supports.
-
-        This method will return our standard transaction object which will have the signatureData field populated with a base64 encoded png file.
-
-        **(This method is not necessary for normal payment transactions as that happens automatically)**
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              TerminalID: 1372
-              ResultFinal: true
-              AuthCode: ""
-              TransType: "getSignature"
-              Amount": 0,
-              AmountString: null
-              CardType: null
-              Last4: null
-              Name: null
-              CashBack: 0
-              CashBackString: null
-              RefID: ""
-              receiptTerminal: null
-              CardToken: ""
-              GiftCardBalance: 0
-              GiftCardBalanceString: null
-              ProcessorExtraData1: null
-              ProcessorExtraData2: null
-              ProcessorExtraData3: null
-              SignatureData: "iVBORw0KGgoAAAANSUhEUgAAALoAAAB3AQMAAACOtsjYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAP///6XZn90AAAAJcEhZcwAADsQAAA7EAZUrDhsAAALJSURBVEjHjZY7kt4gDIDlceHSR/BRnJtBqlyLzBa5Bju5ANtRMBCJhxBeeSZ/89v+QG8k4KuoPwfhFVwvIO4vIMELKPZ+AeF4AWl7AQXMC/DXC1ANJpDhBTwNhmuAcC7fAe4OFoMdgq2DAlNWwvUW3xtwU5anRXB2EKcsoDXoQANTVuzvA7As1yLqTAfD+dy3hgFK//NdWWLg7ql6Ac35NDKQ7gFSVcLJnKApccPqPEH9xvEXgJSkXQH0cYZf6CAxM2ESuFukOJoJwimKQoJ0iDIKZYKyWaMDJzL/KYE//gN8SGCFqF2AvFn+ng8B4uHZ8XgK4K/IfoRbAGfSOZ8F+Ekq5zMD1Efvw6gJSI4z4nkA0hy6WdRFGHhTrWy6bwFc11P6mWRQFbeg1IQxOMa2XvoD5Cq+BaXWKZfoNUzrR3WAWNcmEtiqi6u9+VbV3gtof5SSfvg6+GI3e3UN8MnB8KcGMHz9eA7wt7uzj17wAMXao2ii8P3WARfXw9wAxwM0ByNs2xOYuh6ucRZkELHp7dyERdh97YXxYW4+Eq2fTZhTu9neeewakmKHoY8gYhvuD2kNewAu9dazuPUBl7qTOQ9wzxYhqwTXzyYm6go3iBlWe29v+rscCZGLOtXswCKrDZadPctE/b2MokgLa3GPozbiRpoqoAMkx52jQVO929YBmXE61YlWXGsy3NkwtS1QHnYEWcyhHkpM2g/gZMof7dVnMJJitamNwoo653FH1m4GGZVHXQVeWLRLhkM/gqYbsOl/ajZRSDTgqL1+KBvqPFcARdbBH2VDzeAvdYMG6gYEp7pBARFOHdjRrx7BHQflqTwDd5/VQQ98zn+vG3a2zZvFVMNPMlFpmoI3y1OaaibIu9B8CqHzBhEApDY+rhHgWkAYc2YJAl05q8YkekMHhZY6gLVU64mC+jPfQD1iz9tlS5f/lpXi/gHRf6dGMoClVAAAAABJRU5ErkJggg=="
-              Track1: null
-              Track2: null
-              EMV_TC: null
-              EMV_TVR: null
-              EMV_AID: null
-              EMV_TSI: null
-              EMV_ATC: null
-              EMV_App_Label: null
-              EMV_App_Name: null
-              EMV_ARC: null
-              EMV_CVM: -1
-              CardBin: null
-              EntryMethod: null
-              PaymentMethod: "Credit"
-              TransactionDate: "2017-05-19T14:16:34-05:00"
-              TransactionDateUtc: "2017-05-19T19:16:34Z"
-              InvoiceNumber: null
-              ExpDate: null
-              GiftPAN: null
-              ResultCode: null
-              Message: "OK"
-  '/getSwipe':
-    get:
-      summary: getSwipe
-      description: |
-        The getSwipe method allows you to use the terminal much like an MSR reader. This can be used if you need to swipe an admin card to log in a user or for your own gift card platform where you just need to the gift card number.
-
-        The prompt parameter is what is displayed on the terminal to prompt the user to swipe. While the command accepts any amount of characters, the display on the terminal is limited to 3 lines and it will break on spaces.
-
-        If a user manually enters a card number, then only the track1 field will return data. Be sure to test both swiping and manually entering as some cards will return data on track2 only and not track1.
-
-        **We cannot prevent users from swiping real credit cards when using this method. Use of the method should only be done with care since we will return a live credit card number if the user swipes a live credit card. This will open you up to PCI regulations.**
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: prompt
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Sucess
-          examples:
-            application/json:
-              TerminalID: 1372
-              ResultFinal: true
-              AuthCode: null
-              TransType: "getswipe"
-              Amount: 0
-              AmountString: null
-              CardType: null
-              Last4: null
-              Name: null
-              CashBack: 0
-              CashBackString: null
-              RefID: null
-              receiptTerminal: null
-              CardToken: null
-              GiftCardBalance: 0
-              GiftCardBalanceString: null
-              ProcessorExtraData1: null
-              ProcessorExtraData2: null
-              ProcessorExtraData3: null
-              SignatureData: null
-              Track1: "%B4XXXXXXXXXXXX2-BS6DLR-QD55?"
-              Track2: ";1582300193255026?"
-              EMV_TC: null
-              EMV_TVR: null
-              EMV_AID: null
-              EMV_TSI: null
-              EMV_ATC: null
-              EMV_App_Label: null
-              EMV_App_Name: null
-              EMV_ARC: null
-              EMV_CVM: -1
-              CardBin: null
-              EntryMethod: null
-              PaymentMethod: null
-              TransactionDate: "2017-05-19T14:12:06-05:00"
-              TransactionDateUtc: "2017-05-19T19:12:06Z"
-              InvoiceNumber: null
-              ExpDate: null
-              GiftPAN: null
-              ResultCode: "Success"
-              Message: null
-  '/unpairTerminal':
-    get:
-      summary: unpairTerminal
-      description: |
-        The unPairTerminal method clears the pairing information for the terminal so that it can be paired to a different client account. Typically this is only used for development.
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-      tags:
-        - Endpoints
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              TerminalID: 1
-              ApiKey: ""
-              ApiPassword: ""
-              Status: "Success"
-              ErrorMessage: null
-  '/getUserInput':
-    get:
-      summary: getUserInput
-      description: |
-        This method will prompt the user in front of a terminal to enter some information. The “Title” field is used as the prompt, i.e., Enter the tip amount or enter your phone number.  On Pax devices, the value of the title field has to match predefined options specified by Pax. Please contact us for a current list.
-
-        The type is the allowed entry characters
-        
-        * c=currency (Response will NOT have a decimal place included) 
-        * n=numeric only 
-        * a=alpha only 
-        * an=alphanumeric
-        * maxlength=number of characters to limit the user entry to
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: title
-          type: string
-          in: query
-          required: true
-        - name: type
-          type: string
-          in: query
-          required: true
-        - name: maxLength
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              TerminalID: 1082
-              UserInput: "200"
-              ResultCode: "Success"
-              Message: "Success"
-  '/getUserSelection':
-    get:
-      summary: getUserSelection
-      description: |
-        This method will allow the user to pick from a list of predefined options. For Example, 
-        Would you like to join our loyalty program or Would you like to add a tip? 
-        
-        * Yes 
-        * No
-
-        On Dejavoo’s, if the list of options is too long, the user can scroll up and down. On Pax, only the first 4 options are shown.
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: title
-          type: string
-          in: query
-          required: true
-        - name: options
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              TerminalID: 1082
-              UserInput: "Yes"
-              ResultCode: "Success"
-              Message: "Success"
-  '/setTerminalConfiguration':
-    get:
-      summary: setTerminalConfiguration
-      description: |
-        Some terminals allow for additional features to be enabled or disabled based on the terminal type. For instance, on Dejavoo terminals, you can enable a credit debit prompt.
-
-        Not all parameters are valid on all terminals and this list will expand as capabilities are added.
-
-        **Dejavoo**
-        
-        EnableCreditDebitPrompt (True or False) Will prompt the user to select credit or debit
-
-        **Pax**
-        
-        PaxGetSignature (True or False) – Will prompt for a signature after an approved transaction and add the result to the transaction response.
-
-        **All Terminals**
-        
-        WebHookUrl – This is not publicly available yet.
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-        - name: optionName
-          type: string
-          in: query
-          required: true
-        - name: optionValue
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              ResultCode: "Success"
-              Message: "Operation has been done successfully"
-  '/getTerminalConfiguration':
-    get:
-      summary: getTerminalConfiguration
-      description: This method will return the current values for any parameters that have been set using the setTerminalConfiguration method.
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-      responses:
-        200:
-          description: Success
-          examples:
-            application/json:
-              ResultCode: "Success"
-              Message: ""
-              TerminalParameters: 
-                [{
-                    Name: "EnableCreditDebitPrompt",
-                    Value: "True",
-                    DataType: "boolean"
-                  },
-                  {
-                    Name: "WebHookUrl",
-                    Value: "http://xxx.com/WebhookTester",
-                    DataType: "string"
-                }]
-  '/getTerminalFeatures':
-    get:
-      summary: getTerminalFeatures
-      description: |
-        This method will allow you to determine what features are available on the terminal. Some terminals do not support signature capture, batch closing, getSwipe etc. By using this method, you can dynamically hide those features so they are not shown to end users when they are not applicable.
-      tags:
-        - Endpoints
-      parameters:
-        - name: key
-          type: string
-          in: query
-          required: true
-        - name: password
-          type: string
-          in: query
-          required: true
-        - name: terminalId
-          type: string
-          in: query
-          required: true
-      responses:
-        '200':
-          description:  Success
-          examples:
-            application/json:
-              TerminalID: 1372
-              TerminalType: "Dejavoo"
-              TerminalModel: ""
-              Sale: true
-              Refund: true
-              Void: true
-              TipAdjust: true
-              Auth: true
-              Capture: true
-              GetSwipe: true
-              GiftActivate: true
-              GiftSale: true
-              GiftRefund: true
-              GiftAddValue: true
-              GiftBalance: true
-              GiftVoid: true
-              GetUserInput: true
-              GetUserSelection: true
-              GetIndependentSignature: true
-              BatchClose: true
+            $ref: '#/definitions/paymentMethod'
+  
 
 ## models definition           
 definitions:
-  pairTerminal:
+  paymentMethod:
       type: object
       description: standard transaction response fields
       properties:
-          TerminalID:
-            type: integer
-          ApiKey:
+          Payment_Type_ID:
             type: string
-          ApiPassword:
-            type: string
-          Status:
-            type: string
+          Authorization:
+            type: number
+          Capture:
+            type: number
+          ForceCapture:
+            type: number
+          PostAuth:
+            type: number
+          Return:
+            type: number
+          Sale:
+            type: number
+          Receipt:
+            type: number
+          RepeatSale:
+            type: number
+          Activate:
+            type: number
+          Deactivate:
+            type: number
+          Reload:
+            type: number
+          Authorization_Cnt:
+            type: number
+          Capture_Cnt:
+            type: number
+          ForceCapture_Cnt:
+            type: number
+          PostAuth_Cnt:
+            type: number
+          Return_Cnt:
+            type: number
+          Sale_Cnt:
+            type: number
+          Receipt_Cnt:
+            type: number
+          RepeatSale_Cnt:
+            type: number
+          Activate_Cnt:
+            type: number
+          Deactivate_Cnt:
+            type: number
+          Reload_Cnt:
+            type: number
+          Cnt:
+            type: number
+          
             
-  runTransaction:
-    type: object
-    description: runTransaction object result
-    properties:
-        TerminalID:
-          type: string
-        ResultCode:
-          type: string
-        AuthCode:
-          type: string
-        TransType:
-          type: string
-        Amount: 
-          type: number
-        AmountString: 
-          type: string
-        CardType:
-          type: string
-        Last4: 
-          type: string
-        Name:
-          type: string
-        CashBack:
-          type: number
-        CashBackString:
-          type: string
-        Message:
-          type: string
-        RefID:
-          type: string
-        CardToken:
-          type: string
-        GiftCardBalance:
-          type: number
-        GiftCardBalanceString:
-          type: string
-        ProcessorExtraData1:
-          type: string
-        ProcessorExtraData2:
-          type: string
-        ProcessorExtraData3:
-          type: string
-        SignatureData:
-          type: string
-        Track1:
-          type: string
-        Track2:
-          type: string
-        EMV_TC:
-          type: string
-        EMV_TVR:
-          type: string
-        EMV_AID:
-          type: string
-        EMV_TSI:
-          type: string
-        EMV_ATC:
-          type: string
-        EMV_App_Label:
-          type: string
-        EMV_App_Name:
-          type: string
-        CardBin:
-          type: string
-        ExpDate:
-          type: string
-        EntryMethod:
-          type: string
-        receiptTerminal:
-          type: string
-        Client ID:
-          type: integer
-        Cashier ID:
-          type: string
-        Lane:
-          type: string
-        Store:
-          type: string
-        SALE:
-          type: string
-        Invoice:
-          type: integer
-        Account:
-          type: string
-        Cardholder:
-          type: string
-        Result:
-          type: string
-        Authorization Code:
-          type: integer
-        description:
-          type: string
-
+  

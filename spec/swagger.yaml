@@ -2033,7 +2033,7 @@ info:
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
     
-    # Request
+    ## Request
     
     ManageCustomer(Username, Password, TransType, Vendor, CustomerKey, CustomerID, CustomerName, FirstName, LastName, Title, Department, Street1, Street2, Street3, City, StateID, Province, Zip, CountryID, Email, DayPhone, NightPhone, Fax, Mobile, Status, ExtData)
   
@@ -2047,7 +2047,7 @@ info:
         "630-555-1212", "847-555-1212", "", "630-555-1313", "", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     AuthCode    null    string
@@ -2067,7 +2067,7 @@ info:
     ```
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # ManageCustomer Input Parameters
+    ## ManageCustomer Input Parameters
     
     Unless noted otherwise, the parameter is **required.**
     
@@ -2137,7 +2137,7 @@ info:
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
     
-    # Request
+    ## Request
     
     ManageCreditCardInfo(Username, Password, TransType, Vendor, CustomerKey, CardInfoKey, CcAccountNum, CcExpDate, CcNameOnCard, CcStreet, CcZip, ExtData)
 
@@ -2152,7 +2152,7 @@ info:
     "90210", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     AuthCode    null    string
@@ -2171,7 +2171,7 @@ info:
     ```
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # ManageCreditCardInfo Input Parameters 
+    ## ManageCreditCardInfo Input Parameters 
     
     Unless noted otherwise, the parameter is **required.**
     
@@ -2207,17 +2207,17 @@ info:
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
     
-    # Request
+    ## Request
     
     ManageCheckInfo(Username, Password, Vendor, TransType, CustomerKey, CheckInfoKey, CheckType, AccountType, CheckNum, MICR, AccountNum, TransitNum, RawMICR, SS, DOB, BranchCity, DL, StateCode, NameOnCheck, Email, DayPhone, Street1, Street2, Street3, City, StateID, Province, PostCode, CountryID, ExtData)
     
-    # Response
+    ## Response
     
     Response here
     
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # ManageCheckInfo  Input Parameters
+    ## ManageCheckInfo  Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
      | Parameter Name| Description 
@@ -2290,7 +2290,7 @@ info:
     This service allows the integrator to add, update, or delete the terms and interval of a recurring billing contract.
     See Developer’s Notes for information about  [Recurring Billing Web Services.](#section/recur)
     
-    # Request
+    ## Request
     
     ManageContract(Username, Password, TransType, Vendor, CustomerKey, ContractKey, PaymentInfoKey, PaymentType, CustomerID, CustomerName, FirstName, LastName, Department, Street1, Street2, Street3, City, StateID, Province, Zip, CountryID, DayPhone, NightPhone, Fax, Email, Mobile, ContractID, ContractName, BillAmt, TaxAmt, TotalAmt, StartDate, EndDate, NextBillDt, BillingPeriod, BillingInterval, MaxFailures, FailureInterval, EmailCustomer, EmailMerchant, EmailCustomerFailure, EmailMerchantFailure, Status, ExtData)
     
@@ -2308,7 +2308,7 @@ info:
     "MONTH", "1", "2", "", "TRUE", "FALSE", "TRUE", "FALSE", "", "");
     ```
     
-    # Response
+    ## Response
     
     ```
     AuthCode    null    string
@@ -2328,7 +2328,7 @@ info:
     ```
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # ManageContract Input Parameters
+    ## ManageContract Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2471,15 +2471,15 @@ info:
     
     See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
     
-    # Request
+    ## Request
     ManageContractAddDaysToNextBillDt(Username, Password, Vendor, CustomerKey, ContractKey, NumOfDays, ExtData)
 
-    # Response
+    ## Response
     Response here
 
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # ManageContractAddDaysToNextBillDt  Input Parameters
+    ## ManageContractAddDaysToNextBillDt  Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2500,7 +2500,7 @@ info:
     The AddRecurringCreditCard web service is a convenience function that allows an integrator to wrap the functionality of three separate calls into one. Rather than having to call ManageCustomer then ManageCreditCardInfo and finally ManageContract (while passing along various return values into subsequent calls) one can simply call AddRecurringCreditCard.
    
     
-    # Request
+    ## Request
     AddRecurringCreditCard(Username, Password, Vendor, CustomerID, CustomerName, FirstName, LastName, Title, Department, Street1, Street2, Street3, City, StateID, Province, Zip, CountryID, Email, DayPhone, NightPhone, Fax, Mobile, ContractID, ContractName, BillAmt, TaxAmt, TotalAmt, StartDate, EndDate, BillingPeriod, BillingInterval, MaxFailures, FailureInterval, EmailCustomer, EmailMerchant, EmailCustomerFailure, EmailMerchantFailure, CcAccountNum, CcExpDate, CcNameOnCard, CcStreet, CcZip, ExtDat)
     
     ## Request Example
@@ -2518,7 +2518,7 @@ info:
     "90210", "");
     ```
 
-    # Response
+    ## Response
     AuthCode, CcInfoKey, CheckInfoKey, ContractKey, CustomerKey, ExtData, Message, PNRef, Partner, Result, Username, Vendor, code, error
     
     ```
@@ -2540,7 +2540,7 @@ info:
     
     View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
     
-    # AddRecurringCreditCard   Input Parameters
+    ## AddRecurringCreditCard   Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2668,7 +2668,7 @@ info:
     This web service is for processing ‘Sale’ transactions only.
    
     
-    # Request
+    ## Request
     ProcessCreditCard(Username, Password, Vendor, CcInfoKey, Amount, InvNum, ExtData)
 
     Note: The CcInfoKey in the call below is obtained in the response to the [ManageCreditCardInfo](#section/recur) call
@@ -2681,7 +2681,7 @@ info:
       CcInfoKey, "12.34", "888", "");
     ```
 
-    # Response
+    ## Response
    
     ```
     AuthCode null string
@@ -2704,7 +2704,7 @@ info:
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessCreditCard    Input Parameters
+    ## ProcessCreditCard    Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -2727,16 +2727,16 @@ info:
     This web service is for processing ‘Sale’ transactions only.
    
     
-    # Request
+    ## Request
     ProcessCheck(Username, Password, Vendor, CheckInfoKey, Amount, InvNum, ExtData)
     
-    # Response
+    ## Response
    
     Response here
     
     View [Transaction Response Fields.](#section/transaction-response-fields)
     
-    # ProcessCheck     Input Parameters
+    ## ProcessCheck     Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 

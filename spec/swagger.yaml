@@ -75,7 +75,7 @@ info:
     
     If you are using a program language other than VB.NET or C#, and are not familiar with interacting with .NET web services, it is recommended that you integrate using HTTPS as it is far less complicated then building SOAP objects outside of an IDE, and will save a tremendous amount of time and headache. If you are familiar and comfortable using SOAP to consume .NET web services, navigate to the URL for each web service method you plan to consume for additional details regarding the XML SOAP schema.
     
-    If you are not using a Microsoft .NET framework to access the services, refer to the cURL, PHP, Node.js and Ruby [Implementation Examples](#section/9.1.-Implementation-Examples) for examples on how to use these services in alternative environments.
+    If you are not using a Microsoft .NET framework to access the services, refer to the cURL, PHP, Node.js and Ruby [Implementation Examples](#section/9.1.Implementation-Examples) for examples on how to use these services in alternative environments.
 
     Most integrators will only need to concern themselves with the ProcessCreditCard web service. However, if additional functionality is required, our web services have been labeled intuitively, and the functionality exposed in each service is implied in the title.
 
@@ -2026,7 +2026,7 @@ info:
     |Zip_CH | Returns the billing zip code of the credit card.
     |String up to 10 characters |
     
-    # Recurring Billing 
+    # 5. Recurring Billing 
     
     # 5.1. ManageCustomer 
     This service is used to add, update, or delete a recurring billing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
@@ -2780,9 +2780,9 @@ info:
     |Username |String
     |Vendor |String
     
-    # 6.CARD SAFE 
+    # 6. CARD SAFE 
     
-    # 6.1.STORECARD 
+    # 6.1. STORECARD 
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
     
     See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
@@ -2982,10 +2982,11 @@ info:
     <AuthorizedAmount>  </AuthorizedAmount>
     <Balance>  </Balance>
     ```
-    # View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+
+    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
  
     
-    # GetBatchDetail Input Fields
+    ## GetBatchDetail Input Fields
     Unless noted otherwise, the parameter is required.
     
     | Parameter Name| Description 
@@ -3063,10 +3064,10 @@ info:
       <Balance>  </Balance>
     </Response>
     ```
-    # View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
  
     
-    # GetBatchNumbers Input Fields
+    ## GetBatchNumbers Input Fields 
     Unless noted otherwise, the parameter is required.
     
     | Parameter Name| Description 
@@ -3110,7 +3111,7 @@ info:
     ```
 
     # Response
-    # Response example
+    ## Response example
     
     ```
     <Response>
@@ -3144,10 +3145,10 @@ info:
       <Balance>  </Balance>
     </Response>
     ```
-    # View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
  
     
-    # GetBatchStatus  Input Fields
+    ## GetBatchStatus  Input Fields
     Unless noted otherwise, the parameter is required.
     
     | Parameter Name| Description 
@@ -3184,7 +3185,7 @@ info:
     - GetBatchNumbers
     - GetBatchStatus
     
-    # GetBatch Response Fields
+    ## GetBatch Response Fields
     
     | Parameter Name| Description 
     |-----|-----
@@ -3214,7 +3215,7 @@ info:
     
     # 8. CUSTOM FIELDS   
     
-    # 8.1 ADDCUSTOMFIELD  
+    # 8.1. ADDCUSTOMFIELD  
     This web service allows an integrator to add custom fields programmatically to a gateway account. The data in these fields is not passed to the processor.
     
     See Developer’s Notes for information about [Adding Custom Fields.](#section/addcus) 
@@ -3240,10 +3241,10 @@ info:
     RespMSG  "Field added successfully."  string
     Result  0  int
     ```
-    # View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
+    ## View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
  
     
-    # AddCustomField  Input Parameters
+    ## AddCustomField  Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -3266,7 +3267,7 @@ info:
     |DisplayOnReceipt | This is a boolean parameter. Indicates whether or not the field will display on the cardholder receipt.
     |Optional |
     
-    # 8.2 GETCUSTOMFIELDS   
+    # 8.2. GETCUSTOMFIELDS   
     The GetCustomFields web service allows an integrator to retrieve the custom fields that have been programmatically added to a gateway account. The response contains an XML definition of the field, type, etc.
 
   
@@ -3358,10 +3359,10 @@ info:
     </CustomFields>
     </NewDataSet>"
     ```
-    # View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
+    ## View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
  
     
-    # GetCustomFields Input Parameters
+    ## GetCustomFields Input Parameters
     Unless noted otherwise, the parameter is **required.**
     
     | Parameter Name| Description 
@@ -3402,7 +3403,7 @@ info:
     |ExtData |	 String
 
     # 9. Developer Notes 
-    # Invalid Character Processing
+    ## _Invalid Character Processing_
     
       Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
 
@@ -3429,19 +3430,19 @@ info:
       - ExtData: <BillToCountry>
       - ExtData: <CustomerID>
     
-    # Reversal Transactions 
-    # Credit Card Reversals
+    ## _Reversal Transactions_ 
+    ## **Credit Card Reversals**
     
     Reversal is supported for Visa and MasterCard transactions made within the direct marketing and ecommerce industries. Reversals must be processed within 24 hours of the original credit card transaction.
-    Debit Card Reversals
     
+    ## **Debit Card Reversals**
     All reversals must be processed as card-present transactions.
     
     Reversal is supported for supported issuers for all debit card issuers. The supported industries are only retail and restaurant. Reversals must be processed within 2 hours of the original debit card transaction.
 
     TIP: Requires the debit card number and expiration date along with the original sale PNREF number to process reversals.
     
-    # PIN-less Debit Transactions
+    ## **PIN-less Debit Transactions**
     
     In some cases, debit transactions can be processed without the customer’s entering a PIN number (a “PIN-less” debit transaction). Essentially, the same information is sent as in a typical PIN-based debit transaction, with the exception of the encrypted PIN-block and key serial number. This transaction type is currently only available with BuyPass and Global Payments processors.
     
@@ -3451,7 +3452,7 @@ info:
     
     - **Application ID Setup** – To process PIN-less debit through BuyPass, the application ID sent must identify the application in use. Contact your administrator for additional details.
     
-    ## Register Number and Terminal ID Setup
+    ## **Register Number and Terminal ID Setup**
 
     When processing transactions with BuyPass, the Payment Server will attempt to match the RegisterNum passed from the client-side with the register number set up in the merchant account.  Once it has made the match, it will send the corresponding terminal ID assigned to that register number to BuyPass. When no terminal ID is sent to BuyPass, the default value is sent (usually terminal ID “01”).
     
@@ -3459,13 +3460,13 @@ info:
     
     If the merchant will be doing both internet and VRU transactions at the same time, the terminal ID value will be required to differentiate between the two. For example, you may set up “01” for Internet and “02” for VRU. The request sent through the ProcessDebitCard operation must then send the appropriate register number to reflect the appropriate transaction type.
     
-    ## Fuel Purchases: Debit Card Use
+    ## **Fuel Purchases: Debit Card Use**
     
     Debit card processing for fuel purchases is now available through BuyPass only.  This functionality allows for fuel purchases with standard debit cards (Visa, MasterCard, etc.).  Debit fuel purchases (TransTypes Sale and Force) require item-level purchase information.  If all the required information for a certain purchase is not provided, the transaction will be rejected and an error message generated.  The main implication for the developer is that additional data must be passed to the gateway in order for fuel purchases to process correctly.
     
     Item-level debit fuel purchase information is passed inside the <Items> tag in ExtData.  Fuel purchases are differentiated at the gateway from other purchases by the Fuel designation placed within the <Category> tag in item. In effect, a transaction will only be treated as a fuel transaction if at least one of the items within <Items> is designated as category Fuel.
     
-    # Date Formats
+    ## _Date Formats_
     
       Dates entered through input parameters are automatically formatted to YYYY-MM-DDThh:mm:ss (time is in 24-hour format using Coordinated Universal Time (UTC). Valid entry formats are:
 
@@ -3473,14 +3474,14 @@ info:
       - YYYY-MM-DD
       - YYYY-MM-DDThh:mm:ss
       
-      ## Date Query String
+      ## **Date Query String**
       The query string used to obtain transactions in a date range is constructed as follows:
       
       (Date DT >=BeginDt) AND (Date DT <EndDt)
       
       *Date DT is the transaction timestamp.
       
-      # Parameters Accepting Multiple Values
+      ## _Parameters Accepting Multiple Values_
       
       Some parameters (for example, PaymentType and TransType) will accept multiple values and return results using an either/or filter. When inputting multiple parameter values, use the following format:
 
@@ -3492,7 +3493,7 @@ info:
       
       ’PAYRECEIPT’,’SETTLE’
       
-      # Compression and Encoding
+      ## _Compression and Encoding_
       
       It is possible to send a receipt image file through the ProcessSignature web service operation from a client-side application in order to associate it with a transaction.  Due to the overall complexity of creating a receipt image with ProcessSignature, here is a general list of steps your client-side application must perform in order to send images to the payment server.
       
@@ -3510,46 +3511,46 @@ info:
     
     5. Input the compressed/base64 encoded image data into the SignatureData parameter of ProcessSignature, and send it to the Payment Server.
     
-    # Recurring Billing Web Services
+    ## _Recurring Billing Web Services_
     
     It is very important to understand that the Recurring Billing Web Service is used for storing data, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘info Keys’ for later use.
 
-    ## ManageCustomer
+    ## **ManageCustomer**
 
     - When calling this service with the Transtype value of ‘UPDATE” it is also important to note that any values that are left “NULL’ will overwrite existing data with a ‘NULL’ value.
 
-    ## ManageCreditCardInfo
+    ## **ManageCreditCardInfo**
 
     - This service returns a CCInfoKey value which takes the place of the cardholder data with which it is associated. It is the responsibility of the integrator to keep track of and store these keys.
     - An unlimited number of credit card profiles can be stored for any given customer.
 
-    ## ManageCheckInfo
+    ## **ManageCheckInfo**
 
     - The service returns a CheckInfoKey value which takes the place of the checking account data with which it is associated. It is the responsibility of the integrator to keep track of and store these keys.
     - An unlimited number of checking account profiles can be stored for any given customer.
 
-    ## ManageContract
+    ## **ManageContract**
 
     - When calling this service with a TransType value of ‘UPDATE’ it is also important to note that any values that are left ‘NULL’ will overwrite existing data with a ‘NULL’ value.
     - If the desired effect is to simply update the net bill date, call ManageContractAddDaysToNextBillDt.
     
-    ## ManageContractAddDaysToNextBillDt
+    ## **ManageContractAddDaysToNextBillDt**
 
     - Call this service in place of ManageContract if the NextBillDate is the only value being updated to minimize the possibility of overwriting data.
     
-    # Card Safe Web Services
+    ## _Card Safe Web Services_
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards successfully storing and initiating recurring payments.
     
-    ## StoreCard
+    ## **StoreCard**
 
     - It is very important to understand that this web service is used for storing payment methods, and is not for querying previously stored data. It is the responsibility of the integrator to store and maintain all returned ‘Info Keys’ for later use.
     - It should also be noted that all information stored via the CardSafe will be accessible through the Recurring web services and vice versa.
 
-    ## ProcessCreditCard
+    ## **ProcessCreditCard**
 
     - See Recurring Billing Web Services for more information on Credit Card Data Storage.
     
-    # Adding Custom Fields
+    ## _Adding Custom Fields_
 
     To pass in custom field data to any transactional web service, please observe the following field format:
 
@@ -3568,7 +3569,7 @@ info:
   
     Adding a custom field creates a new column in the Transaction Reports grid and any data passed into this field by an integrator or in the virtual terminal will be stored in that column and accessible through the GetCardTrx web service.
 
-    # 9.1.Implementation Examples 
+    # 9.1. Implementation Examples 
     
     The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
     
@@ -4012,32 +4013,32 @@ info:
     
     # 10.1 JavaScript Tokenization  
     
-    # Introduction 
+    ## **Introduction** 
     JavaScript Tokenization enables you to create a form to securely capture your client’s credit card on your website without the need to store the data on your system. The JavaScript connects directly with our IBX system, which tokenizes the data and returns a token assigned to the credit card on file.
 
     The JavaScript Tokenization Library (JTL) is a pure JavaScript only library. There are no dependencies on other libraries such as jQuery, Angular, or anything else.
     
     The purpose of the JTL is to allow you to have more control over your UI display than with a hosted page. You can create and style the forms any way you like while needing to only follow some very simple guidelines. Then you simply insert the JavaScript library to make some simple calls to have the card information securely sent to our IBX server. A token representing the payment is sent back to your page and final payment is made when the form – which contains only the tokens – is ultimately submitted.
     
-    # Merchant Token
+    ## **Merchant Token**
     
     Each merchant has a merchant token created in the gateway that is a publicly presentable piece of information. The merchant token is passed in to the IBX library to identify which merchant provided the card information so a payment token can be created for it. Your merchant token can be found in your Integrity Gateway Merchant account. After you log in to your merchant account, select Preferences > Security. In the example below, you can see the Merchant Token is provided at the top of the Security Settings page. (In the example, the token has been blurred out for security purposes.)
       
       ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/merchant-token.png)
       
-      # Simple and Advanced Modes
+    ## **Simple and Advanced Modes**
 
       The JTL can operate in two modes. The Simple mode, which should be usable by the vast majority of developers,  allows for one merchant token to be passed and a single payment token to be returned.  The Advanced mode provides the ability to get back multiple payment tokens for different merchants with a single capture of credit card information. In Advanced mode, there is also the ability to force the value of the charge on the server to match the value of the data being sent for single use tokens. Note that the Advanced mode requires some additional JavaScript coding while the simple mode requires just a single JS call to the JTL.
 
       In Advanced mode you can call IBX.setMerchantToken and IBX.setAmount which takes as parameters either a single value or an array of values for each element. This allows for charging two different merchants on the back end with only a single capture of credit card information (for example, when you have a merchant that handles insurance or shipping but you also have the original charge for merchandise). The array is ordered and the returned paymentTokens (a different token per merchant) will be returned in the order of the merchantTokens supplied. Similarly the amounts, if enforced, will be in order of merchantToken as well.
       
-      # Design a UI Form
+    ## **Design a UI Form**
       
       Below is an example of a simple form designed to collect payment and customer information. You can design a form customized for your purpose.
       
       ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/custom-screen.png)
       
-      # Create a Form
+    ## **Create a Form**
 
     With a design for your form in mind, you can create the form by entering the input elements. Below is example code for the first four fields (refer to the design example above). Note that the form elements must **not** have a “name” attribute – this is what prevents the data from being submitted back to your server. This is **very** important. **Failure to follow the guideline will put your software into PCI scope** as the fields will be returned to your server.  Note that form elements do have a data-ibx attribute with values that denote what that attribute is. This allows the JTL to identify which form element contains what card information.
     
@@ -4049,7 +4050,7 @@ info:
      <input id="cvv" type=text value="" size="5" data-ibx="cvv" required autocomplete="cc-csc">
     ```
     
-    ## JTL Form Parameters
+    ## **JTL Form Parameters**
     The following is the list of parameters that can be used for the form input elements and passed via the data-ibx attribute.
     Note that these input elements can be of type hidden as well as in the example code below.
     
@@ -4075,7 +4076,7 @@ info:
     |merchantToken |The publicly shareable merchant token that is used as input to the API to determine which merchant to associate this token with.
     |validateCard | Requests both address verification, cvv check, and an auth be attempted against the card to validate it.
     
-    # Add JavaScript Library Code to Form
+    ## **Add JavaScript Library Code to Form**
 
     After you design and create your form, you insert the JavaScript library reference to the <head> of your HTML page.
     
@@ -4087,7 +4088,7 @@ info:
     
     This creates an object called IBX that you can reference in your page to create the token and for advanced usage set the merchant tokens and amounts to be used (see below for advanced usage)
     
-    # Submit a Form
+    ## **Submit a Form**
     
     When the form is submitted, a call is made to create a token. The form is scanned for those data-ibx attributes and a callback for when the data returns. After the token is created, the results are posted back to the form. The form can be any type of page that you want to create using any technology. The example we provide to signed developers uses php but you could just as easily choose any other web technology such as aspx, node, ruby, etc.
 
@@ -4130,7 +4131,7 @@ info:
      }</pre>
     ```
     
-    # CreateTokenResponse Parameters
+    ## CreateTokenResponse Parameters
     
     | Parameter   Name| Description 
     |-----|-----
@@ -4142,7 +4143,7 @@ info:
     |cardData | See [ResponseCardData.](#section/ResponseCardData)
     |validationData | See [ResponseValidationData.](#section/ResponseValidationData)
     
-    # ResponseCardData Parameters
+    ## ResponseCardData Parameters
     
     | Parameter   Name| Description 
     |-----|-----
@@ -4153,7 +4154,7 @@ info:
     |cardType (string) |The type of card being charged, for example Credit or Debit.
     |cardCategory (string)  | The card category if it has one, for example Gold, Platinum, etc.
     
-    # ResponseValidationData Parameters
+    ## ResponseValidationData Parameters
     | Parameter   Name| Description 
     |-----|-----
     |avsResponse (string)| Result of an AVS (Address Verification System) check when the AdminGetToken request  parameter validateCard is set to true/yes.
@@ -4163,7 +4164,7 @@ info:
     |authMessage (string) |Message indicating the status of the authorization request.
     |authReturnCode (interger) |Code indicating the status of the authorization request.
     
-    # Complete the Transaction
+    ## Complete the Transaction
     
     The IBX library only generates a token and you need to finish charging the card on your server. When the token is posted back to your page, you can do what you like with the response data but typically you will want to create named form elements for at least the payment token that was returned and then submit the actual form itself to your endpoint.  For example, your code to capture the payment token in JS could look like the following simple jQuery example where we take the payment token, last four digits of the card, and the name on the card and return it to our endpoint via hidden fields posted via the actual form submit.
      
@@ -4197,7 +4198,7 @@ info:
      
      # 10.2.Hosted Page 
      
-     # Introduction
+     ## Introduction
      
      The Hosted Page is a ‘Cloud Based’ integration solution that dramatically reduces the burden of PCI DSS compliance for merchants, and “de-scopes” POS software solutions from the onerous PA-DSS standard.
 
@@ -4213,7 +4214,7 @@ info:
     
     ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted2.png)
     
-    # Configuration
+    ## Configuration
 
     Configuration of the Hosted Page was designed to allow for maximized branding capability with little to no advanced programming knowledge. Our Hosted Page application branding is generated dynamically, and can be customized straight out of the Virtual Terminal interface. Simply navigate to ‘Tools’ and then ‘Hosted Page’ from within the Virtual Terminal to access the configuration utility
     
@@ -4268,7 +4269,7 @@ info:
     ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted5.png)
     and the amount will be removed from the list.
     
-    # Appearance
+    ## Appearance
 
     This tab allows you to alter the look and feel of the Hosted Page to have it match your web site or POS application.
     
@@ -4312,7 +4313,7 @@ info:
 
     This tab allows you to generate a button that will display the Hosted Page preconfigured with a given amount. Simply enter an amount in the ‘Amount’ field, and select ‘Generate HTML.’ This will create the HTML necessary to load your hosted page and is helpful for processing static single transactions for a given amount. This HTML can be copied and pasted into your web site, and will allow you to process a simple transaction with virtually no knowledge of HTML or web programming.
     
-    # Field Definitions
+    ## Field Definitions
     ## Service Location
     
     https://gateway.ibxpays.com/ws/hosted.aspx
@@ -4368,7 +4369,7 @@ info:
     |ShippingAmount | The Shipping Amount to be associated with the current transaction.
     |Optional |
     
-    # Hosted Page Response Fields
+    ## Hosted Page Response Fields
 
     All response fields will match the existing response field definitions. The following additional information will be returned with the authorization response to allow you to accurately store and handle the token response from the gateway
     
@@ -4380,7 +4381,7 @@ info:
     
     # 11. Gateway Emulator 
     
-    # Introduction
+    ## Introduction
 
     The Gateway Emulator is a translation layer API that allows an integrator to leverage existing development work against another Payment Gateway application and communicate with our web services API. The utility is fairly simple, and functions as a field mapping utility that translates from one message format to another.
     
@@ -4392,7 +4393,7 @@ info:
     
     The emulator ID “nn” should match the Emulator ID that has been assigned by the Emulator Configuration Utility.
     
-    # Configuration
+    ## Configuration
 
     Configuration of the emulator is very simple, and allows the integrator to map the fields from one request format to those of our standard API, and map the responses generated by the gateway to a format that the integrator is already expecting.
     
@@ -4402,7 +4403,7 @@ info:
     
     The Emulator Configuration Utility is explained below.
     
-    # Adding a New Emulator
+    ## Adding a New Emulator
 
     To add a new emulator click ‘Add New’ in the top left hand corner of the grid on the ‘Emulator’ page. From here you will be brought to the ‘Global Settings’ tab. These settings must be completed in order to add a new emulator.
     
@@ -4414,11 +4415,11 @@ info:
     
     Click ‘Save’ once you have properly configured this tab.
     
-    # Field Mapping Configuration
+    ## Field Mapping Configuration
 
     **_Template:_** The template drop down allows you to select from ‘pre-populated’ emulation templates. If you do not see the template that you are looking for, please contact technical support. Click ‘Load’ to generate the fields of a pre-configured emulation
     
-    # Add Field Mapping
+    ## Add Field Mapping
 
     To add a new request field, simply click the ‘Add field mapping’ button, and follow the steps below:
     
@@ -4432,7 +4433,7 @@ info:
     
     Repeat these same steps for the ‘Response Field Mapping’ to map out the response fields returned by the gateway. The order will be reversed, however. Here you will first select the response field generated by the gateway, and map it to a field that your integration is expecting. Continue this process until all response fields that are expected by your existing integration are being generated by the emulator.
     
-    # Prebuilt Templates
+    ## Prebuilt Templates
     ## Configuring Magento for The Gateway Using the Emulator
 
     1. With a working install of Magento, enable the Authorize.net (AIM) payment module. There are 4 settings in the module configuration that will be relevant to enabling traffic to the emulator
@@ -4474,7 +4475,7 @@ info:
       
       These values are preloaded with the Authorize.net template.
       
-      # Configuring OSCommerce for The Gateway Using the Emulator
+      ## Configuring OSCommerce for The Gateway Using the Emulator
 
       1. With a working install of OSCommerce, enable the Authorize.net (AIM) payment module. There are 4 settings in the module configuration that will be relevant to enabling traffic to the emulator.
           a. Enable Authorize.Net (AIM) Module: Enables/disables the module in OSCommerce. This must be True for the module to work.
@@ -4528,7 +4529,7 @@ info:
        
        These values are preloaded with the Authorize.net template.
        
-       # Configuring ShopSite for The Gateway Using the Emulator
+       ## Configuring ShopSite for The Gateway Using the Emulator
 
       1. ShopSite provides a custom payment provider called Gateway Emulator. Select this in the payment configuration of the store, and click Configure Processor. There will be 5 settings to configure to enable the ShopSite store to process with The Gateway.
           a. Host: This is simply the domain name of the gateway
@@ -4571,7 +4572,7 @@ info:
       
       These values are preloaded with the Authorize.net template.
       
-      # Configuring VirtueMart for The Gateway Using the Emulator
+      ## Configuring VirtueMart for The Gateway Using the Emulator
       
       1. With a working install of VirtueMart, enable the Authorize.net (AIM) payment module. There are 3 settings in the module configuration that will be relevant to enabling traffic to the emulator
       
@@ -4610,7 +4611,7 @@ info:
       
       These values are preloaded with the Authorize.net template.
       
-      # Configuring Zencart for The Gateway Using the Emulator
+      ## Configuring Zencart for The Gateway Using the Emulator
       
       1. With a working install of Zencart, enabled the Authorize.net (AIM) payment module. There are 4 settings in the module configuration that will be relevant to enabling traffic to the emulator
 

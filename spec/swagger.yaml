@@ -15,8 +15,7 @@ info:
     # _IBX Services WSDLs_
     The IBX services can be accessed via the following URLs
     
-    - https://gateway.ibxpays.com/ws/transact.asmx?wsdl
-    
+    - https://gateway.ibxpays.com/ws/transact.asmx?wsdl    
     - https://gateway.ibxpays.com/ws/cardsafe.asmx?wsdl
     - https://gateway.ibxpays.com/ws/customfields.asmx?wsdl
     - https://gateway.ibxpays.com/vt/ws/trxdetail.asmx?wsdl
@@ -3582,7 +3581,7 @@ info:
     
     Sample Results:
     
-    C
+    ```
     <?xml version="1.0" encoding="utf-8"?>
     <string xmlns="https://gw-v1.ibxpays.com/vt/ws"><CardTrxSummary>
     <PaymentMethod>

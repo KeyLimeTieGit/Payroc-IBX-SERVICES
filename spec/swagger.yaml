@@ -792,7 +792,7 @@ info:
     ## Request
     ProcessSignature(UserName, Password, SignatureType, SignatureData, PNRef, Result, AuthCode, ExtData)
     
-    This example combines the previous ProcessCreditCard call and appends a signature to it. An [example file is linked](https://www.integritypays.com/wp-content/uploads/2016/08/gateway_signature.tif) (see “Path to File”) which you can download and save locally to try.
+    This example combines the previous ProcessCreditCard call and appends a signature to it.
     
     ```
     SmartPaymentsSoapClient transact =
@@ -3405,8 +3405,9 @@ info:
     # 9. Developer Notes 
     ## Invalid Character Processing
     
-      Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
-
+    Some parameters and XML tags contain data that will automatically remove invalid characters from the user-entered data. These parameters and tags include:
+      
+      ```
       - MagData
       - NameOnCard
       - DL
@@ -3429,7 +3430,8 @@ info:
       - ExtData: <BillToPostalCode>
       - ExtData: <BillToCountry>
       - ExtData: <CustomerID>
-    
+      ```
+
     ## Reversal Transactions 
     ## Credit Card Reversals
     

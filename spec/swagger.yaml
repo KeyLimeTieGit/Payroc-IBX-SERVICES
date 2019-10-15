@@ -75,7 +75,7 @@ info:
     
     If you are using a program language other than VB.NET or C#, and are not familiar with interacting with .NET web services, it is recommended that you integrate using HTTPS as it is far less complicated then building SOAP objects outside of an IDE, and will save a tremendous amount of time and headache. If you are familiar and comfortable using SOAP to consume .NET web services, navigate to the URL for each web service method you plan to consume for additional details regarding the XML SOAP schema.
     
-    If you are not using a Microsoft .NET framework to access the services, refer to the cURL, PHP, Node.js and Ruby [Implementation Examples](#section/9.1.Implementation-Examples) for examples on how to use these services in alternative environments.
+    If you are not using a Microsoft .NET framework to access the services, refer to the cURL, PHP, Node.js and Ruby [Implementation Examples](#section/9.1.-Implementation-Examples) for examples on how to use these services in alternative environments.
 
     Most integrators will only need to concern themselves with the ProcessCreditCard web service. However, if additional functionality is required, our web services have been labeled intuitively, and the functionality exposed in each service is implied in the title.
 
@@ -121,7 +121,7 @@ info:
     ProcessCreditCard(UserName, Password, TransType, CardNum, ExpDate, MagData, NameOnCard, Amount, InvNum, PNRef, Zip, Street, CVNum, ExtData)
     
     ## Request Example
-    Note: This example assumes that two [custom fields have been created](#section/8.1.-AddCustomField) (one a numeric the other a string). Remove the CustomFields XML if attempting to use without custom fields.
+    Note: This example assumes that two [custom fields have been created](#section/8.1.-ADDCUSTOMFIELD) (one a numeric the other a string). Remove the CustomFields XML if attempting to use without custom fields.
     
 
     ```
@@ -167,7 +167,7 @@ info:
     Result 0 int
     ```
 
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessCreditCard Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -188,7 +188,7 @@ info:
     | |   - Adjustment – used to modify an existing tip amount for an original sale To call the service
     | | Terminal-based processors only:
     | |  - Capture – settle a single transaction in the current batch
-    | |  - Reversal – perform a manual full reversal on a credit card or repeat sale within 24 hours of the original transaction. See [Reversal Transactions.](#section/reverse)
+    | |  - Reversal – perform a manual full reversal on a credit card or repeat sale within 24 hours of the original transaction. See [Reversal Transactions.](#section/9.-Developer-Notes/Reversal-Transactions)
     | CardNum |Credit card number used to uniquely identify the card owner’s account.
       Required on all swiped CC transactions|
     | ExpDate | Credit card date of expiration in MMYY format.
@@ -198,21 +198,21 @@ info:
     | required for swiped/card present transactions | 440?;5149612222222229=12041011234567440?
     |  | This parameter must contain the full magnetic read in order to be classified as a ‘card present’ transaction
     | NameOnCard| Card owner’s name as it appears on the card.
-    | Optional unless required by merchant’s processor setup | See  [Invalid Character Processing.](#section/invalidchar)
+    | Optional unless required by merchant’s processor setup | See  [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | Amount| Total transaction amount in DDDD.CC format.
     | Required for swiped/card present transactions | 
     | InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
     | Optional | 
-    |  | See [Invalid Character Processing.](#section/invalidchar)
-    |  | View the [ExtData Parameters Table](#section/_Toc455564524) for more information.
+    |  | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |  | View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information.
     | PNRef | Unique payment reference number used to identify a single transaction within the system. The payment reference number 
     | Required on Force and Capture transactions | (PNRef) is assigned by the payment server at the time the transaction is created.
     | Zip | Card owner’s billing address five-digit postal/zip code.
-    | Optional unless required by merchant’s setup | See [Invalid Character Processing.](#section/invalidchar)
+    | Optional unless required by merchant’s setup | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | CVNum | Card verification number.
     | Optional unless required by merchant’s setup| 
     |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
-    |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags. View the [ExtData Parameters Table](#section/_Toc455564524) for more information.
+    |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags. View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information.
     
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
@@ -256,7 +256,7 @@ info:
     | TransType=Force |
     |  | <AuthCode>_AuthorizationCode_</AuthCode> where _Authorization Code_ is the original authorization or approval code.
     | Customer Code Optional| Customer or purchase order (PO) number used with Level II information for Global Payments only (if using another processor that supports Level II, use the PO Number to pass this information instead).
-    |  | See [Invalid Character Processing.](#section/invalidchar) 
+    |  | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing) 
     |  | Valid format is:
     |  | <CustCode>_CustomerCode_</CustCode> where _Customer Code_ is the number assigned to identify the customer or the PO number.
     | Convenience Amount Optional| Allows the merchant to add a flat fee to the total transaction to cover the cost of paying in a more convenient way for the customer (Eg. Online vs. in person at the municipal center). This function may be used by utility companies, government agencies, and schools.
@@ -281,7 +281,7 @@ info:
     |  | Valid format is:
     |  | <SequenceCount>_SequenceCount_</SequenceCount> where _SequenceCount_ is any positive integer greater than or equal to the _SequenceNum_.
     | Server ID | Unique server identification number. 
-    | Optional|  See [Invalid Character Processing.](#section/invalidchar). Valid format is:<ServerID>_ServerID_</ServerID> where _ServerID_ uniquely identifies the payment server used.
+    | Optional|  See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing). Valid format is:<ServerID>_ServerID_</ServerID> where _ServerID_ uniquely identifies the payment server used.
     | Time Out Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.
     |  | Valid format is:
     |  | <TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
@@ -301,15 +301,15 @@ info:
     |  | <Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
     |  | Note: Some processors, including Concord EFS, will not recognize this tag and delete duplicate transactions.
     | Register Number  | Unique identifier for a specific register.
-    | Optional |See [Invalid Character Processing.](#section/invalidchar).
+    | Optional |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
     |  | Valid format is:
     |  | <RegisterNum>_RegisterNum_</RegisterNum> where _RegisterNum_ is a valid unique identifier assigned to a specific register.
     | City  | City name for the card owner’s billing address.
-    | Depending on processor, may be required |See [Invalid Character Processing.](#section/invalidchar).
+    | Depending on processor, may be required |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
     |  | Valid format is:
     |  | <City>_City_</City> where _City_ is the card owner’s city name.
     | Bill-To State  | Two-character state code for the card owner’s bill-to address.
-    | Depending on processor, may be required |See [Invalid Character Processing.](#section/invalidchar).
+    | Depending on processor, may be required |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
     |  | Valid format is:
     |  | <BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the card owner’s bill-to address.
     | Customer ID |Identification number assigned to the customer by the merchant.
@@ -317,7 +317,7 @@ info:
     |  | Valid format is:
     |  | <CustomerID>_CustomerID_</CustomerID> where _CustomerID_ is the customer’s assigned customer ID.
     | Purchase Order (PO) Number | Customer or PO number used with Level II information.
-    | Optional| See [Invalid Character Processing.](#section/invalidchar).
+    | Optional| See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
     |  | Valid format is:
     |  | <PONum>_PONum_</PONum> where _‘PONum’_ is the number assigned to identify the customer or the PO.
     |  | Note: If using Level II with Global Payments, use the CustCode to pass this information instead.
@@ -382,7 +382,7 @@ info:
     ## Response
     IBXTransact.Response
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessDebitCard Input Parameters
     Unless noted otherwise, the parameter is **required**.
@@ -395,7 +395,7 @@ info:
     | | Valid values are:
     | | - Sale – make a purchase using a debit card
     | | - Return – credits the card holder’s account
-    | | - Reversal – perform a manual full reversal on a debit card sale within 24 hours of the original transaction. The expected behavior of this transaction type is defined by the type of the payment processor the merchant account is configured for. See [Credit Card Reversals.](#section/reverse)
+    | | - Reversal – perform a manual full reversal on a debit card sale within 24 hours of the original transaction. The expected behavior of this transaction type is defined by the type of the payment processor the merchant account is configured for. See [Credit Card Reversals.](#section/9.-Developer-Notes/Credit-Card-Reversals)
     | | - Inquire – check the balance
     | | BuyPass fuel transactions only:
     | | - Auth – authorize the amount on a debit card
@@ -415,12 +415,12 @@ info:
     | Amount| Total transaction amount in DDDD.CC format.
     | Not required on CaptureAll transactions| Note: This amount includes the CashBackAmt and SureChargeAmt.
     | InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    | Optional| View the [ExtData Field Definitions](#section/extdatadef) for more information.
+    | Optional| View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     | PNRef| Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
     | Required on Force and Capture transactions| 
     | Pin| The encrypted PIN-block returned by the PIN pad.
     | Not required in Capture and CaptureAll transactions| Note: The transaction will fail if an unencrypted PIN is used.
-    | | Note: This information is not required for PIN-less debit transactions. See [PIN-less Debit Transactions.](#section/pinless) 
+    | | Note: This information is not required for PIN-less debit transactions. See [PIN-less Debit Transactions.](#section/9.-Developer-Notes/PIN-less-Debit-Transactions) 
     | RegisterNumber| A string that uniquely identifies the register, terminal, or computer on which the transaction was performed. 
     |Optional |  
     | SureChargeAmt|  The amount, in DDDD.CC format, charged by a merchant in exchange for processing a debit card transaction.
@@ -468,7 +468,7 @@ info:
     ## Response
     Need Response here    
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessCheck Input Parameters
     Unless noted otherwise, the parameter is **required**.
@@ -502,16 +502,16 @@ info:
     | |Note: This input is required for processing check/consumer present transactions.
     | |Note: The formats of the MICR is processor specific and if the developer is not sure about what format your Check processor accepts, pass the RAW MICR as well in the TOAD format and details of this are described in the extended data. If the developer is sure about the precise format for MICR that is supported by the Check processor, then there is no need to pass the Raw MICR in TOAD format.
     |NameOnCheck | Check owner’s name as it appears on the check.
-    |Not required for Capture and CaptureAll transactions | See [Invalid Character Processing.](#section/invalidchar)
+    |Not required for Capture and CaptureAll transactions | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |May be required by merchant’s processor setup |
     |DL | Check owner’s driver’s license number.
-    | Optional|See [Invalid Character Processing.](#section/invalidchar)
+    | Optional|See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |SS | Check owner’s Social Security number.
-    | Optional|See [Invalid Character Processing.](#section/invalidchar)
+    | Optional|See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |DOB |Check owner’s date of birth.
-    |Optional |See [Date Formats.](#section/dateformat)
+    |Optional |See [Date Formats.](#section/9.-Developer-Notes/Date-Formats)
     |StateCode |Check owner’s two-character state code.
-    |Optional unless required by merchant’s processor setup |See [Invalid Character Processing.](#section/invalidchar)
+    |Optional unless required by merchant’s processor setup |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |CheckType | Identifies the type of check used in the transaction.
     |Optional | Valid values are:
     | |- Personal
@@ -538,11 +538,11 @@ info:
     | |Valid format is:
     | |<PNRef>PNRef</PNRef> where PNRef is the valid payment reference number assigned to the transaction that is to be returned, voided, forced, or captured.
     |Phone |Check owner’s phone number.
-    |Optional | See [Invalid Character Processing.](#section/invalidchar)
+    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<Phone>_Phone_</Phone> where _Phone_ is the check owner’s phone number.
     |Email Address | Check owner’s email address.
-    |Optional | See [Invalid Character Processing.](#section/invalidchar)
+    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<Email>_Email_</Email> where _Email_ is the check owner’s email address.
     |Raw MICR |Raw Magnetic Ink Check Reader data line from the check reader.
@@ -564,27 +564,27 @@ info:
     | |<AccType>_Checking_</AccType> to indicate a checking account
     | |<AccType>_Savings_</AccType> to indicate a savings account
     |City of Account | City name for the check owner’s residential address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/invalidchar)
+    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<CityOfAccount>_CityOfAccount_</CityOfAccount> where _CityOfAccount_ is the check owner’s city name.
     |Bill-To Street | Street address for the check owner’s bill-to address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/invalidchar)
+    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<BillToStreet>_BillToStreet_</BillToStreet> where BillToStreet is the street name for the check owner’s bill-to address.
     |Bill-To City | City name for the check owner’s bill-to address.
-    |Optional | See [Invalid Character Processing.](#section/invalidchar)
+    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<BillToCity>_BillToCity_</BillToCity> where _BillToCity_ is the city name for the check owner’s bill-to address.
     |Bill-To State |Two-character state code for the check owner’s bill-to address.
-    |Optional | See [Invalid Character Processing.](#section/invalidchar)
+    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the check owner’s bill-to address.
     |Bill-To Postal Code | Postal/Zip code for the check owner’s bill-to address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/invalidchar)
+    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<BillToPostalCode>_BillToPostalCode_</BillToPostalCode> where _BillToPostalCode_ is the street name for the check owner’s bill-to address.
     |Bill-To Country | Country name for the check owner’s bill-to address.
-    | Optional| See [Invalid Character Processing.](#section/invalidchar)
+    | Optional| See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     | |Valid format is:
     | |<BillToCountry>_BillToCountry_</BillToCountry> where _BillToCountry_ is the country name for the check owner’s bill-to address.
     |Customer ID |Identification number assigned to the customer by the merchant.
@@ -607,7 +607,7 @@ info:
     ## Response
     Response here  
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessEBTCard Input Parameters
     Unless noted otherwise, the parameter is **required**.
@@ -637,12 +637,12 @@ info:
     | |For example:
     | |36438999960016=05121015432112345678
     |NameOnCard |Card owner’s name as it appears on the card.
-    | Optional unless required by merchant’s processor setup| Note: Invalid characters will be removed from this entry. See [Invalid Character Processing.](#section/invalidchar)
+    | Optional unless required by merchant’s processor setup| Note: Invalid characters will be removed from this entry. See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |Amount |Total transaction amount in DDDD.CC format.
     |Not required for Capture and CaptureAll transactions |Note: This amount includes the CashBackAmt and SureChargeAmt.
     |InvNum |The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
     |Optional |
-    | |View the [ExtData Field Definitions](#section/extdatadef)   for more information.
+    | |View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields)   for more information.
     | PNRef| Unique payment reference number used to identify a single transaction within the system.
     |Required on all swiped card transactions | The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
     |Pin | The encrypted PIN-block returned by the PIN pad.
@@ -709,7 +709,7 @@ info:
     ## Response
     Response here  
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessGiftCard Input Parameters
     Unless noted otherwise, the parameter is  **required**.
@@ -740,7 +740,7 @@ info:
     |Amount| Total transaction amount in DDDD.CC format.
     |Not required for CaptureAll transactions| Note: This amount includes the CashBackAmt and SureChargeAmt.
     |InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    |Optional| View the [ExtData Field Definitions](#section/extdatadef) for more information.
+    |Optional| View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     |PNRef| Unique payment reference number used to identify a single transaction within the system. 
     |Required on Force and Capture transactions|The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
     |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
@@ -826,7 +826,7 @@ info:
     Result  0  int
     ```
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessSignature Input Parameters
     Unless noted otherwise, the parameter is  **required**.
@@ -847,7 +847,7 @@ info:
     | |x1,y1^x2,y2^xN,yN^~
     | |Where ^ is the coordinate delimiter, ~ is the ending delimiter, and a comma (,) is the vector delimiter.
     | |If there is a pen up event, use the coordinate 0,65535 to signal a break in the line.
-    | |If SignatureType = Receipt1, you must compress and Base64 encode the image data. See [Compression and Encoding.](#section/comp)
+    | |If SignatureType = Receipt1, you must compress and Base64 encode the image data. See [Compression and Encoding.](#section/9.-Developer-Notes/Compression-and-Encoding)
     |PNRef | Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
     |Result | Indicator that specifies whether the transaction was approved.
     |Optional | Valid entries are:
@@ -906,7 +906,7 @@ info:
     </Response>
     ```
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessBatch Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -1005,7 +1005,7 @@ info:
     </Response>
     ```
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## GetInfo Input Parameters
     Unless noted otherwise, the parameter is  **required**.
@@ -1039,12 +1039,12 @@ info:
     |String up to 50 characters| This value can be either an approval code, for approved transactions, or an error code, for declined transactions
     |ExtData| Returns extra data from the processed transaction.
     |String up to 500 characters| The value of ExtData will be in a specific format. The format typically consists of the name of the data field, an equal sign, and then the value for the data field. Multiple data fields are separated with a comma.
-    ||See the [ExtData Field Definitions](#section/extdatadef) for full description of data elements that can be returned.
+    ||See the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for full description of data elements that can be returned.
     ||The following is an example of the format: ExtName1=ExtValue1,ExtName2=ExtValue2
     |GetAVSResult| Returns the overall address verification result code from the payment processor.
     |String up to 1 character|
     ||When programmatically validating an AVS Result, this value should ALWAYS be used instead of any formatted response message describing the result.
-    ||View the [AVS Response Fields.](#section/avs-response-fields) 
+    ||View the [AVS Response Fields.](#section/3.11.-AVS-Response-Fields) 
     |GetAVSResultTXT| Returns the formatted response message when address verification is performed.
     |String up to 25 characters| 
     || Do NOT use this when programmatically validating a transaction’s AVS result; please see GetAVSResult field.
@@ -1054,7 +1054,7 @@ info:
     |GetCVResult| Returns the card verification result code from the payment processor.
     |String up to 1 character|
     ||This value is only applicable to credit card transactions. The card verification number is typically printed on the back of the card and not embossed on the front. It is used as an extra authentication method for “card not present” transactions. When programmatically validating a CV Result, this value should ALWAYS be used instead of any formatted response message describing the result.
-    ||View the [CV Response Fields.](#section/cv-response-fields) 
+    ||View the [CV Response Fields.](#section/3.12.-CV-Response-Fields) 
     |GetCVResultTXT| Returns the formatted response message when card verification is performed.
     |String up to 25 characters|
     ||This value is only applicable to credit card transactions.  Do NOT use this when programmatically validating a transaction’s CV result; please see GetCVResult field.
@@ -1084,7 +1084,7 @@ info:
     |Result| Returns the transaction result code from the payment gateway which signifies the result of the transaction (i.e. approved, decline, etc.).
     |String representing a signed 32-bit integer|
     ||When programmatically validating a transaction’s result, this value should ALWAYS be used instead of any response message describing the result.
-    ||See the [Result Response Field Definitions](#section/resultresp) for a full list of result values and descriptions.
+    ||See the [Result Response Field Definitions](#section/3.10.-Result-Response-Fields/Result-Response-Field-Definitions) for a full list of result values and descriptions.
     
     ## ExtData Response Fields
     
@@ -1310,7 +1310,7 @@ info:
       </TrxDetailCard>
     </RichDBDS>
     ```
-    View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
+    View [TrxDetail Response Fields.](#section/4.5.-TRXDetail-Response-Fields)
     
     ## GetCardTrx Input Parameters
     
@@ -1381,7 +1381,7 @@ info:
     |CardNum |A card number. If provided, only those transactions with the card number matching CardNum will be included. Matching is done using wild cards.
     |Optional |
     |CardType | This field has been deprecated. Please use the PaymentType field to specify the type of card used in a transaction.
-    |Optional | View [ExtData Field Definitions](#section/extdatadef) for more information.
+    |Optional | View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     |ExcludeCardType |This field has been deprecated. Please use the ExcludePaymentType field to specify the type of cards you wish to be excluded from the result set.
     |Optional |
     |ExcludeVoid | The ExcludeVoid parameter allows you to exclude voided transactions from the result set.
@@ -1484,7 +1484,7 @@ info:
     </CardTrxSummary>
    
     ```
-    View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
+    View [TrxDetail Response Fields.](#section/4.5.-TRXDetail-Response-Fields)
     
     ## GetCardTrxSummary Input Parameters
      Unless noted otherwise, the parameter is **required.**
@@ -1517,7 +1517,7 @@ info:
     || - ‘VISA’ – Visa card
     || - ‘EGC’ – Gift card
     || Or any permutation of the above values, e.g. “’AMEX’,’MASTERCARD’” will pull all transactions with either AMEX or MASTERCARD payment types.
-    || View [ExtData Field Definitions](#section/extdatadef) for more information.
+    || View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     |ExcludeVoid| The ExcludeVoid parameter allows you to exclude voided transactions from the result set.
     ||Valid entries are
     ||- ‘TRUE’ – voided transactions are excluded from summary information
@@ -1576,7 +1576,7 @@ info:
     
     Response here
     
-    View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
+    View [TrxDetail Response Fields.](#section/4.5.-TRXDetail-Response-Fields)
     
     ## GetCheckTrx Input Parameters
     
@@ -1694,7 +1694,7 @@ info:
     
     Response here
     
-    View [TrxDetail Response Fields.](#section/trxdetail-response-fields)
+    View [TrxDetail Response Fields.](#section/4.5.-TRXDetail-Response-Fields)
     
     ## GetOpenBatchSummary Input Parameters
     
@@ -2031,7 +2031,7 @@ info:
     # 5.1. ManageCustomer 
     This service is used to add, update, or delete a recurring billing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
     
-    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
+    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/9.-Developer-Notes/Recurring-Billing-Web-Services)
     
     ## Request
     
@@ -2065,7 +2065,7 @@ info:
     code    OK    ResultCode
     error    "OK"    string
     ```
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## ManageCustomer Input Parameters
     
@@ -2135,13 +2135,13 @@ info:
     # 5.2. ManageCreditCardInfo 
     This service allows you to store a credit card number securely within the Payment Server database. Calling this service is the second step towards successfully storing and initiating recurring payments if a credit card is to be the preferred method of payment.
     
-    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
+    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/9.-Developer-Notes/Recurring-Billing-Web-Services)
     
     ## Request
     
     ManageCreditCardInfo(Username, Password, TransType, Vendor, CustomerKey, CardInfoKey, CcAccountNum, CcExpDate, CcNameOnCard, CcStreet, CcZip, ExtData)
 
-    Note: The customerKey in the call below is obtained in the response to the [ManageCustomer](#section/managecustomer) call.
+    Note: The customerKey in the call below is obtained in the response to the [ManageCustomer](#section/9.-Developer-Notes/ManageCustomer) call.
     
     ```
     RecurringSoapClient recurring = new RecurringSoapClient("RecurringSoap");
@@ -2169,7 +2169,7 @@ info:
     Vendor    "5"    string
     code    OK    ResultCode
     ```
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## ManageCreditCardInfo Input Parameters 
     
@@ -2205,7 +2205,7 @@ info:
     # 5.3. ManageCheckInfo  
     This service allows you to store a checking account number securely within the Payment Server database. Calling this service is the second step towards successfully storing and initiating recurring payments if ACH or ECHECKs are to be the preferred method of payment.
     
-    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
+    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/9.-Developer-Notes/Recurring-Billing-Web-Services)
     
     ## Request
     
@@ -2215,7 +2215,7 @@ info:
     
     Response here
     
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## ManageCheckInfo  Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2259,9 +2259,9 @@ info:
     |Optional|
     |StateCode| Check owner’s standard U.S. postal service two-character state code or other standard province code.
     |Optional|Note: Valid entries should follow USPS two-character state code standards. For more information, see [http://pe.usps.gov/text/pub28/28apb.htm].
-    ||See [Invalid Character Processing.](#section/invalidchar)
+    ||See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |NameOnCheck| Check owner’s name as it appears on the check.
-    |Optional| See [Invalid Character Processing.](#section/invalidchar)
+    |Optional| See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
     |NameOnCheck| Check owner’s name as it appears on the check.
     |Email| Customer contact’s email address.
     |Optional|
@@ -2288,13 +2288,13 @@ info:
     
     # 5.4. ManageContract  
     This service allows the integrator to add, update, or delete the terms and interval of a recurring billing contract.
-    See Developer’s Notes for information about  [Recurring Billing Web Services.](#section/recur)
+    See Developer’s Notes for information about  [Recurring Billing Web Services.](#section/9.-Developer-Notes/Recurring-Billing-Web-Services)
     
     ## Request
     
     ManageContract(Username, Password, TransType, Vendor, CustomerKey, ContractKey, PaymentInfoKey, PaymentType, CustomerID, CustomerName, FirstName, LastName, Department, Street1, Street2, Street3, City, StateID, Province, Zip, CountryID, DayPhone, NightPhone, Fax, Email, Mobile, ContractID, ContractName, BillAmt, TaxAmt, TotalAmt, StartDate, EndDate, NextBillDt, BillingPeriod, BillingInterval, MaxFailures, FailureInterval, EmailCustomer, EmailMerchant, EmailCustomerFailure, EmailMerchantFailure, Status, ExtData)
     
-    Note: The ccInfoKey in the call below is obtained in the response to the [ManageCreditCardInfo](#section/recur) call
+    Note: The ccInfoKey in the call below is obtained in the response to the [ManageCreditCardInfo](#section/9.-Developer-Notes/ManageCreditCardInfo) call
   
     ```
     RecurringSoapClient recurring = new RecurringSoapClient("RecurringSoap");
@@ -2326,7 +2326,7 @@ info:
     code    OK    ResultCode
     error    "OK"    string
     ```
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## ManageContract Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2469,7 +2469,7 @@ info:
     # 5.5. MANAGECONTRACTADDDAYSTONEXTBILLDT 
     This web service allows the integrator to update the NextBillDate in the event that a payment was declined and a contract suspended.
     
-    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/recur)
+    See Developer’s Notes for information about [Recurring Billing Web Services.](#section/9.-Developer-Notes/Recurring-Billing-Web-Services)
     
     ## Request
     ManageContractAddDaysToNextBillDt(Username, Password, Vendor, CustomerKey, ContractKey, NumOfDays, ExtData)
@@ -2477,7 +2477,7 @@ info:
     ## Response
     Response here
 
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## ManageContractAddDaysToNextBillDt  Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2538,7 +2538,7 @@ info:
     error    "OK"    string
     ```
     
-    View [RecurringResult Response Fields.](#section/recurringresult-response-fields)
+    View [RecurringResult Response Fields.](#section/5.9.-RECURRINGRESULT-RESPONSE-FIELDS)
     
     ## AddRecurringCreditCard   Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2671,7 +2671,7 @@ info:
     ## Request
     ProcessCreditCard(Username, Password, Vendor, CcInfoKey, Amount, InvNum, ExtData)
 
-    Note: The CcInfoKey in the call below is obtained in the response to the [ManageCreditCardInfo](#section/recur) call
+    Note: The CcInfoKey in the call below is obtained in the response to the [ManageCreditCardInfo](#section/9.-Developer-Notes/ManageCreditCardInfo) call
 
     
     ```
@@ -2702,7 +2702,7 @@ info:
     error "DECLINED" string
     ```
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields)
     
     ## ProcessCreditCard    Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2717,7 +2717,7 @@ info:
     | |This value appears in the return result when a new payment method is added (see <CcInfoKey></CcInfoKey> tags) or can be found in the result set from the InfoCustomer web service.
     |Amount |Total transaction amount in DDDD.CC format.
     |InvNum | The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    | Optional| View [ExtData Field Definitions](#section/extdatadef) for more information.
+    | Optional| View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     |ExtData | Reserved for future use.
     |Optional |
     
@@ -2734,7 +2734,7 @@ info:
    
     Response here
     
-    View [Transaction Response Fields.](#section/transaction-response-fields)
+    View [Transaction Response Fields.](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields)
     
     ## ProcessCheck     Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2749,7 +2749,7 @@ info:
     | |This value appears in the return result when a new payment method is added using ManageCheckInfo (see <CheckInfoKey></CheckInfoKey> tags) or can be found in the result set from the InfoCustomer web service.
     |Amount |Total transaction amount in DDDD.CC format.
     |InvNum | The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    | Optional| View [ExtData Field Definitions](#section/extdatadef) for more information.
+    | Optional| View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
     |ExtData | Reserved for future use.
     |Optional |
     
@@ -2785,7 +2785,7 @@ info:
     # 6.1. STORECARD 
     This service is used to add a stored payment method to an existing customer record. Calling this service is the first step towards succesfully storing and initiating recurring payments.
     
-    See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
+    See Developer’s Notes for information about [Card Safe Web Services.](#section/9.-Developer-Notes/Card-Safe-Web-Services)
     
     ## Request
     StoreCard(UserName, Password, TokenMode, CardNum, ExpDate, CustomerKey, NameOnCard, Street, Zip, ExtData)
@@ -2793,7 +2793,7 @@ info:
     ## Response
     Response example
     
-    View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
+    View [StoreCardResult Response Fields.](#section/6.4.-STORECARDRESULT-RESPONSE-FIELDS)
     
     ## StoreCard Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2822,7 +2822,7 @@ info:
     # 6.2. STORECARDFROMPNREF  
     This service is used to add a stored payment method to an existing customer record using a previous transaction as the basis.
     
-    See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
+    See Developer’s Notes for information about [Card Safe Web Services.](#section/9.-Developer-Notes/Card-Safe-Web-Services)
     
     ## Request
     StoreCardFromPNRef(UserName, Password, TokenMode, PnRef, CustomerKey, Street, Zip, ExtData)
@@ -2836,7 +2836,7 @@ info:
     ## Response
     Response example
     
-    View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
+    View [StoreCardResult Response Fields.](#section/6.4.-STORECARDRESULT-RESPONSE-FIELDS)
     
     ## StoreCardFromPNRref  Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2862,7 +2862,7 @@ info:
     This web service allows an integrator to process a Credit Card Transaction against an account that has been stored using AddCard
 
 
-    See Developer’s Notes for information about [Card Safe Web Services.](#section/cardsafe)
+    See Developer’s Notes for information about [Card Safe Web Services.](#section/9.-Developer-Notes/Card-Safe-Web-Services)
     
     ## Request
     ProcessCreditCard(UserName, Password, TransType, CardToken, TokenMode, Amount, InvNum, PNRef, ExtData)
@@ -2870,7 +2870,7 @@ info:
     ## Response
     Response example
     
-    View [StoreCardResult Response Fields.](#section/storecardresult-response-fields)
+    View [StoreCardResult Response Fields.](#section/6.4.-STORECARDRESULT-RESPONSE-FIELDS)
     
     ## ProcessCreditCard   Input Parameters
     Unless noted otherwise, the parameter is **required.**
@@ -2983,7 +2983,7 @@ info:
     <Balance>  </Balance>
     ```
 
-    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+    ## View [GetBatch Response Fields.](#section/7.4.-GETBATCH-RESPONSE-FIELDS) 
  
     
     ## GetBatchDetail Input Fields
@@ -3064,7 +3064,7 @@ info:
       <Balance>  </Balance>
     </Response>
     ```
-    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+    ## View [GetBatch Response Fields.](#section/7.4.-GETBATCH-RESPONSE-FIELDS) 
  
     
     ## GetBatchNumbers Input Fields 
@@ -3145,7 +3145,7 @@ info:
       <Balance>  </Balance>
     </Response>
     ```
-    ## View [GetBatch Response Fields.](#section/GetBatch-Response-Fields) 
+    ## View [GetBatch Response Fields.](#section/7.4.-GETBATCH-RESPONSE-FIELDS) 
  
     
     ## GetBatchStatus  Input Fields
@@ -3218,7 +3218,7 @@ info:
     # 8.1. ADDCUSTOMFIELD  
     This web service allows an integrator to add custom fields programmatically to a gateway account. The data in these fields is not passed to the processor.
     
-    See Developer’s Notes for information about [Adding Custom Fields.](#section/addcus) 
+    See Developer’s Notes for information about [Adding Custom Fields.](#section/9.-Developer-Notes/Adding-Custom-Fields) 
 
     ## Request
     AddCustomField(UserName, Password, RPNum, FieldName, IsNumeric, DecimalPlaces, MaxLength, RegEx, IsRequired, Description, MinValue, MaxValue, DisplayOnReceipt)
@@ -3241,7 +3241,7 @@ info:
     RespMSG  "Field added successfully."  string
     Result  0  int
     ```
-    ## View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
+    ## View [ AddCustomField Response Fields.](#section/8.3.-AddCustomField-Response-Fields) 
  
     
     ## AddCustomField  Input Parameters
@@ -3359,7 +3359,7 @@ info:
     </CustomFields>
     </NewDataSet>"
     ```
-    ## View [ AddCustomField Response Fields.](#section/addcustomfield-response-fields) 
+    ## View [ AddCustomField Response Fields.](#section/8.3.-AddCustomField-Response-Fields) 
  
     
     ## GetCustomFields Input Parameters
@@ -4140,8 +4140,8 @@ info:
     |tokens (string, array) |In advanced mode this contains the array of unique payment tokens.
     |message (string) | A brief description of the result of the request for a token or tokens.
     |result (boolean) | A boolean which signifies the result of the request for a token or tokens.
-    |cardData | See [ResponseCardData.](#section/ResponseCardData)
-    |validationData | See [ResponseValidationData.](#section/ResponseValidationData)
+    |cardData | See [ResponseCardData.](#section/10.1.-JavaScript-Tokenization/ResponseCardData-Parameters)
+    |validationData | See [ResponseValidationData.](#section/10.1.-JavaScript-Tokenization/ResponseValidationData-Parameters)
     
     ## ResponseCardData Parameters
     
@@ -4158,9 +4158,9 @@ info:
     | Parameter   Name| Description 
     |-----|-----
     |avsResponse (string)| Result of an AVS (Address Verification System) check when the AdminGetToken request  parameter validateCard is set to true/yes.
-    ||View the [AVS Response Fields.](#section/avs-response-fields) 
+    ||View the [AVS Response Fields.](#section/3.11.-AVS-Response-Fields) 
     |cvvResponse (string) |Result of a CVV check when the AdminGetToken request parameter validateCard is set to true/yes.
-    | |View the [CV Response Fields.](#section/cv-response-fields) 
+    | |View the [CV Response Fields.](#section/3.12.-CV-Response-Fields) 
     |authMessage (string) |Message indicating the status of the authorization request.
     |authReturnCode (interger) |Code indicating the status of the authorization request.
     
@@ -4188,7 +4188,7 @@ info:
           }
      };
      ```
-     You will then use the existing SOAP API for Card Safe  [processCreditCard](#section/processCreditCard) with the TokenMode “JSTOKEN” to actually use the card. (Refer to Card Safe processCreditCard for more information.).
+     You will then use the existing SOAP API for Card Safe  [processCreditCard](#section/9.-Developer-Notes/ProcessCreditCard) with the TokenMode “JSTOKEN” to actually use the card. (Refer to Card Safe processCreditCard for more information.).
      
      ```
     safeResponse = safe.ProcessCreditCard("username", "password", "sale", "paymentToken", "jstoken", "amount", "", "", "");

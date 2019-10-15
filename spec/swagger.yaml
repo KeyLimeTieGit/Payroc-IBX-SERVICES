@@ -176,43 +176,18 @@ info:
     |-----|-----
     | UserName | User name assigned in the payment server. The user must have an appropriate level of access within the system in order to utilize the web service.
     | Password | Password associated with the user name provided. 
-    | TransType | Identifies the type of credit card transaction being made.
-    | | Valid values are:
-    | |  - Sale – make a purchase using a credit card|
-    | |  - Auth – authorize the amount on a credit card|
-    | |  - Return – credits the card holder’s account
-    | |  - Void – undo an unsettled transaction
-    | |  - Force – force an Auth transaction in to the current batch (PostAuth) or place a transaction not processed through the payment server into the current batch (ForceAuth). Note: When using this transaction type for a ForceAuth, you must include an AuthCode under the ExtData parameter.
-    | | - RepeatSale – perform a recurring billing or installment payment transaction|
-    | | Processors supporting the restaurant adjustment function only:
-    | |   - Adjustment – used to modify an existing tip amount for an original sale To call the service
-    | | Terminal-based processors only:
-    | |  - Capture – settle a single transaction in the current batch
-    | |  - Reversal – perform a manual full reversal on a credit card or repeat sale within 24 hours of the original transaction. See [Reversal Transactions.](#section/9.-Developer-Notes/Reversal-Transactions)
-    | CardNum |Credit card number used to uniquely identify the card owner’s account.
-      Required on all swiped CC transactions|
-    | ExpDate | Credit card date of expiration in MMYY format.
-    |Required on all swiped CC transactions |
-    | MagData | Track data encoded in the magnetic stripe of a credit card. The data will follow the following format:
-    | Not required for CaptureAll | %B5149612222222229^FDCS/TEST CHECK CARD^12041011234567  
-    | required for swiped/card present transactions | 440?;5149612222222229=12041011234567440?
-    |  | This parameter must contain the full magnetic read in order to be classified as a ‘card present’ transaction
-    | NameOnCard| Card owner’s name as it appears on the card.
-    | Optional unless required by merchant’s processor setup | See  [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | Amount| Total transaction amount in DDDD.CC format.
-    | Required for swiped/card present transactions | 
-    | InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    | Optional | 
-    |  | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |  | View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information.
-    | PNRef | Unique payment reference number used to identify a single transaction within the system. The payment reference number 
-    | Required on Force and Capture transactions | (PNRef) is assigned by the payment server at the time the transaction is created.
-    | Zip | Card owner’s billing address five-digit postal/zip code.
-    | Optional unless required by merchant’s setup | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | CVNum | Card verification number.
-    | Optional unless required by merchant’s setup| 
-    |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
-    |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags. View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information.
+    | TransType | Identifies the type of credit card transaction being made. <BR><BR> Valid values are:<BR><BR>- Sale – make a purchase using a credit card<BR><BR>- Auth – authorize the amount on a credit card<BR><BR>- Return – credits the card holder’s account<BR><BR>- Void – undo an unsettled transaction<BR><BR>- Force – force an Auth transaction in to the current batch (PostAuth) or place a transaction not processed through the payment server into the current batch (ForceAuth). Note: When using this transaction type for a ForceAuth, you must include an AuthCode under the ExtData parameter.<BR><BR>- RepeatSale – perform a recurring billing or installment payment transaction<BR><BR>Processors supporting the restaurant adjustment function only:<BR><BR>- Adjustment – used to modify an existing tip amount for an original sale To call the service<BR><BR>Terminal-based processors only:<BR><BR>- Capture – settle a single transaction in the current batch<BR><BR>- Reversal – perform a manual full reversal on a credit card or repeat sale within 24 hours of the original transaction. See [Reversal Transactions.](#section/9.-Developer-Notes/Reversal-Transactions)      
+    | CardNum <BR><BR>Required on all swiped CC transactions | Credit card number used to uniquely identify the card owner’s account.     
+    | ExpDate <BR><BR>Required on all swiped CC transactions | Credit card date of expiration in MMYY format.    
+    | MagData <BR><BR> Not required for CaptureAll <BR><BR> required for swiped/card present transactions   | Track data encoded in the magnetic stripe of a credit card. The data will follow the following format: <BR><BR> %B5149612222222229^FDCS/TEST CHECK CARD^12041011234567<BR>440?;5149612222222229=12041011234567440?<BR><BR> This parameter must contain the full magnetic read in order to be classified as a ‘card present’ transaction
+    | NameOnCard <BR><BR> Optional unless required by merchant’s processor setup  | Card owner’s name as it appears on the card.<BR><BR> See  [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    | Amount <BR><BR> Required for swiped/card present transactions | Total transaction amount in DDDD.CC format.   
+    | InvNum <BR><BR> Optional| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice. <BR><BR> See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing) <BR><BR> View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information.
+    | PNRef <BR><BR> Required on Force and Capture transactions| Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
+    | Zip <BR><BR> Optional unless required by merchant’s setup| Card owner’s billing address five-digit postal/zip code. <BR><BR> See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    | Street <BR><BR> Optional unless required by merchant’s setup | Card owner’s billing address street name and number. <BR><BR> See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    | CVNum <BR><BR> Optional unless required by merchant’s setup | Card verification number.   
+    |ExtData <BR><BR> Optional| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags. View the [ExtData Parameters Table](#section/3.1.-ProcessCreditCard/ExtData-Parameters-Table) for more information. 
     
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
@@ -251,128 +226,34 @@ info:
     
     | ExtData Parameters | Description 
     |-----|-----
-    | Authorization Code | Original authorization/approval code. 
-    | Required when | Valid format is:
-    | TransType=Force |
-    |  | <AuthCode>_AuthorizationCode_</AuthCode> where _Authorization Code_ is the original authorization or approval code.
-    | Customer Code Optional| Customer or purchase order (PO) number used with Level II information for Global Payments only (if using another processor that supports Level II, use the PO Number to pass this information instead).
-    |  | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing) 
-    |  | Valid format is:
-    |  | <CustCode>_CustomerCode_</CustCode> where _Customer Code_ is the number assigned to identify the customer or the PO number.
-    | Convenience Amount Optional| Allows the merchant to add a flat fee to the total transaction to cover the cost of paying in a more convenient way for the customer (Eg. Online vs. in person at the municipal center). This function may be used by utility companies, government agencies, and schools.
-    |  | Valid format is:
-    |  | <ConvenienceAmt>_Amount_</ConvenienceAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
-    | Surcharge Amount Optional| Allows the merchant to add a fee to the total transaction to recoup the costs of offering the credit card transaction. This is different from a Convenience Fee (above) as that fee is for the added cost of offering the service in a more convenient way (pay for tickets online rather than in person).
-    |  | Valid format is:
-    |  | <SurchargeAmt>_Amount_</SurchargeAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
-    | Tip Amount Optional| Allows the customer to specify a dollar amount that is already included in the total amount for the purpose of tipping.
-    |  | Valid format is:
-    |  | <TipAmt>_Amount_</TipAmt> where _Amount_ is the value of the tip already included in the total transaction in DDDD.CC format.
-    | Tax Amount Optional| Allows the merchant to add a dollar amount to the total transaction to cover sales tax.
-    |  | Valid format is:
-    |  | <TaxAmt>_Amount_</TaxAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
-    | Tax Exempt Optional| Allows the merchant to declare whether the transaction is tax exempt. The default value for this is F (false) when not supplied.
-    |  | Valid format is:
-    |  | <TaxExempt>_T_</TaxExempt> where _T_ or _TRUE_ denotes the transaction is tax exempt and _F_ or _FALSE_ would indicate it is taxable.
-    | Sequence Number Optional| Identifies the payment order with a repeat sale or installment transaction. For example, payment 1 of 4.
-    |  | Valid format is:
-    |  | <SequenceNum>_SequenceNum_</SequenceNum> where _SequenceNum_ is any positive integer less than or equal to the SequenceCount.
-    | Sequence Count Optional| Identifies the total number of charges that will be made for a repeat sale or installment transaction. For example, 4 payments must be made to complete the payment.
-    |  | Valid format is:
-    |  | <SequenceCount>_SequenceCount_</SequenceCount> where _SequenceCount_ is any positive integer greater than or equal to the _SequenceNum_.
-    | Server ID | Unique server identification number. 
-    | Optional|  See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing). Valid format is:<ServerID>_ServerID_</ServerID> where _ServerID_ uniquely identifies the payment server used.
-    | Time Out Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.
-    |  | Valid format is:
-    |  | <TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
-    | Training Mode Optional| This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    |  | Valid formats are:
-    |  | <TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    |  | <TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
-    | Transaction ID Optional | Merchant-assigned numerical string passed along with an original transaction that can be used for identification and voids.
-    |  | Valid format is:
-    |  | <TransactionID>_TransactionIdentifierValue_</TransactionID> where _TransactionIdentifierValueis_ a numerical string.
-    | Target Optional | Identifies the target transaction ID for the original transaction you wish to void without the use of a PNRef.
-    |  | Valid format is:
-    |  | <Target>_TransactionIdentifierValue_</Target> where _TransactionIdentifierValue_ is a numerical string identifying the original transaction.
-    | Force Optional |This is an indicator that specifies whether or not duplicate transactions will be processed.
-    |  | Valid formats are:
-    |  | <Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.
-    |  | <Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
-    |  | Note: Some processors, including Concord EFS, will not recognize this tag and delete duplicate transactions.
-    | Register Number  | Unique identifier for a specific register.
-    | Optional |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
-    |  | Valid format is:
-    |  | <RegisterNum>_RegisterNum_</RegisterNum> where _RegisterNum_ is a valid unique identifier assigned to a specific register.
-    | City  | City name for the card owner’s billing address.
-    | Depending on processor, may be required |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
-    |  | Valid format is:
-    |  | <City>_City_</City> where _City_ is the card owner’s city name.
-    | Bill-To State  | Two-character state code for the card owner’s bill-to address.
-    | Depending on processor, may be required |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
-    |  | Valid format is:
-    |  | <BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the card owner’s bill-to address.
-    | Customer ID |Identification number assigned to the customer by the merchant.
-    | Optional| 
-    |  | Valid format is:
-    |  | <CustomerID>_CustomerID_</CustomerID> where _CustomerID_ is the customer’s assigned customer ID.
-    | Purchase Order (PO) Number | Customer or PO number used with Level II information.
-    | Optional| See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).
-    |  | Valid format is:
-    |  | <PONum>_PONum_</PONum> where _‘PONum’_ is the number assigned to identify the customer or the PO.
-    |  | Note: If using Level II with Global Payments, use the CustCode to pass this information instead.
-    | Bill Payment | This is an indicator that specifies whether or not the transaction is being used to pay a utility bill. It is only supported when TransType = Sale or RepeatSale.
-    | Optional| 
-    |  | Valid formats are:
-    |  |<BillPayment>_T_</BillPayment> where _T_ (true) indicates that the transaction is being used to pay a utility bill.
-    |  |<BillPayment>_F_</BillPayment> where _F_ (false) indicates that the transaction is being used for something other than a utility bill.
-    |  | Note: This tag is only relevant to Retail, MOTO, and ecommerce markets. The information is currently supported by Vital, First Data North, and Global Payments processors. Other processors may be supported in the future.
-    | Custom Fields | This tag is used to pass along information arbitrary custom information into a custom fields for the transaction.
-    | Optional| Within the CustomFields tag a tag is created that has the name of the specific custom field to be defined where the value is then stored as the tag value. These names are not allowed to have spaces or special characters.
-    |  | For example: If you had two custom fields (FruityPebbles and CocoaPebbles) and you wanted to pass the values of “18” FruityPebbles and a value of “Chocolate goodness” as the value of CocaoPebbles then the valid format would be:
-    |  |<CustomFields>
-    |  |<FruityPebbles>18</FruityPebbles>
-    |  |<CocoaPebbles>Chocolate goodness</CocoaPebbles>
-    |  |</CustomFields>”
-    | Token Request | The RequestToken tag is used to request a token be returned for the initiating transaction. The token will be returned in the ExtData of the response
-    | Optional| 
-    |  | Valid formats are:
-    |  | <RequestToken>1</RequestToken> where “1” denotes a valid   “jstoken” type. Other types will be supported in future versions of the API
-    | Entry Mode | Indicates how the values for payment information were obtained.
-    | Optional| 
-    |  | Valid formats are:
-    |  | <EntryMode>UNKNOWN</EntryMode> where _unknown_ indicates that the mode of entry is unknown.
-    |  |<EntryMode>MANUAL</EntryMode> where _manual_ indicates that the payment values were manually entered.
-    |  |<EntryMode>MagneticStripe</EntryMode> where _MagneticStripe_ indicates that the payment values were entered via magnetic stripe card reader (swiped card).
-    |  |<EntryMode>ICC</EntryMode> where _ICC_ indicates that the mode of entry is Instant Card Clearing.
-    |  |<EntryMode>PROXIMITY</EntryMode> where _proximity_ indicates that the payment values were entered via proximity card reader.
-    | AMEX Batch Phase | When working with AMEX batch settlement, the Phase value can be used to determine the phase of the settlement file.
-    | Optional| 
-    |  | Valid formats are:
-    |  | <Phase>Confirm</Phase> where Confirm indicates that the batch is ready to settle
-    |  |<Phase>Submit</Phase> where Submit indicates that the batch has been submitted to the payment processor
-    |  |<Phase>None</Phase> where None indicates that no action has occurred
-    |  |Note: Batches must be submitted before they can be settled (Confirm). If you send a “confirm” only, the most recently submitted batch will be settled.
-    | IIAS Indicator |When working with healthcare applications it is necessary to comply with inventory information approval system merchant certifications.
-    | Optional| The IIAS indicator will inform the gateway that it is about to process a healthcare transaction. Once that is configured associated parameters are passed to indicate the type of healthcare charges to be considered. The default value is F
-    |  | Valid Examples are:
-    |  | <IIAS_Indicator>T</IIAS_Indicator>
-    |  |If this tag is not included the default is F (false) to indicate that this is not a healthcare transaction.
-    |  |If the tag is included then some of the following parameters also need to be included in the ExtData
-    |  |<QHP_Amount>120.00</QHP_Amount> where this denotes the total amount of Clinic or other qualified medical items.
-    |  |<RX_Amount>100.00</RX_Amount> where this denotes the total amount of Prescription/Rx (℞) items.
-    |  |<Vision_Amount>80.00</Vision_Amount> where this denotes the total amount of Vision or Optical items.
-    |  |<Dental_Amount>300.00</Dental_Amount> where this denotes the total amount of Dental items.
-    |  |<Clinical_Amount>600.00</Clinical_Amount> where this denotes the sum total of all medical items.
-    |  |Note: These tags are not nested within the <IIAS_Indicator> tag but rather at the same level. They are only documented at this way to make it clear when to use these tags.
-    | External IP| When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.
-    | Optional | To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call
-    |  |<ExternalIP>IP Address Here</ExternalIP>
-    |  | If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
-    | Client Data| When using the Transact web service, the API allows a client pass through data via the Client Data mechanism.  This data can be alphanumeric.
-    | Optional | <ClientData>Arbitrary Data Here</ClientData>
-    |  |The ClientData can be used to pass through various POS or Client data related to the transaction.
-    
+    | Authorization Code<BR><BR>Required when TransType=Force | Original authorization/approval code.<BR><BR>Valid format is:<BR><BR><AuthCode>_AuthorizationCode_</AuthCode> where _Authorization Code_ is the original authorization or approval code. 
+    | Customer Code<BR><BR>Optional| Customer or purchase order (PO) number used with Level II information for Global Payments only (if using another processor that supports Level II, use the PO Number to pass this information instead).<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><CustCode>_CustomerCode_</CustCode> where _Customer Code_ is the number assigned to identify the customer or the PO number.
+    | Convenience Amount<BR><BR>Optional| Allows the merchant to add a flat fee to the total transaction to cover the cost of paying in a more convenient way for the customer (Eg. Online vs. in person at the municipal center). This function may be used by utility companies, government agencies, and schools.<BR><BR>Valid format is:<BR><BR><ConvenienceAmt>_Amount_</ConvenienceAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
+    | Surcharge Amount<BR><BR>Optional| Allows the merchant to add a fee to the total transaction to recoup the costs of offering the credit card transaction. This is different from a Convenience Fee (above) as that fee is for the added cost of offering the service in a more convenient way (pay for tickets online rather than in person).<BR><BR>Valid format is:<BR><BR><SurchargeAmt>_Amount_</SurchargeAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
+    | Tip Amount<BR><BR> Optional| Allows the customer to specify a dollar amount that is already included in the total amount for the purpose of tipping.<BR><BR>Valid format is:<BR><BR><TipAmt>_Amount_</TipAmt> where _Amount_ is the value of the tip already included in the total transaction in DDDD.CC format.
+    | Tax Amount<BR><BR>Optional| Allows the merchant to add a dollar amount to the total transaction to cover sales tax.<BR><BR>Valid format is:<BR><BR><TaxAmt>_Amount_</TaxAmt> where _Amount_ is the value to be added to the total transaction in DDDD.CC format.
+    | Tax Exempt<BR><BR>Optional| Allows the merchant to declare whether the transaction is tax exempt. The default value for this is F (false) when not supplied.<BR><BR>Valid format is:<BR><BR><TaxExempt>_T_</TaxExempt> where _T_ or _TRUE_ denotes the transaction is tax exempt and _F_ or _FALSE_ would indicate it is taxable.
+    | Sequence Number<BR><BR>Optional| Identifies the payment order with a repeat sale or installment transaction. For example, payment 1 of 4.<BR><BR>Valid format is: <BR><BR><SequenceNum>_SequenceNum_</SequenceNum> where _SequenceNum_ is any positive integer less than or equal to the SequenceCount.
+    | Sequence Count<BR><BR>Optional| Identifies the total number of charges that will be made for a repeat sale or installment transaction. For example, 4 payments must be made to complete the payment.<BR><BR>Valid format is: <BR><BR><SequenceCount>_SequenceCount_</SequenceCount> where _SequenceCount_ is any positive integer greater than or equal to the _SequenceNum_.
+    | Server ID <BR><BR>Optional | Unique server identification number.  See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing). Valid format is:<ServerID>_ServerID_</ServerID> where _ServerID_ uniquely identifies the payment server used.
+    | Time Out<BR><BR>Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.<BR><BR>Valid format is:<BR><BR><TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
+    | Training Mode<BR><BR>Optional| This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.<BR><BR>Valid formats are:<BR><BR><TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    | Transaction ID<BR><BR> Optional | Merchant-assigned numerical string passed along with an original transaction that can be used for identification and voids.<BR><BR>Valid format is:<BR><BR><TransactionID>_TransactionIdentifierValue_</TransactionID> where _TransactionIdentifierValueis_ a numerical string.
+    | Target<BR><BR>Optional | Identifies the target transaction ID for the original transaction you wish to void without the use of a PNRef.<BR><BR>Valid format is:<BR><BR><Target>_TransactionIdentifierValue_</Target> where _TransactionIdentifierValue_ is a numerical string identifying the original transaction.
+    | Force<BR><BR>Optional |This is an indicator that specifies whether or not duplicate transactions will be processed.<BR><BR>Valid formats are:<BR><BR><Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.<BR><BR><Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.<BR><BR>Note: Some processors, including Concord EFS, will not recognize this tag and delete duplicate transactions.
+    | Register Number <BR><BR>Optional  | Unique identifier for a specific register.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).<BR><BR>Valid format is:<BR><BR><RegisterNum>_RegisterNum_</RegisterNum> where _RegisterNum_ is a valid unique identifier assigned to a specific register.
+    | City<BR><BR>Depending on processor, may be required   | City name for the card owner’s billing address. <BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).<BR><BR>Valid format is: <BR><BR><City>_City_</City> where _City_ is the card owner’s city name.
+    | Bill-To State<BR><BR>Depending on processor, may be required | Two-character state code for the card owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).<BR><BR>Valid format is:<BR><BR><BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the card owner’s bill-to address.
+    | Customer ID<BR><BR>Optional |Identification number assigned to the customer by the merchant.<BR><BR>Valid format is:<BR><BR><CustomerID>_CustomerID_</CustomerID> where _CustomerID_ is the customer’s assigned customer ID.
+    | Purchase Order (PO) Number<BR><BR>Optional | Customer or PO number used with Level II information.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing).<BR><BR>Valid format is:<BR><BR><PONum>_PONum_</PONum> where _‘PONum’_ is the number assigned to identify the customer or the PO.<BR><BR>Note: If using Level II with Global Payments, use the CustCode to pass this information instead.
+    | Bill Payment<BR><BR>Optional | This is an indicator that specifies whether or not the transaction is being used to pay a utility bill. It is only supported when TransType = Sale or RepeatSale. <BR><BR>Valid formats are:<BR><BR><BillPayment>_T_</BillPayment> where _T_ (true) indicates that the transaction is being used to pay a utility bill. <BR><BR><BillPayment>_F_</BillPayment> where _F_ (false) indicates that the transaction is being used for something other than a utility bill.<BR><BR>Note: This tag is only relevant to Retail, MOTO, and ecommerce markets. The information is currently supported by Vital, First Data North, and Global Payments processors. Other processors may be supported in the future.
+    | Custom Fields<BR><BR>Optional | This tag is used to pass along information arbitrary custom information into a custom fields for the transaction.Within the CustomFields tag a tag is created that has the name of the specific custom field to be defined where the value is then stored as the tag value. These names are not allowed to have spaces or special characters.<BR><BR>For example: If you had two custom fields (FruityPebbles and CocoaPebbles) and you wanted to pass the values of “18” FruityPebbles and a value of “Chocolate goodness” as the value of CocaoPebbles then the valid format would be:<BR><CustomFields><BR><FruityPebbles>18</FruityPebbles><BR><CocoaPebbles>Chocolate goodness</CocoaPebbles><BR></CustomFields>”
+    | Token Request<BR><BR>Optional | The RequestToken tag is used to request a token be returned for the initiating transaction. The token will be returned in the ExtData of the response <BR><BR>Valid formats are: <BR><BR><RequestToken>1</RequestToken> where “1” denotes a valid   “jstoken” type. Other types will be supported in future versions of the API
+    | Entry Mode <BR><BR> Optional | Indicates how the values for payment information were obtained.<BR><BR> Valid formats are:<BR><BR> <EntryMode>UNKNOWN</EntryMode> where _unknown_ indicates that the mode of entry is unknown.<BR><BR><EntryMode>MANUAL</EntryMode> where _manual_ indicates that the payment values were manually entered.<BR><BR><EntryMode>MagneticStripe</EntryMode> where _MagneticStripe_ indicates that the payment values were entered via magnetic stripe card reader (swiped card).<BR><BR><EntryMode>ICC</EntryMode> where _ICC_ indicates that the mode of entry is Instant Card Clearing.<BR><BR><EntryMode>PROXIMITY</EntryMode> where _proximity_ indicates that the payment values were entered via proximity card reader.
+    | AMEX Batch Phase<BR><BR>Optional | When working with AMEX batch settlement, the Phase value can be used to determine the phase of the settlement file.<BR><BR>Valid formats are:<BR><BR><Phase>Confirm</Phase> where Confirm indicates that the batch is ready to settle<BR><BR><Phase>Submit</Phase> where Submit indicates that the batch has been submitted to the payment processor<BR><BR><Phase>None</Phase> where None indicates that no action has occurred<BR><BR>Note: Batches must be submitted before they can be settled (Confirm). If you send a “confirm” only, the most recently submitted batch will be settled.
+    | IIAS Indicator<BR><BR>Optional |When working with healthcare applications it is necessary to comply with inventory information approval system merchant certifications.The IIAS indicator will inform the gateway that it is about to process a healthcare transaction. Once that is configured associated parameters are passed to indicate the type of healthcare charges to be considered. The default value is F<BR><BR>Valid Examples are:<BR><BR><IIAS_Indicator>T</IIAS_Indicator><BR><BR>If this tag is not included the default is F (false) to indicate that this is not a healthcare transaction.<BR><BR>If the tag is included then some of the following parameters also need to be included in the ExtData<BR><BR><QHP_Amount>120.00</QHP_Amount> where this denotes the total amount of Clinic or other qualified medical items.<BR><BR><RX_Amount>100.00</RX_Amount> where this denotes the total amount of Prescription/Rx (℞) items.<BR><BR><Vision_Amount>80.00</Vision_Amount> where this denotes the total amount of Vision or Optical items.<BR><BR><Dental_Amount>300.00</Dental_Amount> where this denotes the total amount of Dental items.<BR><BR><Clinical_Amount>600.00</Clinical_Amount> where this denotes the sum total of all medical items.<BR><BR>Note: These tags are not nested within the <IIAS_Indicator> tag but rather at the same level. They are only documented at this way to make it clear when to use these tags.
+    | External IP<BR><BR>Optional| When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.<BR><BR>To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call<BR><BR><ExternalIP>IP Address Here</ExternalIP><BR><BR>If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
+    | Client Data<BR><BR>Optional| When using the Transact web service, the API allows a client pass through data via the Client Data mechanism.  This data can be alphanumeric.<BR><BR><ClientData>Arbitrary Data Here</ClientData><BR><BR>The ClientData can be used to pass through various POS or Client data related to the transaction.
     # 3.2. ProcessDebitCard 
     This web service is used whenever a transaction is completed via a customer debit card.
     
@@ -389,46 +270,21 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access within the system in order to utilize the web service.
+    |UserName | User name assigned in the payment server. The user must have an appropriate level of access within the system in order to utilize the web service.
     |Password |    Password associated with the user name provided.
-    | TransType| Identifies the type of debit card transaction being made.
-    | | Valid values are:
-    | | - Sale – make a purchase using a debit card
-    | | - Return – credits the card holder’s account
-    | | - Reversal – perform a manual full reversal on a debit card sale within 24 hours of the original transaction. The expected behavior of this transaction type is defined by the type of the payment processor the merchant account is configured for. See [Credit Card Reversals.](#section/9.-Developer-Notes/Credit-Card-Reversals)
-    | | - Inquire – check the balance
-    | | BuyPass fuel transactions only:
-    | | - Auth – authorize the amount on a debit card
-    | | - Force – force an Auth transaction in to the current batch (PostAuth)Terminal-based processors only:
-    | | - Capture – settle a single transaction in the current batch
-    | | Terminal-based processors and host-based processors supporting batch release feature only:
-    | | - CaptureAll – settle all transactions in the current batch
-    | | Global Canadian Debit :
-    | | - AddReversal – used when the host sends a response and the information is validated through the pin pad, if the information is found to be invalid. This transaction type can reverse the transaction sent to the host. The PNREF number of the original transaction can be sent along with the AddReversal transaction type to perform the reversal of that transaction.
-    | CardNum
-      Not required for Capture and CaptureAll transactions| Debit card number used to uniquely identify the owner’s account.
-    | ExpDate| Debit card date of expiration in MMYY format.
-    | MagData| Data located the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service date and checksum. For example:
-    | Required on all swiped transactions| 36438999960016=05121015432112345678
-    | NameOnCard| Card owner’s name as it appears on the card.
-    | Optional| 
-    | Amount| Total transaction amount in DDDD.CC format.
-    | Not required on CaptureAll transactions| Note: This amount includes the CashBackAmt and SureChargeAmt.
-    | InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    | Optional| View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
-    | PNRef| Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
-    | Required on Force and Capture transactions| 
-    | Pin| The encrypted PIN-block returned by the PIN pad.
-    | Not required in Capture and CaptureAll transactions| Note: The transaction will fail if an unencrypted PIN is used.
-    | | Note: This information is not required for PIN-less debit transactions. See [PIN-less Debit Transactions.](#section/9.-Developer-Notes/PIN-less-Debit-Transactions) 
-    | RegisterNumber| A string that uniquely identifies the register, terminal, or computer on which the transaction was performed. 
-    |Optional |  
-    | SureChargeAmt|  The amount, in DDDD.CC format, charged by a merchant in exchange for processing a debit card transaction.
-    |Optional |  
-    |CashBackAmt | The amount, in DDDD.CC format, requested by the card holder in cash back from the debit transaction. 
-    |Optional |  
-    |ExtData |  The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
-    |Optional |  ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
+    |TransType| Identifies the type of debit card transaction being made.<BR><BR>Valid values are:<BR><BR>- Sale – make a purchase using a debit card<BR><BR>- Return – credits the card holder’s account<BR><BR>- Reversal – perform a manual full reversal on a debit card sale within 24 hours of the original transaction. The expected behavior of this transaction type is defined by the type of the payment processor the merchant account is configured for. See [Credit Card Reversals.](#section/9.-Developer-Notes/Credit-Card-Reversals) <BR><BR>- Inquire – check the balance <BR><BR>BuyPass fuel transactions only:<BR><BR>- Auth – authorize the amount on a debit card<BR><BR>- Force – force an Auth transaction in to the current batch (PostAuth)Terminal-based processors only:<BR><BR>- Capture – settle a single transaction in the current batch<BR><BR>Terminal-based processors and host-based processors supporting batch release feature only:<BR><BR>- CaptureAll – settle all transactions in the current batch<BR><BR>Global Canadian Debit :<BR><BR>- AddReversal – used when the host sends a response and the information is validated through the pin pad, if the information is found to be invalid. This transaction type can reverse the transaction sent to the host. The PNREF number of the original transaction can be sent along with the AddReversal transaction type to perform the reversal of that transaction.
+    |CardNum Not required for Capture and CaptureAll transactions| Debit card number used to uniquely identify the owner’s account.
+    |ExpDate| Debit card date of expiration in MMYY format.
+    |MagData<BR><BR>Required on all swiped transactions| Data located the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service date and checksum. For example:<BR><BR>36438999960016=05121015432112345678
+    |NameOnCard<BR><BR>Optional| Card owner’s name as it appears on the card.
+    |Amount<BR><BR>Not required on CaptureAll transactions| Total transaction amount in DDDD.CC format.<BR><BR> Note: This amount includes the CashBackAmt and SureChargeAmt.
+    | InvNum<BR><BR>Optional| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.<BR><BR>View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
+    | PNRef<BR><BR>Required on Force and Capture transactions| Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
+    | Pin<BR><BR>Not required in Capture and CaptureAll transactions| The encrypted PIN-block returned by the PIN pad.<BR><BR>Note: The transaction will fail if an unencrypted PIN is used.<BR><BR>Note: This information is not required for PIN-less debit transactions. See [PIN-less Debit Transactions.](#section/9.-Developer-Notes/PIN-less-Debit-Transactions) 
+    | RegisterNumber<BR><BR>Optional| A string that uniquely identifies the register, terminal, or computer on which the transaction was performed. 
+    | SureChargeAmt <BR><BR>Optional|  The amount, in DDDD.CC format, charged by a merchant in exchange for processing a debit card transaction.
+    |CashBackAmt <BR><BR>Optional | The amount, in DDDD.CC format, requested by the card holder in cash back from the debit transaction. 
+    |ExtData<BR><BR>Optional |  The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
@@ -440,24 +296,10 @@ info:
     
     | ExtData Parameters| Description 
     |-----|-----
-    |Timeout | Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.
-    |Optional | 
-    | | Valid format is:
-    | | <TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
-    |TrainingMode | This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    | Optional|
-    | | Valid formats are:
-    | | <TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | | <TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
-    | Key Serial Number| PIN pad serial number.
-    |Required for all non-PIN-less debit transactions | Valid format is:
-    | | <KeySerialNumber>_KeySerialNumber_</KeySerialNumber> where _KeySerialNumber_ is the PIN pad serial number used in managing DUKPT PIN pads.
-    |Force | This is an indicator that specifies whether or not duplicate transactions will be processed.
-    | Optional|
-    | |Valid formats are:
-    | |<Force>T</Force> where _T_ (true) indicates that duplicate transactions are accepted.
-    | |<Force>F</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
-    | |Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
+    |Timeout<BR><BR>Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.<BR><BR> Valid format is:<BR><BR><TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
+    |TrainingMode<BR><BR>Optional | This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally. <BR><BR>Valid formats are: <BR><BR><TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |Key Serial Number<BR><BR>Required for all non-PIN-less debit transactions | PIN pad serial number. <BR><BR>Valid format is:<BR><BR><KeySerialNumber>_KeySerialNumber_</KeySerialNumber> where _KeySerialNumber_ is the PIN pad serial number used in managing DUKPT PIN pads.
+    |Force<BR><BR>Optional | This is an indicator that specifies whether or not duplicate transactions will be processed.<BR><BR>Valid formats are:<BR><BR><Force>T</Force> where _T_ (true) indicates that duplicate transactions are accepted.<BR><BR><Force>F</Force> where _F_ (false) indicates that duplicate transactions are not accepted.<BR><BR>Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
     
     # 3.3. ProcessCheck  
     This web service is used whenever a transaction is completed via customer check.
@@ -475,51 +317,21 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
-    |Password |    Password associated with the user name provided.
-    | TransType| Identifies the type of credit card transaction being made.
-    | | Valid values are:
-    | | - Sale – make a purchase using a check
-    | | - Auth (Verify) – authorizes or verifies the amount of a check
-    | | - Return – return the money of a settled check transaction to the check holder
-    | | - Void – undo a settled check transaction
-    | | - Force – (ForceSale) force a previous Sale transaction into the current batch
-    | | Terminal-based Processors Only:
-    | | - Capture – settle a single transaction in the current batch
-    | | - CaptureAll – settle all transactions in the current batch
-    | | Note: If using the Return, Void, Force, or Capture TransTypes, you must include a PNRef using the ExtData parameter.
-    | | Note: If using the Sale or Return TransTypes, you may be required to include city of account, bill-to street, and bill-to postal code using the ExtData parameter.
-    | CheckNum| Uniquely identifies an individual’s check.
-    | Not required for Capture and CaptureAll transactions|
-    |TransitNum | Uniquely identifies the bank holding funds. Also called routing number.
-    |Not required for Capture and CaptureAll transactions |
-    | AccountNum| Uniquely identifies the check owner’s bank account.
-    |Not required for Capture and CaptureAll transactions |
-    |Amount | Total transaction value in DDDD.CC format.
-    |Not required for Capture and CaptureAll transactions |
-    |MICR | Magnetic Ink Check Reader data line. This data string includes the TransitNum and AccountNum.
-    |Required on all swiped card transactions |
-    | |Note: This input is required for processing check/consumer present transactions.
-    | |Note: The formats of the MICR is processor specific and if the developer is not sure about what format your Check processor accepts, pass the RAW MICR as well in the TOAD format and details of this are described in the extended data. If the developer is sure about the precise format for MICR that is supported by the Check processor, then there is no need to pass the Raw MICR in TOAD format.
-    |NameOnCheck | Check owner’s name as it appears on the check.
-    |Not required for Capture and CaptureAll transactions | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |May be required by merchant’s processor setup |
-    |DL | Check owner’s driver’s license number.
-    | Optional|See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |SS | Check owner’s Social Security number.
-    | Optional|See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |DOB |Check owner’s date of birth.
-    |Optional |See [Date Formats.](#section/9.-Developer-Notes/Date-Formats)
-    |StateCode |Check owner’s two-character state code.
-    |Optional unless required by merchant’s processor setup |See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |CheckType | Identifies the type of check used in the transaction.
-    |Optional | Valid values are:
-    | |- Personal
-    | |- Corporate
-    | |- Government
-    |ExtData |The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
-    |Optional |ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
-    
+    |UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |Password | Password associated with the user name provided.
+    |TransType| Identifies the type of credit card transaction being made.<BR><BR>Valid values are:<BR><BR>- Sale – make a purchase using a check<BR><BR>- Auth (Verify) – authorizes or verifies the amount of a check<BR><BR>- Return – return the money of a settled check transaction to the check holder <BR><BR>- Void – undo a settled check transaction  <BR><BR>- Force – (ForceSale) force a previous Sale transaction into the current batch<BR><BR>Terminal-based Processors Only:<BR><BR>- Capture – settle a single transaction in the current batch<BR><BR>- CaptureAll – settle all transactions in the current batch<BR><BR>Note: If using the Return, Void, Force, or Capture TransTypes, you must include a PNRef using the ExtData parameter.<BR><BR>Note: If using the Sale or Return TransTypes, you may be required to include city of account, bill-to street, and bill-to postal code using the ExtData parameter.
+    |CheckNum<BR><BR>Not required for Capture and CaptureAll transactions | Uniquely identifies an individual’s check.
+    |TransitNum<BR><BR>Not required for Capture and CaptureAll transactions | Uniquely identifies the bank holding funds. Also called routing number.
+    |AccountNum<BR><BR>Not required for Capture and CaptureAll transactions| Uniquely identifies the check owner’s bank account.
+    |Amount<BR><BR>Not required for Capture and CaptureAll transactions  | Total transaction value in DDDD.CC format.
+    |MICR<BR><BR>Required on all swiped card transactions | Magnetic Ink Check Reader data line. This data string includes the TransitNum and AccountNum.<BR><BR>Note: This input is required for processing check/consumer present transactions. <BR><BR>Note: The formats of the MICR is processor specific and if the developer is not sure about what format your Check processor accepts, pass the RAW MICR as well in the TOAD format and details of this are described in the extended data. If the developer is sure about the precise format for MICR that is supported by the Check processor, then there is no need to pass the Raw MICR in TOAD format.
+    |NameOnCheck<BR><BR>Not required for Capture and CaptureAll transactions<BR><BR>May be required by merchant’s processor setup | Check owner’s name as it appears on the check.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |DL<BR><BR>Optional | Check owner’s driver’s license number.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |SS<BR><BR>Optional | Check owner’s Social Security number.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |DOB<BR><BR>Optional |Check owner’s date of birth.<BR><BR>See [Date Formats.](#section/9.-Developer-Notes/Date-Formats)
+    |StateCode<BR><BR>Optional unless required by merchant’s processor setup |Check owner’s two-character state code.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |CheckType<BR><BR>Optional | Identifies the type of check used in the transaction.<BR><BR>Valid values are:<BR><BR>- Personal<BR><BR>- Corporate<BR><BR>- Government
+    |ExtData<BR><BR>Optional|The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.<BR><BR>ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.    
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
     
@@ -530,74 +342,23 @@ info:
  
     | ExtData Parameters| Description 
     |-----|-----
-    | Timeout | Processor time out value in seconds. The default value for the parameter is 30 seconds.
-    |Optional | Valid format is:
-    | | <TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
-    |PNRef | Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
-    |Required for TransType = Return, Void, Force, or Capture |
-    | |Valid format is:
-    | |<PNRef>PNRef</PNRef> where PNRef is the valid payment reference number assigned to the transaction that is to be returned, voided, forced, or captured.
-    |Phone |Check owner’s phone number.
-    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<Phone>_Phone_</Phone> where _Phone_ is the check owner’s phone number.
-    |Email Address | Check owner’s email address.
-    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<Email>_Email_</Email> where _Email_ is the check owner’s email address.
-    |Raw MICR |Raw Magnetic Ink Check Reader data line from the check reader.
-    |Required for check/consumer present transactions | Valid format is:
-    | | <RawMICR>_RawMICR_</RawMICR> where _RawMICR_ is the transit number, account number, and check number in the following format:_TransitNumTAccountNumOCheckNum_
-    | |Note: TOAD format is the accepted default format for raw MICR for all check processors supported.
-    |Invoice Number | The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    |Optional |
-    | |Valid format is:
-    | |<InvNum>_InvNum_</InvNum> where _InvNum_ is the merchant-assigned invoice number.
-    | |Note: Many merchants use the invoice ID to store other values in the database. The exact nature of the value stored will vary by merchant.
-    |TrainingMode | This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    |Optional |
-    | |Valid formats are:
-    | |<TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | |<TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
-    |Alliance Number | Check alliance number.
-    |Optional | Valid formats are:
-    | |<AccType>_Checking_</AccType> to indicate a checking account
-    | |<AccType>_Savings_</AccType> to indicate a savings account
-    |City of Account | City name for the check owner’s residential address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<CityOfAccount>_CityOfAccount_</CityOfAccount> where _CityOfAccount_ is the check owner’s city name.
-    |Bill-To Street | Street address for the check owner’s bill-to address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<BillToStreet>_BillToStreet_</BillToStreet> where BillToStreet is the street name for the check owner’s bill-to address.
-    |Bill-To City | City name for the check owner’s bill-to address.
-    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<BillToCity>_BillToCity_</BillToCity> where _BillToCity_ is the city name for the check owner’s bill-to address.
-    |Bill-To State |Two-character state code for the check owner’s bill-to address.
-    |Optional | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the check owner’s bill-to address.
-    |Bill-To Postal Code | Postal/Zip code for the check owner’s bill-to address.
-    |Depending on merchant setup, may be required for TransType=Sale or Return | See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<BillToPostalCode>_BillToPostalCode_</BillToPostalCode> where _BillToPostalCode_ is the street name for the check owner’s bill-to address.
-    |Bill-To Country | Country name for the check owner’s bill-to address.
-    | Optional| See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    | |Valid format is:
-    | |<BillToCountry>_BillToCountry_</BillToCountry> where _BillToCountry_ is the country name for the check owner’s bill-to address.
-    |Customer ID |Identification number assigned to the customer by the merchant.
-    |Optional |Valid format is:
-    | |<CustomerID>_CustomerID_</CustomerID> where _CustomerID_ is the customer’s assigned customer ID.
-    | Card Type|For use with image uploads specific to the processor RDM_ITMS.
-    |Optional | Valid format is:
-    | |<CardType>_IMAGE_<CardType>
-    |External IP | When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.
-    |Optional | To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…
-    | |<ExternalIP>_IP Address Here_</ExternalIP>
-    | |If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
-    
+    |Timeout<BR><BR>Optional | Processor time out value in seconds. The default value for the parameter is 30 seconds.<BR><BR>Valid format is:<BR><BR><TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
+    |PNRef<BR><BR>Required for TransType = Return, Void, Force, or Capture | Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.<BR><BR>Valid format is:<BR><BR><PNRef>PNRef</PNRef> where PNRef is the valid payment reference number assigned to the transaction that is to be returned, voided, forced, or captured.
+    |Phone<BR><BR>Optional |Check owner’s phone number.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><Phone>_Phone_</Phone> where _Phone_ is the check owner’s phone number.
+    |Email Address<BR><BR>Optional| Check owner’s email address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><Email>_Email_</Email> where _Email_ is the check owner’s email address.
+    |Raw MICR<BR><BR>Required for check/consumer present transactions|Raw Magnetic Ink Check Reader data line from the check reader.<BR><BR>Valid format is:<BR><BR><RawMICR>_RawMICR_</RawMICR> where _RawMICR_ is the transit number, account number, and check number in the following format:_TransitNumTAccountNumOCheckNum_<BR><BR>Note: TOAD format is the accepted default format for raw MICR for all check processors supported.
+    |Invoice Number<BR><BR>Optional| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.<BR><BR>Valid format is:<BR><BR><InvNum>_InvNum_</InvNum> where _InvNum_ is the merchant-assigned invoice number.<BR><BR>Note: Many merchants use the invoice ID to store other values in the database. The exact nature of the value stored will vary by merchant.
+    |TrainingMode<BR><BR>Optional| This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.<BR><BR>Valid formats are:<BR><BR><TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |Alliance Number<BR><BR>Optional | Check alliance number.<BR><BR>Valid formats are:<BR><BR><AccType>_Checking_</AccType> to indicate a checking account<BR><BR><AccType>_Savings_</AccType> to indicate a savings account
+    |City of Account<BR><BR>Depending on merchant setup, may be required for TransType=Sale or Return | City name for the check owner’s residential address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><CityOfAccount>_CityOfAccount_</CityOfAccount> where _CityOfAccount_ is the check owner’s city name.
+    |Bill-To Street<BR><BR>Depending on merchant setup, may be required for TransType=Sale or Return| Street address for the check owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><BillToStreet>_BillToStreet_</BillToStreet> where BillToStreet is the street name for the check owner’s bill-to address.
+    |Bill-To City<BR><BR>Optional| City name for the check owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><BillToCity>_BillToCity_</BillToCity> where _BillToCity_ is the city name for the check owner’s bill-to address.
+    |Bill-To State<BR><BR>Optional|Two-character state code for the check owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><BillToState>_BillToState_</BillToState> where _BillToState_ is the two-character state code for the check owner’s bill-to address.
+    |Bill-To Postal Code<BR><BR>Depending on merchant setup, may be required for TransType=Sale or Return| Postal/Zip code for the check owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><BillToPostalCode>_BillToPostalCode_</BillToPostalCode> where _BillToPostalCode_ is the street name for the check owner’s bill-to address.
+    |Bill-To Country<BR><BR>Optional| Country name for the check owner’s bill-to address.<BR><BR>See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)<BR><BR>Valid format is:<BR><BR><BillToCountry>_BillToCountry_</BillToCountry> where _BillToCountry_ is the country name for the check owner’s bill-to address.
+    |Customer ID<BR><BR>Optional |Identification number assigned to the customer by the merchant.<BR><BR>Valid format is:<BR><BR><CustomerID>_CustomerID_</CustomerID> where _CustomerID_ is the customer’s assigned customer ID.
+    |Card Type<BR><BR>Optional|For use with image uploads specific to the processor RDM_ITMS.<BR><BR>Valid format is:<BR><BR><CardType>_IMAGE_<CardType>
+    |External IP<BR><BR>Optional | When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.<BR><BR>To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…<BR><BR><ExternalIP>_IP Address Here_</ExternalIP><BR><BR>If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.    
     # 3.4. ProcessEBTCard 
      EBT is used in all U.S. states to issue government benefits to recipients. Benefits are automatically deposited onto the card by the state and recipients are issued an “EBT card” (similar to a bank ATM or debit card) to receive their food stamp and/or cash benefits. Recipients with food stamp benefits can use their EBT cards for eligible food purchases at most grocery stores and some other retailers.
     
@@ -614,46 +375,21 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
     |Password |Password associated with the user name provided.
-    |TransType |Identifies the type of credit card transaction being made.
-    | |Valid values are:
-    | |- FoodStampSale – make a purchase on an EBT cardholder’s food stamp account 
-    | | - FoodStampReturn – credit to an EBT cardholder’s food stamp account
-    | | - CashBenefitSale – make a purchase on an EBT cardholder’s cash benefit account
-    | | - Inquire – check the balance on an EBT card
-    | | - Capture – settle a single transaction in the current batch; only for terminal-based processors
-    | | - CaptureAll – settle all transactions in the current batch; only for terminal-based processors or host-based processors that support a batch release feature
-    | | - Force (Voucher Clear) – allow a merchant to pass a voucher number along with authorization code to perform a pin-less EBT sale. The voucher reference number is a reference number on the voucher slip to clear the transaction along with the authorization code obtained via a voice approval.
-    | |The following transaction types apply to eWic processing.
-    | |- EWICAUTHORIZATION – Authorize amount for eWic transaction
-    | |- EWICCOMPLETION – Complete or capture the amount for an eWic authorization
-    | |- EWICSALE – Perform an eWic Sale
-    |CardNum | EBT card number used to uniquely identify the owner’s account.
-    |Not required for Capture and CaptureAll transactions |
+    |TransType |Identifies the type of credit card transaction being made.<BR><BR>Valid values are:<BR><BR>- FoodStampSale – make a purchase on an EBT cardholder’s food stamp account<BR><BR> - FoodStampReturn – credit to an EBT cardholder’s food stamp account<BR><BR>- CashBenefitSale – make a purchase on an EBT cardholder’s cash benefit account<BR><BR>- Inquire – check the balance on an EBT card<BR><BR>- Capture – settle a single transaction in the current batch; only for terminal-based processors<BR><BR>- CaptureAll – settle all transactions in the current batch; only for terminal-based processors or host-based processors that support a batch release feature<BR><BR>- Force (Voucher Clear) – allow a merchant to pass a voucher number along with authorization code to perform a pin-less EBT sale. The voucher reference number is a reference number on the voucher slip to clear the transaction along with the authorization code obtained via a voice approval.<BR><BR>The following transaction types apply to eWic processing.<BR><BR>- EWICAUTHORIZATION – Authorize amount for eWic transaction<BR><BR>- EWICCOMPLETION – Complete or capture the amount for an eWic authorization<BR><BR>- EWICSALE – Perform an eWic Sale
+    |CardNum<BR><BR>Not required for Capture and CaptureAll transactions| EBT card number used to uniquely identify the owner’s account.    
     |ExpDate | EBT card date of expiration in MMYY format.
-    |MagData | Data located on the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service code and checksum.
-    |Optional |
-    | |For example:
-    | |36438999960016=05121015432112345678
-    |NameOnCard |Card owner’s name as it appears on the card.
-    | Optional unless required by merchant’s processor setup| Note: Invalid characters will be removed from this entry. See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
-    |Amount |Total transaction amount in DDDD.CC format.
-    |Not required for Capture and CaptureAll transactions |Note: This amount includes the CashBackAmt and SureChargeAmt.
-    |InvNum |The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    |Optional |
-    | |View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields)   for more information.
-    | PNRef| Unique payment reference number used to identify a single transaction within the system.
-    |Required on all swiped card transactions | The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
+    |MagData<BR><BR>Optional| Data located on the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service code and checksum.<BR><BR>For example:<BR><BR>36438999960016=05121015432112345678
+    |NameOnCard<BR><BR>Optional unless required by merchant’s processor setup|Card owner’s name as it appears on the card.<BR><BR>Note: Invalid characters will be removed from this entry. See [Invalid Character Processing.](#section/9.-Developer-Notes/Invalid-Character-Processing)
+    |Amount<BR><BR>Not required for Capture and CaptureAll transactions |Total transaction amount in DDDD.CC format.<BR><BR>Note: This amount includes the CashBackAmt and SureChargeAmt.
+    |InvNum<BR><BR>Optional|The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.<BR><BR>View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields)   for more information.
+    |PNRef<BR><BR>Required on all swiped card transactions| Unique payment reference number used to identify a single transaction within the system.<BR><BR>The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
     |Pin | The encrypted PIN-block returned by the PIN pad.
-    |RegisterNum | A string that uniquely identifies the register, terminal, or computer on which the transaction was performed.
-    | Optional|
-    | SureChargeAmount| The amount, in DDDD.CC format, charged by a merchant in exchange for processing a debit card transaction.
-    | Optional|
-    |CashBackAmt | The amount, in DDDD.CC format, requested by the card holder in cash back from the debit transaction.
-    |Optional |
-    |ExtData | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
-    |Optional | ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
+    |RegisterNum<BR><BR>Optional| A string that uniquely identifies the register, terminal, or computer on which the transaction was performed.
+    |SureChargeAmount<BR><BR>Optional| The amount, in DDDD.CC format, charged by a merchant in exchange for processing a debit card transaction.
+    |CashBackAmt<BR><BR>Optional| The amount, in DDDD.CC format, requested by the card holder in cash back from the debit transaction.
+    |ExtData<BR><BR>Optional| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
@@ -3557,11 +3293,16 @@ info:
     To pass in custom field data to any transactional web service, please observe the following field format:
 
     *The following example assumes that the integrator has stored 2 custom fields, one named ‘SampleFieldName1’ and the other named ‘SampleFieldName2’
-    
+   
+    ```
     <CustomFields>
+    
     <SampleFieldName1>Sample String Data</SampleFieldName1>
+    
     <SampleFieldName2>8675309</SampleFieldName2>
+    
     </CustomFields>
+    ```
     
     All data passed through the custom fields parameters will be returned in the GetCardTrx web service call following the same format.
 

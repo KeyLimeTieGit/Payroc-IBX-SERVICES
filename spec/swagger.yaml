@@ -399,42 +399,15 @@ info:
     
     | ExtData Parameters| Description 
     |-----|-----
-    | Timeout | Processor time out value in seconds. The default value for the parameter is 30 seconds and 300 seconds for a settlement transaction.
-    |Optional |
-    ||Valid format is:
-    | |<TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
-    |Training Mode |This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    |Optional |
-    | |Valid formats are:
-    | |<TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | |<TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
-    |Key Serial Number | Key Serial Number: (required for all non-PIN-less debit transactions) PIN pad serial number.
-    |Optional |
-    | |Valid format is:
-    | |<KeySerialNumber>_KeySerialNumber_</KeySerialNumber> where _KeySerialNumberis_ the PIN pad serial number used in managing DUKPT PIN pads.
-    |Force | This is an indicator that specifies whether or not duplicate transactions will be processed.
-    |Optional |
-    | |Valid formats are:
-    | |<Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.
-    | |<Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
-    | |Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
-    |External IP | When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.
-    |Optional |
-    | |To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…
-    | | <ExternalIP>_IP Address Here_</ExternalIP>
-    | |If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
+    |Timeout<BR><BR>Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds and 300 seconds for a settlement transaction.<BR><BR>Valid format is:<BR><BR><TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
+    |Training Mode<BR><BR>Optional |This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally. <BR><BR>Valid formats are:<BR><BR><TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |Key Serial Number<BR><BR>Optional| Key Serial Number: (required for all non-PIN-less debit transactions) PIN pad serial number. <BR><BR>Valid format is: <BR><BR><KeySerialNumber>_KeySerialNumber_</KeySerialNumber> where _KeySerialNumberis_ the PIN pad serial number used in managing DUKPT PIN pads.
+    |Force<BR><BR>Optional | This is an indicator that specifies whether or not duplicate transactions will be processed.<BR><BR>Valid formats are:<BR><BR><Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.<BR><BR><Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.<BR><BR>Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
+    |External IP<BR><BR>Optional| When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.<BR><BR>To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…<BR><BR><ExternalIP>_IP Address Here_</ExternalIP><BR><BR>If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
     |eWic transactions (Specific to RapidConnect)
-    | |For eWic transactions, you can supply eWic detail using the following parameters and must be contained in the EWicDetail group:
-    | | - UPCPLUInd – Indicator for UPC/PLU, 0 for UPC, 1 for PLU
-    | | - UPCPLUData – Can be up to 16 characters
-    | | - UPCPrice – Can only be up to 6 digits, which includes two implied decimals
-    | | - UPCQty – Number of Items or total weight of items, Can only be up to 5 digits, which includes two implied decimals
-    | |Below is an examples of what the string would look like without data:
-    | |<EWicDetails><EWicDetail><UPCPLUData/><UPRPrice/>
-    | |<UPCQty/></EWicDetail></EWicDetails>
+    | |For eWic transactions, you can supply eWic detail using the following parameters and must be contained in the EWicDetail group:<BR><BR>- UPCPLUInd – Indicator for UPC/PLU, 0 for UPC, 1 for PLU<BR><BR>- UPCPLUData – Can be up to 16 characters<BR><BR>- UPCPrice – Can only be up to 6 digits, which includes two implied decimals <BR><BR> - UPCQty – Number of Items or total weight of items, Can only be up to 5 digits, which includes two implied decimals<BR><BR>Below is an examples of what the string would look like without data:<BR><BR><EWicDetails><EWicDetail><UPCPLUData/><UPRPrice/><BR><BR><UPCQty/></EWicDetail></EWicDetails>
     |Merchant FNS:
-    | |For a Food benefit/snap transaction you can provide the Merchant FNS Number in the MerchantFNS tag:
-    | | - <MerchantFNS>_12345_</MerchantFNS>
+    | |For a Food benefit/snap transaction you can provide the Merchant FNS Number in the MerchantFNS tag:<BR><BR> - <MerchantFNS>_12345_</MerchantFNS>
     
     # 3.5. ProcessGiftCard 
      This web service is used to process gift card transactions for a merchant.
@@ -452,35 +425,16 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
     |Password| Password associated with the user name provided.
-    |TransType| Identifies the type of gift card transaction being made.
-    ||Valid values are:
-    ||- Redeem  – make a purchase on a gift card
-    ||- Reload  – increase the balance on a gift card
-    ||- Refund  – refund money back to a gift card
-    ||- Activate  – activate a gift card
-    ||- Deactivate  – deactivate a gift card
-    ||- Inquire  – check the balance on a gift card
-    ||- Void  – undo an unsettled transaction
-    ||_Paymentech/Tampa only:_
-    ||- Force – place a transaction not processed through the payment server into the current batch (ForceAuth).
-    ||_Terminal-based processors only:_
-    || - Capture – settle a single transaction in the current batch; only for terminal-based processors
-    ||_Processors supporting the batch release feature only:_
-    ||- CaptureAll – settle all transactions in the current batch.
+    |TransType| Identifies the type of gift card transaction being made.<BR><BR>Valid values are:<BR><BR>- Redeem  – make a purchase on a gift card<BR><BR>- Reload  – increase the balance on a gift card<BR><BR>- Refund  – refund money back to a gift card<BR><BR>- Activate  – activate a gift card<BR><BR>- Deactivate  – deactivate a gift card<BR><BR>- Inquire  – check the balance on a gift card<BR><BR>- Void  – undo an unsettled transaction<BR><BR>_Paymentech/Tampa only:_<BR><BR>- Force – place a transaction not processed through the payment server into the current batch (ForceAuth).<BR><BR>_Terminal-based processors only:_ <BR><BR> - Capture – settle a single transaction in the current batch; only for terminal-based processors<BR><BR>_Processors supporting the batch release feature only:_<BR><BR>- CaptureAll – settle all transactions in the current batch.
     |CardNum| Gift card number used to uniquely identify the owner’s account.
     |ExpDate| Gift card date of expiration in MMYY format.
-    |MagData|Data located the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service code and checksum. For example:
-    |Required on all swiped transactions| 36438999960016=05121015432112345678
-    |Amount| Total transaction amount in DDDD.CC format.
-    |Not required for CaptureAll transactions| Note: This amount includes the CashBackAmt and SureChargeAmt.
-    |InvNum| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.
-    |Optional| View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
-    |PNRef| Unique payment reference number used to identify a single transaction within the system. 
-    |Required on Force and Capture transactions|The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
-    |ExtData| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.
-    |Optional| ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
+    |MagData<BR><BR>Required on all swiped transactions|Data located the magnetic strip on the back of the card. The format of the MagData is CardNum=ExpDate followed by the service code and checksum. For example:<BR><BR>36438999960016=05121015432112345678
+    |Amount<BR><BR>Not required for CaptureAll transactions| Total transaction amount in DDDD.CC format.<BR><BR>Note: This amount includes the CashBackAmt and SureChargeAmt.
+    |InvNum<BR><BR>Optional| The invoice ID is assigned by the merchant. This identifier can be used to locate a specific transaction or multiple transactions grouped under a single invoice.<BR><BR>View the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
+    |PNRef<BR><BR>Required on Force and Capture transactions| Unique payment reference number used to identify a single transaction within the system.The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
+    |ExtData<BR><BR>Optional| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
     
     ## ExtData Parameters Table
     View the ExtData Examples and Parameters Table below for available parameters.
@@ -492,34 +446,13 @@ info:
     
     | ExtData Parameters| Description 
     |-----|-----
-    | Training Mode | This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    |Optional |
-    ||Valid formats are:
-    | |<TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | |<TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
-    |Force | This is an indicator that specifies whether or not duplicate transactions will be processed.
-    |Optional |
-    | |Valid formats are:
-    | |<Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.
-    | |<Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.
-    | |Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
-    |Time out | Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.
-    |Optional |
-    | |Valid format is:
-    | | <TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
-    |Register Number | This is unique identifier for the register, terminal or computer used to process the gift card transaction.
-    |Optional |
-    | |Valid format is:
-    | | <RegisterNum>_RegisterNum_</RegisterNum> where _RegisterNum_ is equal to the register identification number stored on the merchant’s account record.
+    |Training Mode<BR><BR>Optional | This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.<BR><BR>Valid formats are:<BR><BR><TrainingMode>T</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>F</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |Force<BR><BR>Optional| This is an indicator that specifies whether or not duplicate transactions will be processed.<BR><BR>Valid formats are:<BR><BR><Force>_T_</Force> where _T_ (true) indicates that duplicate transactions are accepted.<BR><BR><Force>_F_</Force> where _F_ (false) indicates that duplicate transactions are not accepted.<BR><BR>Note: Some processors, including BuyPass, will not recognize this tag and reject duplicate transactions.
+    |Time out<BR><BR>Optional| Processor time out value in seconds. The default value for the parameter is 30 seconds for a transaction and 300 seconds for a settlement transaction.<BR><BR>Valid format is:<BR><BR><TimeOut>_TimeOut_</TimeOut> where _TimeOut_ is the processor time out value in seconds.
+    |Register Number<BR><BR>Optional | This is unique identifier for the register, terminal or computer used to process the gift card transaction.<BR><BR>Valid format is:<BR><BR><RegisterNum>_RegisterNum_</RegisterNum> where _RegisterNum_ is equal to the register identification number stored on the merchant’s account record.
     |Paymentech/Tampa Only
-    |Force Authorizatioln |  Places a previously authorized transaction (TransType = Redeem, Reload, or Activate) into the current batch.
-    |Optional | 
-    | | <ForceAuth><AuthCode>_AuthCode_</AuthCode></ForceAuth> where _AuthCode_ is the previously obtained authorization code from Paymentech/Tampa.
-    |External IP |  When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.
-    | Optional| 
-    | | To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…
-    | | <ExternalIP>IP Address Here</ExternalIP>
-    | | If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
+    |Force Authorizatioln<BR><BR>Optional|  Places a previously authorized transaction (TransType = Redeem, Reload, or Activate) into the current batch.<BR><BR> <ForceAuth><AuthCode>_AuthCode_</AuthCode></ForceAuth> where _AuthCode_ is the previously obtained authorization code from Paymentech/Tampa.
+    |External IP<BR><BR>Optional |  When using the Transact web service, the IP address defaults to the calling computer’s IP. If the request is coming from an external source, the external IP address can be substituted for the purpose of logging and fraud control.<BR><BR>To implement this IP pass through functionality, the following XML node should be included in the external data field of the web service call…<BR><BR><ExternalIP>IP Address Here</ExternalIP><BR><BR>If the ExternalIP node is not included in the external data field, then the default behavior of using the callers IP address is used.
     
     # 3.6. ProcessSignature 
      The ProcessSignature web service allows you to capture customer signatures from an input device.
@@ -569,35 +502,14 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |UserName |User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
     |Password |Password associated with the user name provided.
-    |SignatureType |   Identifies the format of the signature data being provided. Valid values are:
-    | |Valid values are:
-    | |- Signature1 – Lipman credit
-    | |- Signature2 – Lipman check
-    | |- Signature3 – no longer used
-    | |- Signature4 – signature provided in a vector string
-    | |- Receipt1 – TIFF file (compressed and encoded Base64)
-    | SignatureData| This parameter holds the data string containing the signature data.
-    | | If SignatureType = Signature4, the SignatureData will contain a string value of vector coordinates, delimited with a ^ character in the following format:
-    | |x1,y1^x2,y2^xN,yN^~
-    | |Where ^ is the coordinate delimiter, ~ is the ending delimiter, and a comma (,) is the vector delimiter.
-    | |If there is a pen up event, use the coordinate 0,65535 to signal a break in the line.
-    | |If SignatureType = Receipt1, you must compress and Base64 encode the image data. See [Compression and Encoding.](#section/9.-Developer-Notes/Compression-and-Encoding)
+    |SignatureType | Identifies the format of the signature data being provided. Valid values are:<BR><BR>Valid values are:<BR><BR>- Signature1 – Lipman credit<BR><BR>- Signature2 – Lipman check<BR><BR>- Signature3 – no longer used<BR><BR>- Signature4 – signature provided in a vector string<BR><BR>- Receipt1 – TIFF file (compressed and encoded Base64)
+    |SignatureData| This parameter holds the data string containing the signature data.<BR><BR>If SignatureType = Signature4, the SignatureData will contain a string value of vector coordinates, delimited with a ^ character in the following format:<BR><BR>x1,y1^x2,y2^xN,yN^~<BR><BR>Where ^ is the coordinate delimiter, ~ is the ending delimiter, and a comma (,) is the vector delimiter.<BR><BR>If there is a pen up event, use the coordinate 0,65535 to signal a break in the line.<BR><BR>If SignatureType = Receipt1, you must compress and Base64 encode the image data. See [Compression and Encoding.](#section/9.-Developer-Notes/Compression-and-Encoding)
     |PNRef | Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
-    |Result | Indicator that specifies whether the transaction was approved.
-    |Optional | Valid entries are:
-    | | - 1 (true) – transaction was approved
-    | | - 0 (false) – transaction was not approved
-    |AuthCode | The approval code is a 6-character string (alphanumeric) generated by the issuing bank. The code is used the card issuer to verify the specific authorization when transactions are being settled.
-    |Optional | 
-    |ExtData | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
-    |Optional | ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
-    | | The following information may be added via the ExtData parameter:
-    | | Training Mode: This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    | | Valid formats are:
-    | | - <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | | - <TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |Result<BR><BR>Optional | Indicator that specifies whether the transaction was approved.<BR><BR>Valid entries are:<BR><BR> - 1 (true) – transaction was approved<BR><BR>- 0 (false) – transaction was not approved
+    |AuthCode<BR><BR>Optional | The approval code is a 6-character string (alphanumeric) generated by the issuing bank. The code is used the card issuer to verify the specific authorization when transactions are being settled.
+    |ExtData<BR><BR>Optional| The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters.ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.<BR><BR>The following information may be added via the ExtData parameter:<BR><BR>Training Mode: This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.<BR><BR>Valid formats are:<BR><BR>- <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR> - <TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
     
     # 3.7. ProcessBatch 
     The ProcessBatch web service provides the ability to control closing open batches for a merchant across Credit, Debit, EBT, ALL payment types. It serves as a convenience function as an alternative to calling Process(Credit|Debit|EBT)Card with the “CaptureAll” or “Capture” transaction types.
@@ -649,35 +561,14 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |UserName |User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
     |Password |Password associated with the user name provided.
-    |TransType |   Currently only CAPTURE is supported.
-    |PaymentType |This parameter determines which open batches to attempt to close. If not supplied ALL is assumed. This would be the equivalent of calling each of the Process(Credit,Debit,EBT)Card functions in turn with a CaptureAll transaction type.
-    | Optional|
-    | |The valid values are:
-    | |- ALL
-    | |- CREDIT
-    | |- DEBIT
-    | |- EBT
-    | |- CHECK
-    |BatchID |
-    | |Currently unused
-    | Optional|
-    |BatchStatus |
-    | |Currently unused
-    |Optional |
-    |PNRef |Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created.
-    |Optional |If a PNRef is supplied a PaymentType must be provided as well. The gateway will settle the PNRef associated with the specific payment type.
-    |ExtData | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. 
-    |Optional |ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
-    | |The following information may be added via the ExtData parameter:
-    | | Timeout: The timeout for the transaction in seconds. This defaults to 40 seconds
-    | |Valid formats are:
-    | |- <Timeout>60</Timeout>
-    | |Training Mode: This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.
-    | |Valid formats are:
-    | |- <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.
-    | |<TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
+    |TransType|Currently only CAPTURE is supported.
+    |PaymentType<BR><BR>Optional |This parameter determines which open batches to attempt to close. If not supplied ALL is assumed. This would be the equivalent of calling each of the Process(Credit,Debit,EBT)Card functions in turn with a CaptureAll transaction type.<BR><BR>The valid values are:<BR><BR>- ALL <BR><BR>- CREDIT <BR><BR>- DEBIT <BR><BR>- EBT <BR><BR>- CHECK
+    |BatchID<BR><BR>Optional|Currently unused
+    |BatchStatus<BR><BR>Optional|Currently unused
+    |PNRef<BR><BR>Optional |Unique payment reference number used to identify a single transaction within the system. The payment reference number (PNRef) is assigned by the payment server at the time the transaction is created. If a PNRef is supplied a PaymentType must be provided as well. The gateway will settle the PNRef associated with the specific payment type.
+    |ExtData<BR><BR>Optional | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.<BR><BR>The following information may be added via the ExtData parameter:<BR><BR>Timeout: The timeout for the transaction in seconds. This defaults to 40 seconds<BR><BR>Valid formats are:<BR><BR>- <Timeout>60</Timeout><BR><BR>Training Mode: This is an indicator that specifies whether transactions will be processed for local loop back testing or treated normally.<BR><BR>Valid formats are:<BR><BR>- <TrainingMode>_T_</TrainingMode> where _T_ (true) indicates that training mode is active and transactions are processed for local loop back testing.<BR><BR><TrainingMode>_F_</TrainingMode> where _F_ (false) indicates that training mode is inactive and transactions should be treated normally.
     
     # 3.8. GetInfo 
      The GetInfo web service allows for miscellaneous checks against the gateway. These include the status of a current batch or an end-to-end status check to see if the gateway is currently responding.
@@ -748,15 +639,10 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
+    |UserName | User name assigned in the payment server. The user must have an appropriate level of access in order to utilize the web service.
     |Password |Password associated with the user name provided.
-    |TransType |   CThe transaction type for the GetInfo call.
-    | |Valid Values:
-    | | - BatchInquiry – return a summary of the current batch status for the merchant (counts and amounts) for all types (Credit, Debig, EBT, Check)
-    | |- StatusCheck – Run a pseudo transaction through the API merchants processor to determine if the gateway is responding. Returns OK only in ExtData
-    |ExtData |
-    | |The ExtData input parameter is reserved for future use.
-    |Optional |
+    |TransType |   CThe transaction type for the GetInfo call.<BR><BR>Valid Values:<BR><BR>- BatchInquiry – return a summary of the current batch status for the merchant (counts and amounts) for all types (Credit, Debig, EBT, Check)<BR><BR>- StatusCheck – Run a pseudo transaction through the API merchants processor to determine if the gateway is responding. Returns OK only in ExtData
+    |ExtData<BR><BR>Optional|The ExtData input parameter is reserved for future use.    
     
     # 3.9. Transaction Response Fields 
     The following response fields may be part of the return value for web services using transact.asmx operations. These web services include:
@@ -771,90 +657,36 @@ info:
     
     | Response Field  Data Value |  Description | 
     |-----|-----
-    |AuthCode|Returns the transaction result code from the payment processor.
-    |String up to 50 characters| This value can be either an approval code, for approved transactions, or an error code, for declined transactions
-    |ExtData| Returns extra data from the processed transaction.
-    |String up to 500 characters| The value of ExtData will be in a specific format. The format typically consists of the name of the data field, an equal sign, and then the value for the data field. Multiple data fields are separated with a comma.
-    ||See the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for full description of data elements that can be returned.
-    ||The following is an example of the format: ExtName1=ExtValue1,ExtName2=ExtValue2
-    |GetAVSResult| Returns the overall address verification result code from the payment processor.
-    |String up to 1 character|
-    ||When programmatically validating an AVS Result, this value should ALWAYS be used instead of any formatted response message describing the result.
-    ||View the [AVS Response Fields.](#section/3.11.-AVS-Response-Fields) 
-    |GetAVSResultTXT| Returns the formatted response message when address verification is performed.
-    |String up to 25 characters| 
-    || Do NOT use this when programmatically validating a transaction’s AVS result; please see GetAVSResult field.
-    |GetCommercialCard| Returns the payment processor’s response indicator that specifies if the card is a commercial card.
-    |String representing Boolean value|
-    ||This value is only applicable to credit card transactions. The card verification number is typically printed on the back of the card and not embossed on the front. It is used as an extra authentication method for “card not present” transactions. When programmatically validating a CV Result, this value should ALWAYS be used instead of any formatted response message describing the result.
-    |GetCVResult| Returns the card verification result code from the payment processor.
-    |String up to 1 character|
-    ||This value is only applicable to credit card transactions. The card verification number is typically printed on the back of the card and not embossed on the front. It is used as an extra authentication method for “card not present” transactions. When programmatically validating a CV Result, this value should ALWAYS be used instead of any formatted response message describing the result.
-    ||View the [CV Response Fields.](#section/3.12.-CV-Response-Fields) 
-    |GetCVResultTXT| Returns the formatted response message when card verification is performed.
-    |String up to 25 characters|
-    ||This value is only applicable to credit card transactions.  Do NOT use this when programmatically validating a transaction’s CV result; please see GetCVResult field.
-    |GetStreetMatchTXT| Returns the formatted response message when street number address verification is performed.
-    |String up to 25 characters|
-    ||This value will typically be “Match”, for correctly matching the street address, or “No Match”, for an incorrect street address.
-    |GetZipMatchTXT| Returns the formatted response message when zip code address verification is performed.
-    |String up to 25 characters|
-    ||This value will typically be “Match”, for correctly matching the zip code, or “No Match”, for an incorrect zip code.
-    |HostCode| Typically returns a number which uniquely identifies the transaction in the payment processor.
-    |String up to 30 characters|
-    ||This value may not be returned for all payment processors.
-    |Message| Returns a formatted response message concerning the processed transaction.
-    |String up to 50 characters|
-    ||This value will typically be “APPROVAL”, for approved transactions, or an error message, for declined transactions. Do NOT use this when programmatically validating a transaction’s result; please see Result field below.
-    |Message1| Returns an extra formatted response message giving more information about the processed transaction.
-    |String up to 50 characters|
-    ||The Payment Server will only populate this field when there is applicable information from the payment processor to return.
-    |Message2| Returns an extra formatted response message giving more information about the processed transaction.
-    |String up to 50 characters|
-    ||The Payment Server will only populate this field when there is applicable information from the payment processor to return.
-    |PNRef|Returns a number which uniquely identifies the transaction in the payment gateway.
-    |String representing a signed 32-bit integer|
-    |RespMSG|Returns the response message concerning the processed transaction.
-    |String up to 50 characters|
-    ||This value is typically either Approved or Declined.  Do NOT use this when programmatically validating a transaction’s result; please see Result field below.
-    |Result| Returns the transaction result code from the payment gateway which signifies the result of the transaction (i.e. approved, decline, etc.).
-    |String representing a signed 32-bit integer|
-    ||When programmatically validating a transaction’s result, this value should ALWAYS be used instead of any response message describing the result.
-    ||See the [Result Response Field Definitions](#section/3.10.-Result-Response-Fields/Result-Response-Field-Definitions) for a full list of result values and descriptions.
+    |AuthCode<BR><BR>String up to 50 characters|Returns the transaction result code from the payment processor.<BR><BR>This value can be either an approval code, for approved transactions, or an error code, for declined transactions
+    |ExtData<BR><BR>String up to 500 characters|Returns extra data from the processed transaction.<BR><BR>The value of ExtData will be in a specific format. The format typically consists of the name of the data field, an equal sign, and then the value for the data field. Multiple data fields are separated with a comma.<BR><BR>See the [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for full description of data elements that can be returned.<BR><BR>The following is an example of the format: ExtName1=ExtValue1,ExtName2=ExtValue2
+    |GetAVSResult<BR><BR>String up to 1 character| Returns the overall address verification result code from the payment processor.<BR><BR>When programmatically validating an AVS Result, this value should ALWAYS be used instead of any formatted response message describing the result.<BR><BR>View the [AVS Response Fields.](#section/3.11.-AVS-Response-Fields) 
+    |GetAVSResultTXT<BR><BR>String up to 25 characters| Returns the formatted response message when address verification is performed.<BR><BR>Do NOT use this when programmatically validating a transaction’s AVS result; please see GetAVSResult field.
+    |GetCommercialCard<BR><BR>String representing Boolean value| Returns the payment processor’s response indicator that specifies if the card is a commercial card.<BR><BR>This value is only applicable to credit card transactions. The card verification number is typically printed on the back of the card and not embossed on the front. It is used as an extra authentication method for “card not present” transactions. When programmatically validating a CV Result, this value should ALWAYS be used instead of any formatted response message describing the result.
+    |GetCVResult<BR><BR>String up to 1 character| Returns the card verification result code from the payment processor.<BR><BR>This value is only applicable to credit card transactions. The card verification number is typically printed on the back of the card and not embossed on the front. It is used as an extra authentication method for “card not present” transactions. When programmatically validating a CV Result, this value should ALWAYS be used instead of any formatted response message describing the result.<BR><BR>View the [CV Response Fields.](#section/3.12.-CV-Response-Fields) 
+    |GetCVResultTXT<BR><BR>String up to 25 characters| Returns the formatted response message when card verification is performed.<BR><BR>This value is only applicable to credit card transactions.  Do NOT use this when programmatically validating a transaction’s CV result; please see GetCVResult field.
+    |GetStreetMatchTXT<BR><BR>String up to 25 characters| Returns the formatted response message when street number address verification is performed.<BR><BR>This value will typically be “Match”, for correctly matching the street address, or “No Match”, for an incorrect street address.
+    |GetZipMatchTXT<BR><BR>String up to 25 characters| Returns the formatted response message when zip code address verification is performed.<BR><BR>This value will typically be “Match”, for correctly matching the zip code, or “No Match”, for an incorrect zip code.
+    |HostCode<BR><BR>String up to 30 characters| Typically returns a number which uniquely identifies the transaction in the payment processor.<BR><BR>This value may not be returned for all payment processors.
+    |Message<BR><BR>String up to 50 characters| Returns a formatted response message concerning the processed transaction.<BR><BR>This value will typically be “APPROVAL”, for approved transactions, or an error message, for declined transactions. Do NOT use this when programmatically validating a transaction’s result; please see Result field below.
+    |Message1<BR><BR>String up to 50 characters| Returns an extra formatted response message giving more information about the processed transaction.<BR><BR>The Payment Server will only populate this field when there is applicable information from the payment processor to return.
+    |Message2<BR><BR>String up to 50 characters| Returns an extra formatted response message giving more information about the processed transaction.<BR><BR>The Payment Server will only populate this field when there is applicable information from the payment processor to return.
+    |PNRef<BR><BR>String representing a signed 32-bit integer|Returns a number which uniquely identifies the transaction in the payment gateway.
+    |RespMSG<BR><BR>String up to 50 characters|Returns the response message concerning the processed transaction.<BR><BR>This value is typically either Approved or Declined.  Do NOT use this when programmatically validating a transaction’s result; please see Result field below.
+    |Result<BR><BR>String representing a signed 32-bit integer| Returns the transaction result code from the payment gateway which signifies the result of the transaction (i.e. approved, decline, etc.).<BR><BR>When programmatically validating a transaction’s result, this value should ALWAYS be used instead of any response message describing the result.<BR><BR>See the [Result Response Field Definitions](#section/3.10.-Result-Response-Fields/Result-Response-Field-Definitions) for a full list of result values and descriptions.
     
     ## ExtData Response Fields
     
     | Response Field| Description 
     |-----|-----
-    |BatchNum| Current batch number for transactions, settlement, and batch inquiries.
-    ||Note: Not all payment processors support returning this data element.
-    |CardType| Credit card type (VISA, MASTERCARD, etc) or payment method (Debit, EBT, or EGC) for card-based payments.
-    ||Note: This value is not returned for Check/ACH payments.
+    |BatchNum| Current batch number for transactions, settlement, and batch inquiries.<BR><BR>Note: Not all payment processors support returning this data element.
+    |CardType| Credit card type (VISA, MASTERCARD, etc) or payment method (Debit, EBT, or EGC) for card-based payments.<BR><BR>Note: This value is not returned for Check/ACH payments.
     |InvNum| Invoice number for the transaction that was originally sent in the request to the Payment Server.
-    |Token| This value contains the token result (up to 64 alphanumeric characters) if a token was requested during the initiating transaction. Please note that this is a base64 encoded value so when parsing the returned structure you must rely on the comma to delimit the fields and the first “=” sign to denote the key and value separator as “=” signs can exist at the end of the token.
-    ||Eg:
-    ||Token=7d4l2JLKFHzjQENGdQ8t6wP1C18JI59c6q5HCEAsJUBz0DK5I1pNxQ==
-    |Balance|This XML tag contains the value for requests that require a balance response such as EBT balance inquiries.
-    ||Eg:
-    ||<Balance>12.50</Balance>
-    |Trace|This XML tag contains the System Trace Audit Number returned for Debit / EBT transactions.
-    ||Eg:
-    ||<Trace>525982</Trace>
-    |NetworkId|This XML tag contains the value for the identification code of the network on which the transaction was authorized.
-    ||Eg:
-    ||<NetworkId>K</NetworkId>
-    |Approved Amount|This XML tag contains the approved amount for a transaction that results in a partial approval. It is always enclosed by a <ReceiptData> tag.
-    ||Eg:
-    ||<Approved_Amt>_5.55_</Approved_Amt>
-    ||Full Example:
-    ||<ReceiptData><Requested_Amt>11.10</Requested_Amt>
-    ||<Approved_Amt>5.55</Approved_Amt></ReceiptData>
-    |Requested Amount|This XML tag contains the requested amount for a transaction that results in a partial approval. It is always enclosed by a <ReceiptData> tag.
-    ||Eg:
-    ||<Requested_Amt>11.10</Requested_Amt>
-    ||Full Example:
-    ||<ReceiptData><Requested_Amt>11.10</Requested_Amt>
-    ||<Approved_Amt>5.55</Approved_Amt></ReceiptData>
+    |Token| This value contains the token result (up to 64 alphanumeric characters) if a token was requested during the initiating transaction. Please note that this is a base64 encoded value so when parsing the returned structure you must rely on the comma to delimit the fields and the first “=” sign to denote the key and value separator as “=” signs can exist at the end of the token.<BR><BR>Eg:<BR><BR>Token=7d4l2JLKFHzjQENGdQ8t6wP1C18JI59c6q5HCEAsJUBz0DK5I1pNxQ==
+    |Balance|This XML tag contains the value for requests that require a balance response such as EBT balance inquiries.<BR><BR>Eg:<BR><BR><Balance>12.50</Balance>
+    |Trace|This XML tag contains the System Trace Audit Number returned for Debit / EBT transactions.<BR><BR>Eg:<BR><BR><Trace>525982</Trace>
+    |NetworkId|This XML tag contains the value for the identification code of the network on which the transaction was authorized.<BR><BR>Eg:<BR><BR><NetworkId>K</NetworkId>
+    |Approved Amount|This XML tag contains the approved amount for a transaction that results in a partial approval. It is always enclosed by a <ReceiptData> tag.<BR><BR>Eg:<BR><BR><Approved_Amt>_5.55_</Approved_Amt><BR><BR>Full Example:<BR><BR><ReceiptData><Requested_Amt>11.10</Requested_Amt><BR><BR><Approved_Amt>5.55</Approved_Amt></ReceiptData>
+    |Requested Amount|This XML tag contains the requested amount for a transaction that results in a partial approval. It is always enclosed by a <ReceiptData> tag.<BR><BR>Eg:<BR><BR><Requested_Amt>11.10</Requested_Amt><BR><BR>Full Example:<BR><BR><ReceiptData><Requested_Amt>11.10</Requested_Amt><BR><BR><Approved_Amt>5.55</Approved_Amt></ReceiptData>
     
     # 3.10. Result Response Fields  
     
@@ -994,55 +826,54 @@ info:
     ## Response
     
     ```
-    <RichDBDS>
-      <TrxDetailCard>
-        <TRX_HD_Key>13612</TRX_HD_Key>
-        <Invoice_ID>666</Invoice_ID>
-        <Date_DT>2016-08-05T18:16:12.867+00:00</Date_DT>
-        <Merchant_Key>5</Merchant_Key>
-        <User_Name_VC>username                 </User_Name_VC>
-        <Register_Number_CH>2         </Register_Number_CH>
-        <Reseller_Key>999</Reseller_Key>
-        <Payment_Type_ID>VISA      </Payment_Type_ID>
-        <Trans_Type_ID>Sale                </Trans_Type_ID>
-        <Processor_ID>TSYS      </Processor_ID>
-        <TRX_Settle_Key>13549</TRX_Settle_Key>
-        <Void_Flag_CH>0</Void_Flag_CH>
-        <Settle_Flag_CH>0</Settle_Flag_CH>
-        <Last_Update_DT>2016-08-05T18:16:13.663+00:00</Last_Update_DT>
-        <TRX_Card_Key>13549</TRX_Card_Key>
-        <Card_Info_Key>13550</Card_Info_Key>
-        <Auth_Amt_MN>200.0000</Auth_Amt_MN>
-        <Tip_Amt_MN>3.8500</Tip_Amt_MN>
-        <Total_Amt_MN>200.0000</Total_Amt_MN>
-        <Cash_Back_Amt_MN>0.0000</Cash_Back_Amt_MN>
-        <SureCharge_Amt_MN>0.0000</SureCharge_Amt_MN>
-        <Account_Type_CH>VISA      </Account_Type_CH>
-        <Result_CH>0    </Result_CH>
-        <Approval_Code_CH>TAS979</Approval_Code_CH>
-        <Host_Ref_Num_CH>000000000016865</Host_Ref_Num_CH>
-        <AVS_Resp_CH>0</AVS_Resp_CH>
-        <CV_Resp_CH>M</CV_Resp_CH>
-        <Host_Date_CH>080516    </Host_Date_CH>
-        <Host_Time_CH>131613    </Host_Time_CH>
-        <Acct_Num_CH>************1881</Acct_Num_CH>
-        <Exp_CH>1216      </Exp_CH>
-        <Type_CH>VISA      </Type_CH>
-        <Name_on_Card_VC>Barney Rubble            </Name_on_Card_VC>
-        <Street_CH xml:space="preserve">                         </Street_CH>
-        <Zip_CH xml:space="preserve">          </Zip_CH>
-        <Manual>true</Manual>
-        <TRX_Receipt_key>0</TRX_Receipt_key>
-        <IP_VC>192.168.1.2</IP_VC>
-        <Batch_Number>0</Batch_Number>
-        <Level3_Amt_MN>0.0000</Level3_Amt_MN>
-        <TRX_Receipt_Cnt>0</TRX_Receipt_Cnt>
-        <Auth_Date_DT>2016-08-05T18:16:12.867+00:00</Auth_Date_DT>
-        <Reversal_Flag_CH>0</Reversal_Flag_CH>
-        <CustomFields>
-          <CocoaPebbles>Chocolate goodness</CocoaPebbles>
-          <FruityPebbles>18</FruityPebbles>
-        </CustomFields>
+    <RichDBDS>  
+      <TrxDetailCard>    
+        <PnRef>13612</PnRef>    
+        <InvoiceId>666</InvoiceId>    
+        <Date>2016-08-05T18:16:12.867+00:00</Date>    
+        <MerchantKey>5</MerchantKey>    
+        <UserName>username</UserName>    
+        <RegisterNumber>2</RegisterNumber>    
+        <ResellerKey>999</ResellerKey>   
+        <PaymentType>VISA</PaymentType>    
+        <TransactionType>Sale</TransactionType>    
+        <ProcessorId>TSYS</ProcessorId>    
+        <TransactionSettleKey>13549</TransactionSettleKey>    
+        <VoidFlag>0</VoidFlag>    
+        <SettleFlag>0</SettleFlag>    
+        <LastUpdateDate>2016-08-05T18:16:13.663+00:00</LastUpdateDate>          <CardTransactionKey>13549</CardTransactionKey>    
+        <CardInfoKey>13550</CardInfoKey>    
+        <AuthorizedAmount>200.0000</AuthorizedAmount>    
+        <TipAmount>3.8500</TipAmount>    
+        <TotalAmount>200.0000</TotalAmount>    
+        <CashBackAmount>0.0000</CashBackAmount>    
+        <SurchargeAmount>0.0000</SurchargeAmount>    
+        <AccountType>VISA</AccountType>    
+        <Result>0</Result>    
+        <ApprovalCode>TAS979</ApprovalCode>    
+        <HostReferenceNumber>000000000016865</HostReferenceNumber>    
+        <AVSResponse>0</AVSResponse>    
+        <CVResponse>M</CVResponse>    
+        <HostDate>080516</HostDate>    
+        <HostTime>131613</HostTime>    
+        <AccountNumber>************1881</AccountNumber>    
+        <Expire>1216</Expire>    
+        <Type>VISA</Type>    
+        <NameOnCard>Barney Rubble</NameOnCard>    
+        <Street xml:space="preserve"> </Street>    
+        <Zip xml:space="preserve"></Zip>    
+        <Manual>true</Manual>    
+        <TRX_Receipt_key>0</TRX_Receipt_key>    
+        <IP>192.168.1.2</IP>    
+        <BatchNumber>0</BatchNumber>    
+        <Level3Amount>0.0000</Level3Amount>    
+        <TransactionReceiptCount>0</TransactionReceiptCount>    
+        <Auth_Date>2016-08-05T18:16:12.867+00:00</Auth_Date>    
+        <ReversalFlag>0</ReversalFlag>    
+        <CustomFields>      
+          <CocoaPebbles>Chocolate goodness</CocoaPebbles>      
+          <FruityPebbles>18</FruityPebbles>    
+        </CustomFields>  
       </TrxDetailCard>
     </RichDBDS>
     ```
@@ -1054,124 +885,35 @@ info:
     
     | Parameter Name| Description 
     |-----|-----
-    | UserName|User name assigned in the payment server. The user must have an appropriate security permissions in order for the system to return transaction records.
+    |UserName|User name assigned in the payment server. The user must have an appropriate security permissions in order for the system to return transaction records.
     |Password |Password for the user name assigned in the payment server.
-    |RPNum |Unique value assigned to each gateway account used as a third credential to ensure security and
-    | |Note: RPNum may also be called Merchant ID, Merchant Number, or Vendor Key.
-    | PNRef| The unique payment reference number assigned to the transaction.
-    |Optional | If this field is provided, all other query fields will be ignored when using PNRef parameter to query the system.
-    | BeginDt| Beginning date of the transaction record query.
-    |Required unless a PNRef value is provided |
-    | EndDt| End date of the transaction record query.
-    |Required unless a PNRef value is provided |
-    |PaymentType |If provided, only those transactions matching the PaymentType will be included.
-    |Optional |
-    | |Valid values are:
-    | |- ‘AMEX’ American Express card
-    | |- ‘CARTBLANCH’ Carte Blanch card
-    | |- ‘DEBIT’ Debit card
-    | |- ‘DINERS’ Diners Club card
-    | |- ‘DISCOVER’ Novus Discover card
-    | |- ‘EBT’ Electronic Benefit Transfer
-    | |- ‘JAL’ JAL card
-    | |- ‘JCB’ Japanese Commercial Bank card
-    | |- ‘MASTERCARD’ Master card
-    | |- ‘VISA’ Visa card
-    | |- ‘EGC’ Gift card
-    | |- ‘PAYRECEIPT’ to retrieve receipt images that were uploaded to the payment server
-    | |- ‘SETTLE’ to retrieve requests to settle transactions
-    | |Note: The default value for this field is “All”. If no value is set, all payment types will be returned in the result set.
-    | |Or any permutation of the above values, e.g. “‘PAYRECEIPT’,’SETTLE'” will pull all transactions with either PayReceipt or Settle payment types.
-    |ExcludePaymentType | The ExcludePaymentType parameter allows you to exclude certain payment types from the result set. Any valid entry (or combination) listed under the PaymentType parameter may be used.
-    |Optional |Note: If you pass the same value in the PaymentType and ExcludePaymentType parameters, the entry in the ExcludePaymentType parameter will override the PaymentType and results of that type will be excluded.
-    |TransType | If provided, only those transactions matching the TransType will be included.
-    |Optional | Valid values are
-    | |- ‘Authorization’ to retrieve previously-authorized (pre-auth) transactions
-    | | - ‘Capture’ to retrieve captured transactions
-    | |- ‘Credit’ to retrieve return transactions
-    | |- ‘ForceCapture’ to retrieve force-auth transactions
-    | |- ‘GetStatus’ to make an inquiry to the EBT or gift card’s balance
-    | |- ‘PostAuth’ to retrieve post-auth transactions
-    | |- ‘Purged’ to remove a transaction from the current batch due to an error
-    | |- ‘Receipt’ to retrieve receipt images that were uploaded to the payment server
-    | |- ‘RepeatSale’ to retrieve repeat-sale transactions
-    | |- ‘Sale’ to retrieve sale transactions
-    | |- ‘Void’ to retrieve void transactions
-    | |Or any permutation of the above values, e.g. “‘Credit’,’Sale'” will pull all transactions with either Credit or Sale transaction types.
-    |ExcludeTransType | The ExcludeTransType parameter allows you to exclude certain transaction types from the result set. Any valid entry (or combination) listed under the TransType parameter may be used.
-    |Optional | Note: If you pass the same value in the TransType and ExcludeTransType parameters, the entry in the ExcludeTransType parameter will override the TransType and results of that type will be excluded.
-    | |Note: A value of ‘Void’ in the ExcludeTransType parameter will be overridden by the ExcludeVoid if both parameters are used.
-    | |This parameter accepts multiple values.
-    |ApprovalCode | The approval code is a 6-character string (alphanumeric) generated by the issuing bank. The code is used the card issuer to verify the specific authorization when transactions are being settled. This field may also be used by payment processors to return error messages.
-    |Optional | Note: You may only query one approval code at a time; however, approval codes are not necessarily unique and there is potential (rare) for more than one record to be returned.
-    | Result| If provided, only those transactions matching the Result will be included.
-    |Optional | Valid values are:
-    | | - ‘NULL’ returns both approved and declined transactions
-    | |- ‘0’ returns only approved transactions
-    | |- Any other value for Result will return transactions matching that Result code.
-    | |Note: to return only declined transactions do not pass a value for this parameter and instead set ExcludeResult = 0.
-    |ExcludeResult | If provided, any transactions matching the ExcludeResult will be excluded.
-    |Optional | Note: To return a only declined transactions, set ExcludeResult = 0.
-    |NameOnCard | Cardholder’s name as it is appears on the card. If provided, only those transactions with cardholder’s name matching NameOnCard will be included. 
-    |Optional |Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”.
-    |CardNum |A card number. If provided, only those transactions with the card number matching CardNum will be included. Matching is done using wild cards.
-    |Optional |
-    |CardType | This field has been deprecated. Please use the PaymentType field to specify the type of card used in a transaction.
-    |Optional | View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
-    |ExcludeCardType |This field has been deprecated. Please use the ExcludePaymentType field to specify the type of cards you wish to be excluded from the result set.
-    |Optional |
-    |ExcludeVoid | The ExcludeVoid parameter allows you to exclude voided transactions from the result set.
-    |Required unless a PNRef value is provided |
-    | |Valid entries are:
-    | |- ‘TRUE’ – voided transactions are excluded
-    | |- ‘FALSE’ – voided transactions are included
-    | |Note: A value of ‘Void’ in the ExcludeTransType parameter will be overridden by the ExcludeVoid if both parameters are used.
-    |User |The user who originated the transactions. If provided, only those transactions created by the matching User will be included. 
-    |Optional | Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”.
-    |InvoiceId |The invoice ID that was included in the original transaction. If provided, only those transactions with matching invoiceId will be included. 
-    |Optional | Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”
-    |SettleFlag | The SettleFlag parameter allows you to choose whether settled or unsettled transactions are included in the results. 
-    |Optional | Valid entries are:
-    | |- Unused/blank returns all transactions
-    | |- ‘1’ – returns only settled transactions
-    | |- ‘0’ – returns only transactions that are not yet settled
-    |SettleMsg | The settlement ID or message returned from the host.
-    |Optional |
-    |SettleDt | The date of settlement.
-    |Optional |
-    |TransformType | The type of format to transform the data into. Leave the field blank to default to XML
-    |Optional |
-    | | - ‘XML’ will output the plain XML string
-    | |- ‘XSL’ will use XSL to transform the XML output
-    | |- ‘DELIM’ uses ColDelim and RowDelim to format the output
-    |Xsl | This field is used only if the TransformType is XSL.
-    |Optional | If provided, the resulting dataset will be transformed using this XSL. You may pass in a URL to the XSL file, or the XSL string itself. If this field is not empty, the Web Services will try to locate the file from the URL. If that also fails, it will treat it as an XSL string. In any case, the final XSL string will be loaded and validated against the XSL schema; if it passes, then that XSL will be used for transformation.
-    | |A sample predefined XSL is included with this Web Services: 
-    | |_‘https://gateway.ibxpays.com/admin/ws/TabDelim.xsl’_ for a tab delimited transformation.
-    | ColDelim|This field is used only if the TransformType is DELIM. This defines the string that separates each column.
-    |Optional |
-    | |e.g. a value of ‘@’, would separate each column value with ‘@’
-    |RowDelim | This field is used only if the TransformType is DELIM. This defines the string that separates each row.
-    |Optional |
-    | |e.g. a value of ‘!’ would start each row with ‘!’
-    |IncludeHeader | This field is used only if the TransformType is DELIM. If TRUE, then field headers will be included in the first row using the same delimiter strings; must either be TRUE or FALSE.
-    |ExtData | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.
-    |Optional |  Extended data in XML format. Valid values are:
-    | |- ‘<IMAGE_TYPE>NO_IMAGE</IMAGE_TYPE>’ – Will only return transaction data that does not include image data (to include signature data and check images)
-    | |- ‘<IMAGE_TYPE>ONLY_IMAGE</IMAGE_TYPE>’ – Will only return transaction data that includes image data (to include signature data and check images)
-    | |- ‘<IMAGE_TYPE>ALL</IMAGE_TYPE>’- will return transaction with or without image data
-    | |- ‘<CustomerID>CustomerID</CustomerID>’ – specifies the customer ID value to search by. Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”
-    | |- ‘<Amount>Amount</Amount>’ – specifies the amount value of the transactions being searched for. In DDDDDD.CC format
-    | |- ‘<RegisterNum>RegisterNum</RegisterNum>’ –  specifies the register number, originally passed with the transaction, to search by
-    | |- <Timezone>Timezone</Timezone> – Used to convert the input and output (where applicable) date/time values to the desired timezone. When specified, the same timezone is used to convert the begin/end date parameters as well as the Date and Last Update output values. This field is optional, and if omitted all date/time values are treated as UTC.  Daylight savings time adjustments, where applicable, are handled automatically.  Accepted values are: 
-    | |   -- AKST – Alaskan Standard Time
-    | |   -- CST – Central Standard Time
-    | |   -- EST – Eastern Standard Time
-    | |   -- HST – Hawaiian Standard Time
-    | |   -- MST – Mountain Standard Time
-    | |   -- AZMST – Arizona
-    | |   -- PST – Pacific Standard Time
-    
+    |RPNum |Unique value assigned to each gateway account used as a third credential to ensure security and<BR><BR>Note: RPNum may also be called Merchant ID, Merchant Number, or Vendor Key.
+    |PNRef<BR><BR>Optional| The unique payment reference number assigned to the transaction.<BR><BR>If this field is provided, all other query fields will be ignored when using PNRef parameter to query the system.
+    |BeginDt<BR><BR>Required unless a PNRef value is provided | Beginning date of the transaction record query.
+    |EndDt<BR><BR>Required unless a PNRef value is provided| End date of the transaction record query.
+    |PaymentType<BR><BR>Optional|If provided, only those transactions matching the PaymentType will be included.<BR><BR>Valid values are:<BR><BR>- ‘AMEX’ American Express card<BR><BR>- ‘CARTBLANCH’ Carte Blanch card<BR><BR>- ‘DEBIT’ Debit card<BR><BR>- ‘DINERS’ Diners Club card<BR><BR>- ‘DISCOVER’ Novus Discover card<BR><BR>- ‘EBT’ Electronic Benefit Transfer<BR><BR>- ‘JAL’ JAL card<BR><BR>- ‘JCB’ Japanese Commercial Bank card<BR><BR>- ‘MASTERCARD’ Master card<BR><BR>- ‘VISA’ Visa card<BR><BR>- ‘EGC’ Gift card<BR><BR>- ‘PAYRECEIPT’ to retrieve receipt images that were uploaded to the payment server<BR><BR>- ‘SETTLE’ to retrieve requests to settle transactions<BR><BR>Note: The default value for this field is “All”. If no value is set, all payment types will be returned in the result set.<BR><BR>Or any permutation of the above values, e.g. “‘PAYRECEIPT’,’SETTLE'” will pull all transactions with either PayReceipt or Settle payment types.
+    |ExcludePaymentType<BR><BR>Optional| The ExcludePaymentType parameter allows you to exclude certain payment types from the result set. Any valid entry (or combination) listed under the PaymentType parameter may be used.<BR><BR>Note: If you pass the same value in the PaymentType and ExcludePaymentType parameters, the entry in the ExcludePaymentType parameter will override the PaymentType and results of that type will be excluded.
+    |TransType<BR><BR>Optional | If provided, only those transactions matching the TransType will be included.<BR><BR>Valid values are<BR><BR>- ‘Authorization’ to retrieve previously-authorized (pre-auth) transactions<BR><BR>- ‘Capture’ to retrieve captured transactions<BR><BR>- ‘Credit’ to retrieve return transactions<BR><BR>- ‘ForceCapture’ to retrieve force-auth transactions<BR><BR>- ‘GetStatus’ to make an inquiry to the EBT or gift card’s balance<BR><BR>- ‘PostAuth’ to retrieve post-auth transactions<BR><BR>- ‘Purged’ to remove a transaction from the current batch due to an error<BR><BR>- ‘Receipt’ to retrieve receipt images that were uploaded to the payment server<BR><BR>- ‘RepeatSale’ to retrieve repeat-sale transactions<BR><BR>- ‘Sale’ to retrieve sale transactions<BR><BR>- ‘Void’ to retrieve void transactions<BR><BR>Or any permutation of the above values, e.g. “‘Credit’,’Sale'” will pull all transactions with either Credit or Sale transaction types.
+    |ExcludeTransType<BR><BR>Optional | The ExcludeTransType parameter allows you to exclude certain transaction types from the result set. Any valid entry (or combination) listed under the TransType parameter may be used.<BR><BR>Note: If you pass the same value in the TransType and ExcludeTransType parameters, the entry in the ExcludeTransType parameter will override the TransType and results of that type will be excluded.<BR><BR>Note: A value of ‘Void’ in the ExcludeTransType parameter will be overridden by the ExcludeVoid if both parameters are used.<BR><BR>This parameter accepts multiple values.
+    |ApprovalCode<BR><BR>Optional| The approval code is a 6-character string (alphanumeric) generated by the issuing bank. The code is used the card issuer to verify the specific authorization when transactions are being settled. This field may also be used by payment processors to return error messages.<BR><BR> Note: You may only query one approval code at a time; however, approval codes are not necessarily unique and there is potential (rare) for more than one record to be returned.
+    |Result<BR><BR>Optional | If provided, only those transactions matching the Result will be included.<BR><BR>Valid values are:<BR><BR>- ‘NULL’ returns both approved and declined transactions<BR><BR>- ‘0’ returns only approved transactions<BR><BR>- Any other value for Result will return transactions matching that Result code.<BR><BR>Note: to return only declined transactions do not pass a value for this parameter and instead set ExcludeResult = 0.
+    |ExcludeResult<BR><BR>Optional | If provided, any transactions matching the ExcludeResult will be excluded.<BR><BR>Note: To return a only declined transactions, set ExcludeResult = 0.
+    |NameOnCard<BR><BR>Optional | Cardholder’s name as it is appears on the card. If provided, only those transactions with cardholder’s name matching NameOnCard will be included. Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”.
+    |CardNum<BR><BR>Optional |A card number. If provided, only those transactions with the card number matching CardNum will be included. Matching is done using wild cards.
+    |CardType<BR><BR>Optional | This field has been deprecated. Please use the PaymentType field to specify the type of card used in a transaction.<BR><BR>View [ExtData Field Definitions](#section/3.9.-Transaction-Response-Fields/ExtData-Response-Fields) for more information.
+    |ExcludeCardType<BR><BR>Optional |This field has been deprecated. Please use the ExcludePaymentType field to specify the type of cards you wish to be excluded from the result set.
+    |ExcludeVoid<BR><BR>Required unless a PNRef value is provided | The ExcludeVoid parameter allows you to exclude voided transactions from the result set.<BR><BR>Valid entries are:<BR><BR>- ‘TRUE’ – voided transactions are excluded<BR><BR>- ‘FALSE’ – voided transactions are included<BR><BR>Note: A value of ‘Void’ in the ExcludeTransType parameter will be overridden by the ExcludeVoid if both parameters are used.
+    |User<BR><BR>Optional|The user who originated the transactions. If provided, only those transactions created by the matching User will be included. Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”.
+    |InvoiceId<BR><BR>Optional|The invoice ID that was included in the original transaction. If provided, only those transactions with matching invoiceId will be included. Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”
+    |SettleFlag<BR><BR>Optional | The SettleFlag parameter allows you to choose whether settled or unsettled transactions are included in the results.<BR><BR>Valid entries are:<BR><BR>- Unused/blank returns all transactions<BR><BR>- ‘1’ – returns only settled transactions<BR><BR>- ‘0’ – returns only transactions that are not yet settled
+    |SettleMsg<BR><BR>Optional | The settlement ID or message returned from the host.
+    |SettleDt<BR><BR>Optional | The date of settlement.
+    |TransformType<BR><BR>Optional | The type of format to transform the data into. Leave the field blank to default to XML<BR><BR>- ‘XML’ will output the plain XML string<BR><BR>- ‘XSL’ will use XSL to transform the XML output<BR><BR>- ‘DELIM’ uses ColDelim and RowDelim to format the output
+    |Xsl<BR><BR>Optional| This field is used only if the TransformType is XSL.<BR><BR>If provided, the resulting dataset will be transformed using this XSL. You may pass in a URL to the XSL file, or the XSL string itself. If this field is not empty, the Web Services will try to locate the file from the URL. If that also fails, it will treat it as an XSL string. In any case, the final XSL string will be loaded and validated against the XSL schema; if it passes, then that XSL will be used for transformation.<BR><BR>A sample predefined XSL is included with this Web Services: <BR><BR>_‘https://gateway.ibxpays.com/admin/ws/TabDelim.xsl’_ for a tab delimited transformation.
+    |ColDelim<BR><BR>Optional|This field is used only if the TransformType is DELIM. This defines the string that separates each column.<BR><BR>e.g. a value of ‘@’, would separate each column value with ‘@’
+    |RowDelim<BR><BR>Optional | This field is used only if the TransformType is DELIM. This defines the string that separates each row.<BR><BR>e.g. a value of ‘!’ would start each row with ‘!’
+    |IncludeHeader <BR><BR>Optional  | This field is used only if the TransformType is DELIM. If TRUE, then field headers will be included in the first row using the same delimiter strings; must either be TRUE or FALSE.
+    |ExtData<BR><BR>Optional  | The ExtData parameter allows you to pass additional information to the web service that is not covered under the input parameters. ExtData values need not be placed in any particular order; however, they must be properly formatted using XML tags.<BR><BR>Extended data in XML format. Valid values are: <BR><BR>- ‘<IMAGE_TYPE>NO_IMAGE</IMAGE_TYPE>’ – Will only return transaction data that does not include image data (to include signature data and check images)<BR><BR>- ‘<IMAGE_TYPE>ONLY_IMAGE</IMAGE_TYPE>’ – Will only return transaction data that includes image data (to include signature data and check images)<BR><BR>- ‘<IMAGE_TYPE>ALL</IMAGE_TYPE>’- will return transaction with or without image data<BR><BR>- ‘<CustomerID>CustomerID</CustomerID>’ – specifies the customer ID value to search by. Matching is done using wild cards: e.g. “test” will match “test”, “1test” and “1test234”<BR><BR>- ‘<Amount>Amount</Amount>’ – specifies the amount value of the transactions being searched for. In DDDDDD.CC format <BR><BR>- ‘<RegisterNum>RegisterNum</RegisterNum>’ –  specifies the register number, originally passed with the transaction, to search by<BR><BR>- <Timezone>Timezone</Timezone> – Used to convert the input and output (where applicable) date/time values to the desired timezone. When specified, the same timezone is used to convert the begin/end date parameters as well as the Date and Last Update output values. This field is optional, and if omitted all date/time values are treated as UTC.  Daylight savings time adjustments, where applicable, are handled automatically.  Accepted values are: <BR><BR>   -- AKST – Alaskan Standard Time<BR><BR>   -- CST – Central Standard Time<BR><BR>   -- EST – Eastern Standard Time<BR><BR>   -- HST – Hawaiian Standard Time<BR><BR>   -- MST – Mountain Standard Time<BR><BR>   -- AZMST – Arizona<BR><BR>   -- PST – Pacific Standard Time    
    
     # 4.2. GetCardTrxSummary   
     
@@ -3316,6 +3058,8 @@ info:
     
     The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
     
+    [Run in Postman](#section/postman)
+
     ## CURL
     How to execute the call:
     

@@ -792,7 +792,7 @@ info:
     ## Request
     ProcessSignature(UserName, Password, SignatureType, SignatureData, PNRef, Result, AuthCode, ExtData)
     
-    This example combines the previous ProcessCreditCard call and appends a signature to it. An [example file is linked](https://www.integritypays.com/wp-content/uploads/2016/08/gateway_signature.tif) (see “Path to File”) which you can download and save locally to try.
+    This example combines the previous ProcessCreditCard call and appends a signature to it. An [example file is linked](https://www.payroc.com/Common/Images/Custom/5982/api-docs/gateway_signature.tif) (see “Path to File”) which you can download and save locally to try.
     
     ```
     SmartPaymentsSoapClient transact =
@@ -3572,7 +3572,8 @@ info:
     # 9.1. Implementation Examples 
     
     The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
-    
+    <div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="dd06f5a44925cb0e1b3a"></div><script type="text/javascript">(function (p,o,s,t,m,a,n) { !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); }); !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild(( (n = o.createElement("script")), (n.id = s+t), (n.async = 1), (n.src = m), n )); }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));</script>
+
     ## CURL
     How to execute the call:
     
@@ -4024,7 +4025,7 @@ info:
     
     Each merchant has a merchant token created in the gateway that is a publicly presentable piece of information. The merchant token is passed in to the IBX library to identify which merchant provided the card information so a payment token can be created for it. Your merchant token can be found in your Integrity Gateway Merchant account. After you log in to your merchant account, select Preferences > Security. In the example below, you can see the Merchant Token is provided at the top of the Security Settings page. (In the example, the token has been blurred out for security purposes.)
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/merchant-token.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/merchant-token.png)
       
     ## Simple and Advanced Modes
 
@@ -4036,7 +4037,7 @@ info:
       
       Below is an example of a simple form designed to collect payment and customer information. You can design a form customized for your purpose.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/04/custom-screen.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/custom-screen.png)
       
     ## Create a Form
 
@@ -4227,11 +4228,11 @@ info:
     
     - Traditional ‘Redirect/Post Back’ (Simple) Methodology
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted1.jpg)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted1.jpg)
     
     - iFrame/Hosted Form (Advanced) Methodology:
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted2.png)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted2.png)
     
     ## Configuration
 
@@ -4277,15 +4278,15 @@ info:
     
     This configuration:
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2017/02/hosted-page-donation-amount-1.png)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted-page-donation-amount-1.png)
     
     Yields the following in the Hosted Page:
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted4-300x89.png)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted4-300x89.png)
     
     Simply enter an amount in the ‘Amount Options’ field and then select ‘Add Option’, and the amount that you enter will be reflected as an option on the hosted page. If you would like to remove an option, select it from the list and select the 
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted5.png)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted5.png)
     and the amount will be removed from the list.
     
     ## Appearance
@@ -4312,7 +4313,7 @@ info:
     
     **_Panel Width Configuration:_** The options shown below will allow you to control the width of each panel by either pixel count or percentage of the total size of the page. See below:
     
-    ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/hosted-page-panel-width-300x150.png)
+    ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/hosted-page-panel-width-300x150.png)
     
     If you select ‘Panel Width = Header Width’ the panel width will be set to equal the width of any banner that has been uploaded for the page.
 
@@ -4466,7 +4467,7 @@ info:
         https://gateway.ibxpays.com/Emulator/handler.ashx?EmulatorID=<ID OF THE EMULATOR YOU WILL ADD IN THE FOLLOWING STEP>
         magento payment method
         
-         ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/magento-payment-method.png)
+         ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/magento-payment-method.png)
          
     2. Create an emulator in The Gateway that will be used for this integration. Save the values on the first screen, which will enable the fields tab.
 
@@ -4476,21 +4477,21 @@ info:
         
         c. Source IP: An advanced option, allowing The Gateway to determine which Emulator profile to load based on the client ip address, as opposed to supplying an Emulator ID in the request
         
-         ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/magento-global-settings-2.png)
+         ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/magento-global-settings-2.png)
       
       3. Load the Authorize.net (Magento/OSCommerce) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net-request-field-mapping.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net-request-field-mapping.png)
       
       4. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-result-code.png)
       
       This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
 
       Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code-300x114.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-response-code-300x114.png)
       
       These values are preloaded with the Authorize.net template.
       
@@ -4505,9 +4506,9 @@ info:
           
           d. MD5 Hash: This can be a value of the user’s choice, but it must match exactly (case-sensitive) the value entered in The Gateway (see below).
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net.jpg)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net.jpg)
           
-           ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net-AIM.png)
+           ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net-AIM.png)
            
            e. You may need to edit the includes/modules/payment/authorizenet2.php file that exists in the installation directory of OS Commerce. You can access the installation files on the server where OS Commerce was installed. Then locate the directory for the Auth.net plugin and do a search of the files in that directory for anything containing secure.authorize.net and replace those URLs with the gateway’s emulator URL.
         
@@ -4521,30 +4522,30 @@ info:
           
           d. Hash value: This corresponds to the Hash Value entered in Authorize.net (AIM) payment module
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/emulator-oscommerce-global-settings-1.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/emulator-oscommerce-global-settings-1.png)
           
       3. Load the Authorize.net (Magento/OSCommerce) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net-ZEN-request-code-1.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net-ZEN-request-code-1.png)
       
       4. The Authorize.net AIM spec has several features which, although optional to Authorize.net, are required by OSCommerce. 
         a. MD5 hash in the response: Authorize.net supports a hash of a pre-defined hash value, username, transaction id and amount returned in the response. OSCommerce will calculate this value and expect a match in the response from the The Gateway emulator. This is accomplished via the Field Formula in the Advanced Options of the Response field. As the screenshot below shows, the fields HashValue, Username, Transaction ID and Amount are included in a call to a MD5 function (all surrounded in parenthesis). Each value enclosed in square brackets is intended to be replaced with the actual value from that field. For example, [HashValue] will be replaced with the value specified in the previous steps (abcd in this example). This allows the return value of a given field to be dynamic, depending on the actual request and response values of a given transaction.
         
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/adv-field-mapping-MD5.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/adv-field-mapping-MD5.png)
       
       b. Amount in the response:  Similar to MD5 this value depends on a FieldFormula, but it is very simple. This formula will simply be replaced with the Amount value passed in the request. No other modifications will be made.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/oscomm-field-code-1.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/oscomm-field-code-1.png)
       
       5. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-result-code.png)
       
       This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
 
       Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
       
-       ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
+       ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-response-code.png)
        
        These values are preloaded with the Authorize.net template.
        
@@ -4561,9 +4562,9 @@ info:
           
           e. Transaction Key: This is the password for the user entered in the Login ID field.
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/select-processor.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/select-processor.png)
           
-           ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/gateway-emulator-settings.png)
+           ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/gateway-emulator-settings.png)
            
            
       2. Create an emulator in The Gateway that will be used for this integration. Save the values on the first screen, which will enable the fields tab.
@@ -4573,21 +4574,21 @@ info:
           
           c. Source IP: An advanced option, allowing The Gateway to determine which Emulator profile to load based on the client ip address, as opposed to supplying an Emulator ID in the request
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/emulator-shopsite-global-settings.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/emulator-shopsite-global-settings.png)
       
       3. Load the Authorize.net (Magento/OSCommerce) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
       
-       ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net-request-field-mapping-1.png)
+       ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net-request-field-mapping-1.png)
        
       4. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-result-code.png)
       
       This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
 
       Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-response-code.png)
       
       These values are preloaded with the Authorize.net template.
       
@@ -4601,7 +4602,7 @@ info:
           
           c. Transaction Key: This is the password for the user entered in the Login ID field.
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/virtuemart-config-tab.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/virtuemart-config-tab.png)
       
       
      2. Create an emulator in The Gateway that will be used for this integration. Save the values on the first screen, this will enable the fields tab.
@@ -4611,22 +4612,22 @@ info:
           
           c. Source IP: An advanced option, allowing The Gateway to determine which Emulator profile to load based on the client IP address, as opposed to supplying an Emulator ID in the request
           
-           ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/virtuemart-global-settings-1.png)
+           ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/virtuemart-global-settings-1.png)
       
       3. Load the Authorize.net (VirtueMart) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/authorize-net-virtuemart-global-settings-1.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/authorize-net-virtuemart-global-settings-1.png)
       
       
       4. Several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
       
-            ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+            ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-result-code.png)
             
       This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
       
       Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-response-code.png)
       
       These values are preloaded with the Authorize.net template.
       
@@ -4642,7 +4643,7 @@ info:
           
           d. MD5 Hash: This can be a value of the user’s choice, but it must match exactly (case-sensitive) the value entered in The Gateway (see below).
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-auth-net.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/zencart-auth-net.png)
           
       2. Create an emulator in The Gateway that will be used for this integration. Save the values on the first screen, this will enable the fields tab.
 
@@ -4654,30 +4655,30 @@ info:
           
           d. Hash value: This corresponds to the Hash Value entered in the Authorize.net (AIM) payment module.
           
-          ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-global-settings-3.png)
+          ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/zencart-global-settings-3.png)
           
         3. Load the Authorize.net (Zencart) template. This will create a number of pre-mapped request and response fields needed to match the Authorize.net response and request to the The Gateway request and response.
         
-              ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-request-fields-1.png)
+              ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/zencart-request-fields-1.png)
         
       4. The Authorize.net AIM spec has several features which, although optional to Authorize.net, are required by Zencart. 
       a. MD5 hash in the response: Authorize.net supports a hash of a pre-defined hash value, username, transaction id and amount returned in the response. Zencart will calculate this value and expect a match in the response from the The Gateway emulator. This is accomplished via the Field Formula in the Advanced Options of the Response field. As the screenshot below shows, the fields HashValue, Username, Transaction ID and Amount are included in a call to a MD5 function (all surrounded in parenthesis). Each value enclosed in square brackets is intended to be replaced with the actual value from that field. For example, [HashValue] will be replaced with the value specified in the previous steps (abcd in this example). This allows the return value of a given field to be dynamic, depending on the actual request and response values of a given transaction.
             
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-adv-field-map-1.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/zencart-adv-field-map-1.png)
              
       b. Amount in the response:  Similar to MD5 this value depends on a FieldFormula, but it is very simple. This formula will simply be replaced with the Amount value passed in the request. No other modifications will be made.
             
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/zencart-field-formula-1.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/zencart-field-formula-1.png)
           
       5. Finally, several of the Authorize.net fields do not have a direct value conversion to The Gateway. For example, an approval on The Gateway will have a Result Code of 0. On Authorize.net, an approval will have a Response Code of 1. It is not enough to simply map the Result Code of The Gateway to the Response Code of Authorize.net – 0 has no meaning for this field on Authorize.net. In addition to mapping the field, The Gateway’s Emulator will also use a Value Map to properly handle this field (found under Advanced properties of a field mapping)
       
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-result-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-result-code.png)
       
       This particular map will convert a result of 0 from The Gateway to a 1 for Authorize.net. Additionally, it will convert a value of 12 (decline) from The Gateway to a 2 for Authorize.net. Additional value maps can be added as needed.
       
       Value Maps are also important for the Transaction Type field in the request. Similar to the Response Code, the conversion is not straight across.
 
-      ![alt sample](https://www.integritypays.com/wp-content/uploads/2016/08/value-map-response-code.png)
+      ![alt sample](https://www.payroc.com/Common/Images/Custom/5982/api-docs/value-map-response-code.png)
       
       These values are preloaded with the Authorize.net template.
 
@@ -4729,7 +4730,9 @@ paths:
       # you can use GFM in operation description too: https://guides.github.com/features/mastering-markdown
       description: | 
         The following examples (cURL, PHP, Node.js, and Ruby) can be used when you are not using a SOAP based, .NET service. The examples show similar ways of doing the same thing in each environment. Note that we also have a postman collection that can quickly bring you up to speed for basic transaction processing using our easy HTTP GET/POST wrapper for our SOAP API as well as REST APIs. Once you open the link below look for the “IBX Beginner Collection”.
-      
+        
+        <div class="postman-run-button" data-postman-action="collection/import" data-postman-var-1="dd06f5a44925cb0e1b3a"></div><script type="text/javascript">(function (p,o,s,t,m,a,n) { !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); }); !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild(( (n = o.createElement("script")), (n.id = s+t), (n.async = 1), (n.src = m), n )); }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));</script>
+
       # operationId should be unique across the whole specification
       operationId: PaymentMethod
       # list of parameters for the operation

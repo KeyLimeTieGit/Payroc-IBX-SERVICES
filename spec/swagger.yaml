@@ -4697,7 +4697,7 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://s3-us-west-2.amazonaws.com/payroc-production/Public/payroc-logo-outlines.svg'
+    url: 'https://www.payroc.com/Common/Images/Custom/5982/Payroc_LOGO_Orange.png'
 #externalDocs:
   #description: Find out how to create Github repo for your OpenAPI spec.
   #url: 'https://github.com/Rebilly/generator-openapi-repo'
